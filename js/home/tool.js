@@ -50,9 +50,7 @@ var pkEvent = {
 
 //拉取数据
 function getList() {
-	request("/Card/layoutBrandMenuPage", {
-		playerid: storageUser.UId
-	}, function(r) {
+	request("../../data/tools.json", {}, function(r) {
 		log(r);
 		if(r.code == -1) {
 			appUI.showTopTip(r.msg);

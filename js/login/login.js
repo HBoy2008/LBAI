@@ -46,19 +46,19 @@ mui.plusReady(function() {
 
 	btn_login.addEventListener("tap", function() {
 		//模拟登陆
-		// var data = {
-		// 	PlayerId: 1,
-		// 	Mobile: 13800000000,
-		// 	NickName: 'admin',
-		// 	imgurl: "../../images/defuser.jpg",
-		// 	SelfdomSign: '',
-		// 	//cityid:data.CityId
-		// }
+		var data = {
+			PlayerId: 1,
+			Mobile: 18221786693,
+			NickName: '李小龙',
+			imgurl: "../../images/defuser.jpg",
+			SelfdomSign: '',
+			//cityid:data.CityId
+		}
 
-		// storageUser.login(data);
-		// storageUser.log();
-		// appPage.loginBack(backid, backurl);
-		// return;
+		storageUser.login(data);
+		storageUser.log();
+		appPage.loginBack(backid, backurl);
+		return;
 
 		//实际登陆校验
 		if (inpt_mobile.value.trim() == "") {

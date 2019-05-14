@@ -52,9 +52,9 @@
 			</div>
 		</div>
 		<script type="text/html" id="toolListTep1">
-			{{if data==null||data.length==0}}
+			{{if DATASET==null||DATASET.length==0}}
 			<div class="nodata">暂无内容</div>
-			{{else}} {{each data as value}}
+			{{else}} {{each DATASET as value}}
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-collapse mui-active">
 					<a href="#">
@@ -66,19 +66,19 @@
 					<div class="mui-collapse-content mui-text-center">
 						<span data-href="oneCardSearch.html" data-id="{{value.BrandId}}">
 		                		<img src="../../images/searchcard.png"/><br />
-		                		单卡查询
+		                		{{value.name}}
 			                </span>
 						<span data-href="" class="ckecklogin" data-id="{{value.BrandId}}" data-loginevent="pkEvent.goInvitation()" data-loginbackid="home/oneCardCollect.html">
 		                		<img src="../../images/collectcard.png"/><br />
-		                		单卡收藏
+		                		{{value.sex}}
 			                </span>
 						<span data-href="oneCardSquare.html" data-id="{{value.BrandId}}">
 		                		<img src="../../images/cards.png"/><br />
-		                		套牌广场
+		                		{{value.age}}
 			                </span>
 						<span data-href="" data-id="{{value.BrandId}}" class="ckecklogin" data-loginevent="pkEvent.goOneCardMe()" data-loginbackid="home/oneCardMe.html">
 		                		<img src="../../images/mycards.png"/><br />
-		                		我的套牌
+		                		{{value.level}}
 			                </span>
 					</div>
 				</li>
