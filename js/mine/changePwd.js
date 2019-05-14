@@ -25,13 +25,13 @@ mui.plusReady(function() {
 			}, function(json) {
 				appUI.closeWaiting();
 				appUI.removeDisabled(btn_ok);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					var data = json.data;
 					log(data);
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					mui.back();
 				} else {
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

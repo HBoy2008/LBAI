@@ -42,12 +42,12 @@ mui.plusReady(function() {
 							lon: storageLocation.Lon,
 							lat: storageLocation.Lat
 						}, function(json) {
-							if(json.code == 0) {
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 								mui.toast("加入成功");
 								//mui.fire(plus.webview.getWebviewById('customer/pk.html'), 'uploadList');
 								loadData();
 							} else {
-								mui.toast(json.msg);
+								mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 							}
 						});
 					}
@@ -69,12 +69,12 @@ mui.plusReady(function() {
 					lon: storageLocation.Lon,
 					lat: storageLocation.Lat
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						mui.toast("加入成功");
 						//mui.fire(plus.webview.getWebviewById('customer/pk.html'), 'uploadList');
 						loadData();
 					} else {
-						mui.toast(json.msg);
+						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 			}
@@ -129,11 +129,11 @@ mui.plusReady(function() {
 					playerid: storageUser.UId,
 					matchid: matchid
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						appUI.showTopTip("退出成功");
 						loadData();
 					} else {
-						appUI.showTopTip(json.msg);
+						appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 			}
@@ -148,11 +148,11 @@ mui.plusReady(function() {
 					playerid: storageUser.UId,
 					matchid: matchid
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						appUI.showTopTip("删除成功");
 						mui.back();
 					} else {
-						appUI.showTopTip(json.msg);
+						appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 			}
@@ -200,7 +200,7 @@ function loadData() {
 		playerid: storageUser.UId,
 		matchid: matchid
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 
 			json1.Status = json.data.match.Status;
 			json1.UpshotImg = json.data.match.UpshotImg;
@@ -295,7 +295,7 @@ function loadData() {
 			calcPosition();
 			appPage.imgInit();
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	}, true, function() {
 		appPage.endPullRefresh();

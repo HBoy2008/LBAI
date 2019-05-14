@@ -46,11 +46,11 @@ function loadData() {
 		keyword: keyword
 	}, function(json) {
 		log(JSON.stringify(json))
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			render("#list_warp", "list_view", json);
 			appPage.imgInit();
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }

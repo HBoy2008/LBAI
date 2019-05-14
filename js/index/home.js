@@ -159,7 +159,7 @@ function loadData() {
 		lat: lat,
 		cityid: storageLocation.CityId
 	}, function(json) {
-		if(json.code == "0") {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			newmatchpage = 2, nearstorepage = 2;
 			bannerjson = {};
 			bannerjson.data = json.data.bannerdata;
@@ -214,7 +214,7 @@ function loadData() {
 
 			appPage.imgInit();
 		} else {
-			appUI.showTopTip(json.msg)
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY])
 		}
 		appPage.endPullRefresh();
 	}, false, function() {
@@ -245,14 +245,14 @@ function loadData_NewMatch() {
 		cityid: storageLocation.CityId,
 		pageindex: newmatchpage
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			newmatchjson = {};
 			newmatchjson.data = json.data;
 			newmatchpage = json.pageindex;
 			showNewMatch();
 			appPage.imgInit();
 		} else {
-			log("空赛事" + json.msg)
+			log("空赛事" + json[SysConstants.ERROR_MESSAGE_KEY])
 		}
 	}, true);
 }
@@ -264,14 +264,14 @@ function loadData_NearStore() {
 		cityid: storageLocation.CityId,
 		pageindex: nearstorepage
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			nearstorejson = {};
 			nearstorejson.data = json.data;
 			nearstorepage = json.pageindex;
 			showNearStore();
 			appPage.imgInit();
 		} else {
-			log("空店铺" + json.msg)
+			log("空店铺" + json[SysConstants.ERROR_MESSAGE_KEY])
 		}
 	}, true);
 }

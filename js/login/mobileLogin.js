@@ -59,10 +59,10 @@ mui.plusReady(function() {
 				mobile: inpt_mobile.value,
 				type: "SMS1003"
 			}, function(json) {
-				appUI.showTopTip(json.msg);
+				appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 				appUI.closeWaiting();
 				appUI.removeDisabled(btn_sendvalidcode);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					time(btn_sendvalidcode);
 				}
 			});
@@ -90,15 +90,15 @@ mui.plusReady(function() {
 				verifycode: inpt_validcode.value
 			}, function(json) {
 				appUI.removeDisabled(btn_login);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					var data = json.data;
 					log(data);
 					storageUser.login(data);
 					storageUser.log();
 					appPage.loginBack(backid, backurl);
 				} else {
-					appUI.showTopTip(json.msg);
-					//mui.toast(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

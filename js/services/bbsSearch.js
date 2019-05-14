@@ -149,12 +149,12 @@ function loadData(isnextpage, isreload) {
 	}, function(json) {
 		log('搜索数据：' + json);
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount; //总页码			
 			nomore = pageno >= json.pagecount;
 		} else {
-			appUI.showTopTip(json.msg);
-			//mui.toast(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+			//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		if(json.data == null || json.data.length == 0) {
 			document.getElementById("searchresult_warp").innerHTML = "<div class='nodata'>暂无记录</div>";

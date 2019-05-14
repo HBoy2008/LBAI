@@ -116,15 +116,15 @@ function loadData(isnextpage, isreload, pullobj) {
 		pageindex: pageno
 	}, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			currpagenoarr[curr_index] = pageno; //更新当前页码
 			pagecountarr[curr_index] = json.pagecount; //总页码
 			render("#" + contwarp, "mymatch_view", json, isappend);
 			appPage.imgInit();
 			nomore = pageno >= json.pagecount;
 		} else {
-			//appUI.showTopTip(json.msg);
-			mui.toast(json.msg);
+			//appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		mui(document.getElementById("scroll" + curr_index)).pullToRefresh().endPullUpToRefresh(nomore);
 	}, false, function() {

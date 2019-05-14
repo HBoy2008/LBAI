@@ -16,13 +16,13 @@ mui.plusReady(function() {
 					playerid: storageUser.UId,
 					oldpwd: md5pwd
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						openNew("changePwd.html");
 					} else {
 						mui.alert('密码错误，请重新输入。如果忘记密码，可通过短信验证登录APP后重新设置密码', function() {
 
 						});
-						//mui.toast(json.msg);
+						//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 

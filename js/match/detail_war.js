@@ -89,12 +89,12 @@ function loadData() {
 							matchtime: json.data.matchtime + ':00',
 							matchplayernum: json.data.matchplayernum
 						}, function(json) {
-							if(json.code == 0) {
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 								openNew("../match/detail.html", {
 									id: json.data.MatchId,
 								});
 							} else {
-								appUI.showTopTip(json.msg);
+								appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 							}
 						})
 					} else {
@@ -111,12 +111,12 @@ function loadData() {
 							friendid: json.data.friendid,
 							type: 'player'
 						}, function(json) {
-							if(json.code == 0) {
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 								openNew("../match/detail.html", {
 									id: json.data.MatchId,
 								});
 							} else {
-								appUI.showTopTip(json.msg);
+								appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 							}
 						})
 					}

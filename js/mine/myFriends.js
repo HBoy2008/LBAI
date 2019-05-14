@@ -41,13 +41,13 @@ function initPage() {
 		playerid: storageUser.UId
 	}, function(json) {
 		log(JSON.stringify(json))
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			render("#bar_warp", "bar_view", json);
 			render("#list_warp", "list_view", json);
 			appPage.imgInit();
 			initIndexList();
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	}, true);
 }

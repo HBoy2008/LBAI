@@ -110,7 +110,7 @@ function loadData(isnextpage, isreload) {
 		pageindex: pageno
 	}, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount; //总页码			
 			nomore = pageno >= json.pagecount;
 			var obj, typeclassname;
@@ -134,8 +134,8 @@ function loadData(isnextpage, isreload) {
 			render("#mymsg_warp", "mymsg_view", json, isappend);
 			appPage.imgInit();
 		} else {
-			appUI.showTopTip(json.msg);
-			//mui.toast(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+			//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		appPage.endPullRefresh(nomore);
 	}, true, function() {
@@ -148,7 +148,7 @@ function setRead(id) {
 		playerid: storageUser.UId,
 		notifyid: id
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			loadData();
 		}
 	});

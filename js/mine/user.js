@@ -72,7 +72,7 @@ function loadData() {
 	request("/Player/getPlayerIndexInfo", {
 		playerid: storageUser.UId
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			if(json.data.ImgUrl != "") { //判断头像是否路径相同
 				storageUser = kidstorageuser.getInstance();
 				var arr = json.data.ImgUrl.split('/');

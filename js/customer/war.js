@@ -102,7 +102,7 @@ mui.plusReady(function() {
 		lat: lat,
 		playerid: storageUser.UId
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			matchnamejson = json.data.matchnamedata;
 			matchsloganjson = json.data.slogandata;
 			if(matchnamejson && matchnamejson.length > 0) {
@@ -174,7 +174,7 @@ mui.plusReady(function() {
 				this.style.height = this.style.width;
 			})
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	})
 

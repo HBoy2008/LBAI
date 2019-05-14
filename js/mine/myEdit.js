@@ -154,13 +154,13 @@ mui.plusReady(function() {
 		postData.playerid = storageUser.UId;
 		log(JSON.stringify(postData));
 		request(url, postData, function(json) {
-			if(json.code == 0) {
+			if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 				if(refreshField) { //刷新缓存
 					storageUser.refreshField(refreshField, refreshVal);
 				}
 				mui.back();
 			} else {
-				mui.toast(json.msg);
+				mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 			}
 		}, true);
 	});

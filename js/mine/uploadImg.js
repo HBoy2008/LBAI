@@ -222,7 +222,7 @@ function start() {
 					playerid: storageUser.UId,
 					imgurl: url
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						plus.io.resolveLocalFileSystemURL(dirpath, function(entry) {
 							log(entry.toLocalURL())
 							storageUser.refreshImgUrl(entry.toLocalURL()); //路径刷新为本地图片
@@ -230,7 +230,7 @@ function start() {
 						});
 						mui.back();
 					} else {
-						mui.toast(json.msg);
+						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 

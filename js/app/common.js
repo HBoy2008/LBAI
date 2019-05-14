@@ -402,7 +402,7 @@ var kidstoragelocation = (function() {
 				request("/Base/getPlaceInfo", {
 					cityname: city
 				}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						log("城市id刷新成功" + json.data.CityId)
 						self.CityId = json.data.CityId
 						baseStorage.setItem(keyname, keyname_cityid, self.CityId);
@@ -1073,7 +1073,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 	mui.ajax(APP_DOMAIN + method, {
 		data: parm,
 		dataType: 'json', //要求服务器返回json格式数据
-		type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+		type: 'POST', //HTTP请求类型，要和服务端对应，要么GET,要么POST
 		timeout: 60000, //超时时间设置为6秒；
 		beforeSend: function() {
 			log(mklog() + '【AJAX:-->】【' + method + '】【P=' + JSON.stringify(parm) + '】');
@@ -1082,7 +1082,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 		success: function(data) {
 			//alert(method+data)
 			log(mklog() + '【AJAX:OK!】' + method + '】【响应：' + JSON.stringify(data) + '】');
-			if(data && data.code && data.code != undefined) {
+			if(data && data[SysConstants.ERROR_CODE_KEY] && data[SysConstants.ERROR_CODE_KEY] != undefined) {
 				setRequestMsg("");
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
 				callback(data);

@@ -32,9 +32,9 @@ mui.plusReady(function() {
 				mobile: inpt_mobile.value,
 				type: "SMS1004"
 			}, function(json) {
-				appUI.showTopTip(json.msg);
+				appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 				appUI.removeDisabled(btn_sendvalidcode);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					time(btn_sendvalidcode);
 				}
 			});
@@ -62,12 +62,12 @@ mui.plusReady(function() {
 				verifycode: inpt_validcode.value
 			}, function(json) {
 				appUI.removeDisabled(btn_ok);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					storageUser.refreshMobile(inpt_mobile.value);
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					mui.back();
 				} else {
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

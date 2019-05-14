@@ -22,7 +22,7 @@ function loadData() {
 	request("/News/getNewsDetailsByNewsId", {
 		newsid: newsid
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			json.data.ReadCount = json.data.ReadCount || 0;
 			render("#detail_warp", "detail_view", json);
 			document.getElementById("body").innerHTML = HTMLDecode(json.data.Body);

@@ -7,6 +7,8 @@ mui.plusReady(function() {
 	var btn_ok = document.getElementById("btn_ok");
 	var inpt_mobile = document.getElementById("inpt_mobile");
 	var inpt_validcode = document.getElementById("inpt_validcode");
+	var inpt_password = document.getElementById("inpt_password");
+	var inpt_name = document.getElementById("inpt_name");
 	var ckb_agree = document.getElementById("ckb_agree");
 
 	if(ismobileno(inpt_mobile.value)) {
@@ -30,7 +32,7 @@ mui.plusReady(function() {
 			}, function(json) {
 				mui.toast(json.msg);
 				appUI.removeDisabled(btn_sendvalidcode);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					time(btn_sendvalidcode);
 				}
 			});
@@ -62,20 +64,27 @@ mui.plusReady(function() {
 			//mui.toast("宝宝，同意下服务条款呗");
 		} else {
 			appUI.setDisabled(btn_ok);
-			request("/Login/checkMobileSmsCode", {
-				mobile: inpt_mobile.value,
-				verifycode: inpt_validcode.value
+			// request("/Login/checkMobileSmsCode", {
+			// 	mobile: inpt_mobile.value,
+			// 	verifycode: inpt_validcode.value
+			
+			request("http://192.168.8.101:8000/sqldb/register/", {
+				login_id: inpt_mobile.value,
+				validcode: inpt_validcode.value,
+				login_pwd: inpt_password.value,
+				user_nm: inpt_name.value,
+				user_sn : "20000"
 			}, function(json) {
 				appUI.removeDisabled(btn_ok);
-				if(json.code == 0) {
+				mui.alert(json[SysConstants.ERROR_CODE_KEY]);
+				mui.alert(SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS);
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					openNew("setPwd.html", {
-
 						mobile: inpt_mobile.value,
 						type: "reg"
-
 					});
 				} else {
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//mui.toast(json.msg);
 				}
 			});

@@ -94,7 +94,7 @@ function initPage() {
 		playerid: storageUser.UId,
 		step: 2
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			json.data.ProvinceId = json.data.ProvinceId || 0;
 			json.data.CityId = json.data.CityId || 0;
 			json.data.DistrictId = json.data.DistrictId || 0;
@@ -103,7 +103,7 @@ function initPage() {
 			render("#myprivateinfo_warp", "myprivateinfo_view", json);
 
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	}, true);
 }
@@ -134,8 +134,8 @@ function oauthlogin(id) {
 					OpenId: authinfo.openid,
 					Memo: JSON.stringify(userinfo)
 				}, function(json) {
-					appUI.showTopTip(json.msg);
-					if(json.code == 0) {
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						initPage();
 					} else {
 

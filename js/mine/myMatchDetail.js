@@ -29,7 +29,7 @@ function loadData() {
 		playerid: storageUser.UId,
 		matchid: matchid
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 
 			var json1 = {};
 			json1.Status = json.data.match.Status;
@@ -149,7 +149,7 @@ function loadData() {
 			initTip();
 
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }
@@ -191,11 +191,11 @@ function del() {
 				playerid: storageUser.UId,
 				matchid: matchid
 			}, function(json) {
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					mui.toast("删除成功");
 					mui.back();
 				} else {
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}
@@ -210,11 +210,11 @@ function out() {
 				playerid: storageUser.UId,
 				matchid: matchid
 			}, function(json) {
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					mui.toast("退出成功");
 					mui.back();
 				} else {
-					mui.toast(json.msg);
+					mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

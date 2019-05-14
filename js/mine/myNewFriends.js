@@ -52,11 +52,11 @@ function agreeAdd(fid) {
 		friendid: fid
 	}, function(json) {
 		log(JSON.stringify(json))
-		if(json.code == 0) {
-			mui.toast(json.msg);
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 			initPage();
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }
@@ -67,13 +67,13 @@ function initPage() {
 		playerid: storageUser.UId
 	}, function(json) {
 		log(JSON.stringify(json))
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			render("#bar_warp", "bar_view", json);
 			render("#list_warp", "list_view", json);
 			appPage.imgInit();
 			initIndexList();
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	}, true);
 }

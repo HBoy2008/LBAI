@@ -66,12 +66,12 @@ function getList(isnextpage, isreload) {
 		pageindex: pageno
 	}, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount || 0; //总页码			
 			render("#invitation", "invitationTep1", json, isappend);
 			nomore = pageno >= pagecount;
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		appPage.endPullRefresh(nomore);
 		appPage.imgInit();
@@ -87,12 +87,12 @@ function refreshDetail(matchid) {
 		lon: storageLocation.Lon,
 		lat: storageLocation.Lat
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			json.item = json.data;
 			render("#match_" + matchid, "detail_view", json);
 			appPage.imgInit();
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }
@@ -107,7 +107,7 @@ var pkEvent = {
 					lon: storageLocation.Lon,
 					lat: storageLocation.Lat
 				}, function(json) {
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//刷新单条状态
 					refreshDetail(matchid);
 					//进入详情页
@@ -129,7 +129,7 @@ var pkEvent = {
 					lon: storageLocation.Lon,
 					lat: storageLocation.Lat
 				}, function(json) {
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//刷新单条状态
 					refreshDetail(matchid);
 				})

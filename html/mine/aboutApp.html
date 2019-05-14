@@ -59,7 +59,7 @@
 				var iosurl, androidurl, appid;
 				document.getElementById("lastyear").innerText = ((new Date().getFullYear() + 1).toString());
 				request("/Base/getAPPInfo", {}, function(json) {
-					if(json.code == 0) {
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						var data = json.data;
 						document.getElementById("appname").innerText = data.AppName;
 
@@ -70,7 +70,7 @@
 						appid = data.AppPackageId;
 						log(data);
 					} else {
-						mui.toast(json.msg);
+						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 					}
 				});
 

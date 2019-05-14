@@ -147,12 +147,12 @@ function loadData(isnextpage, isreload) {
 		cityid:storageLocation.CityId
 	}, function(json) {
 		var nomore=true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount; //总页码			
 			nomore = pageno >= json.pagecount;			
 		} else {
-			appUI.showTopTip(json.msg);
-			//mui.toast(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+			//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}	
 		render("#searchresult_warp", "searchresult_view", json,isappend);
 		appPage.imgInit();

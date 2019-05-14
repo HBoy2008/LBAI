@@ -166,7 +166,7 @@ function getList(isnextpage, isreload) {
 	}
 	request(url, param, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount || 0; //总页码
 			render("#list_warp", "list_view", json, isappend);
 			appPage.imgInit();
@@ -176,7 +176,7 @@ function getList(isnextpage, isreload) {
 			for(var i = 0; i < arr.length; i++) {
 				arr[i].innerText = "暂无内容";
 			}
-			if(type == 3) appUI.showTopTip(json.msg);
+			if(type == 3) appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		appPage.endPullRefresh(nomore);
 	}, showwaitting, function() {
@@ -189,7 +189,7 @@ function checkInvitation() {
 		//		request("/Match/checkWhetherHaveInviteMatch", {
 		//			playerid: storageUser.UId
 		//		}, function(json) {
-		//			if(json.code == 0) {
+		//			if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 		//				if(json.countinvite > 0) { //包含受邀
 		//					document.getElementById("yaoqing").setAttribute("class", "active ckecklogin");
 		//				} else { //不包含受邀
@@ -221,12 +221,12 @@ function refreshDetail(matchid) {
 		lon: lon,
 		lat: lat
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			json.item = json.data;
 			render("#match_" + matchid, "detail_view", json);
 			appPage.imgInit();
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }
@@ -246,8 +246,8 @@ var pkEvent = {
 					lon: lon,
 					lat: lat
 				}, function(json) {
-					appUI.showTopTip(json.msg);
-					if(json.code == 0) {
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						//刷新单条状态
 						refreshDetail(matchid);
 						//进入详情页
@@ -271,7 +271,7 @@ var pkEvent = {
 					lon: storageLocation.Lon,
 					lat: storageLocation.Lat
 				}, function(json) {
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//刷新单条状态
 					refreshDetail(matchid);
 					//进入详情页
@@ -293,7 +293,7 @@ var pkEvent = {
 					lon: storageLocation.Lon,
 					lat: storageLocation.Lat
 				}, function(json) {
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//刷新单条状态
 					refreshDetail(matchid);
 				})

@@ -51,7 +51,7 @@ function initPage() {
 		playerid: storageUser.UId,
 		step: 1
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			if(json.data.Sex == 2) {
 				json.data.SexName = "女";
 			} else if(json.data.Sex == 1) {
@@ -61,7 +61,7 @@ function initPage() {
 			render("#myinfo_warp", "myinfo_view", json);
 
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	}, true);
 }

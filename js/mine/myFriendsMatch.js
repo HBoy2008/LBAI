@@ -78,11 +78,11 @@ function loadData(isnextpage, isreload) {
 		pageindex: pageno
 	}, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount; //总页码			
 			nomore = pageno >= json.pagecount;
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		render("#searchresult_warp", "searchresult_view", json, isappend);
 		appPage.imgInit();

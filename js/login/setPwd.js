@@ -51,13 +51,13 @@ mui.plusReady(function() {
 				cityid: storageLocation.CityId
 			}, function(json) {
 				appUI.removeDisabled(btn_ok);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					var data = json.data;
 					log(data);
 					openNew("login.html");
 				} else {
-					appUI.showTopTip(json.msg);
-					//mui.toast(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

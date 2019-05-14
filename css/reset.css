@@ -377,6 +377,14 @@
 	background-color: #fff;
 }
 
+
+
+.bg-lan-default,
+.bg-lan-default .mui-content {
+	background: #47BAFE;
+	background-color: #47BAFE;
+}
+
 .bg-huang {
 	background: #F1A55D;
 }
@@ -403,9 +411,10 @@
 
 .btn-ok {
 	padding: 10px;
-	background: #74B6ED;
-	border: none;
+	background: #00B4FF;
+	border: 1px white solid;
 	color: #fff;
+	border-radius: 40px;
 }
 
 .btn-rightwarp {
@@ -414,14 +423,14 @@
 	top: 0px;
 	right: 0px;
 	line-height: 40px;
-	background: #74B6ED;
+	background: #00B4FF;
 	color: #fff;
 	padding: 0px;
 	border: 0px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-top-left-radius: 0px;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 40px;
+	border-top-left-radius: 40px;
 }
 
 

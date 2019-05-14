@@ -88,12 +88,12 @@ function loadData(isnextpage, isreload) {
 		lat: lat
 	}, function(json) {
 		var nomore=true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount; //总页码			
 			nomore = pageno >= json.pagecount;			
 		} else {
-			appUI.showTopTip(json.msg);
-			//mui.toast(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+			//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}	
 		render("#searchresult_warp", "searchresult_view", json,isappend);
 		appPage.imgInit();
@@ -123,12 +123,12 @@ function refreshDetail(matchid) {
 		lon: lon,
 		lat: lat
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			json.item=json.data;
 			render("#match_" + matchid, "detail_view", json);
 			appPage.imgInit();
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 	});
 }
@@ -142,7 +142,7 @@ var pkEvent = {
 					lon: lon,
 					lat: lat
 				}, function(json) {					
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					openNew("../match/detail.html", {
 						id: matchid,
 						getMatchDetail: 'getMatchDetail' //说明从战帖列表页来的
@@ -161,7 +161,7 @@ var pkEvent = {
 					lon:storageLocation.Lon,
 					lat:storageLocation.Lat
 				},function(json){					
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 //刷新单条状态
 					refreshDetail(matchid);
 					//进入详情页
@@ -183,7 +183,7 @@ var pkEvent = {
 					lon:storageLocation.Lon,
 					lat:storageLocation.Lat
 				},function(json){					
-					appUI.showTopTip(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 					//刷新单条状态
 					refreshDetail(matchid);
 				})

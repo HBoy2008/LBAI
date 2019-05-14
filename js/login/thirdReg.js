@@ -47,9 +47,9 @@ mui.plusReady(function() {
 				mobile: inpt_mobile.value,
 				type: 'SMS1004'
 			}, function(json) {
-				mui.toast(json.msg);
+				mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				appUI.removeDisabled(btn_sendvalidcode);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					time(btn_sendvalidcode);
 				}
 			});
@@ -85,7 +85,7 @@ mui.plusReady(function() {
 				mobile: inpt_mobile.value,
 				verifycode: inpt_validcode.value
 			}, function(json) {
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					request("/Base/BindThirdParty", {
 						mobile: inpt_mobile.value,
 						verifycode: inpt_validcode.value,
@@ -98,20 +98,20 @@ mui.plusReady(function() {
 						cityid: storageLocation.CityId
 					}, function(json) {
 						appUI.removeDisabled(btn_ok);
-						if(json.code == 0) {
+						if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 							var data = json.data;
 							log(data);
 							storageUser.login(data);
 							storageUser.log();
 							openNew("../mine/user.html")
 						} else {
-							appUI.showTopTip(json.msg);
+							appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 						}
 					});
 				} else {
 					appUI.removeDisabled(btn_ok);
-					appUI.showTopTip(json.msg);
-					//mui.toast(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

@@ -88,7 +88,7 @@ function initOauth() {
 							ThirdPartyId: thirdpartyid,
 							OpenId: authinfo.openid
 						}, function(json) {
-							if(json.code == 0) {
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 								var data = json.data;
 								log(data);
 								storageUser.login(data);
@@ -104,7 +104,7 @@ function initOauth() {
 									nickname: nickname,
 									memo: JSON.stringify(userinfo)
 								})
-								//appUI.showTopTip(json.msg);
+								//appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 							}
 						});
 					}

@@ -43,9 +43,9 @@ mui.plusReady(function() {
 				mobile: inpt_mobile.value,
 				type: "SMS1002"
 			}, function(json) {
-				appUI.showTopTip(json.msg);
+				appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 				appUI.removeDisabled(btn_sendvalidcode);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					time(btn_sendvalidcode);
 				}
 			});
@@ -74,7 +74,7 @@ mui.plusReady(function() {
 				verifycode: inpt_validcode.value
 			}, function(json) {
 				appUI.removeDisabled(btn_next);
-				if(json.code == 0) {
+				if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 					var data = json.data;
 					log(data);
 					openNew("setPwd.html", {
@@ -82,8 +82,8 @@ mui.plusReady(function() {
 						type: "findpwd"
 					});
 				} else {
-					appUI.showTopTip(json.msg);
-					//mui.toast(json.msg);
+					appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+					//mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 				}
 			});
 		}

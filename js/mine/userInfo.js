@@ -63,7 +63,7 @@ function loadData() {
 		playerid: storageUser.UId,
 		friendid: friendid
 	}, function(json) {
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			var json1 = {},
 				json2 = {};
 			friendNickName = json.data.uinfodata.NickName;
@@ -113,7 +113,7 @@ function loadData() {
 			json2.data = json.data.matchdata;
 			render("#match_warp", "match_view", json2);
 		} else {
-			mui.toast(json.msg);
+			mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		appPage.imgInit();
 		appPage.endPullRefresh();

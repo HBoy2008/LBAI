@@ -17,8 +17,8 @@ var self, pkbtn_def, pkbtn_activity, defstyle, deftxt, activetxt, activestyle, a
 mui.plusReady(function() {
 	self = plus.webview.currentWebview();
 	storage.init();
-	plus.navigator.setStatusBarBackground('#fff');
-	plus.navigator.setStatusBarStyle('dark');
+	plus.navigator.setStatusBarBackground('#47BAFE');
+	plus.navigator.setStatusBarStyle('light');
 
 	for(var i = 0; i < subPages.length; i++) {
 		var sub = plus.webview.create(subPages[i], subPages[i], subPageStyle);
@@ -35,13 +35,13 @@ mui.plusReady(function() {
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		targetTab = this.dataset.href;
 		tabindex = this.dataset.index;
-		if(targetTab == 'mine/user.html') {
-			plus.navigator.setStatusBarBackground('#13D1BE');
-			plus.navigator.setStatusBarStyle('light');
-		} else {
-			plus.navigator.setStatusBarBackground('#fff');
-			plus.navigator.setStatusBarStyle('dark');
-		}
+		// if(targetTab == 'mine/user.html') {
+		// 	plus.navigator.setStatusBarBackground('#13D1BE');
+		// 	plus.navigator.setStatusBarStyle('light');
+		// } else {
+		// 	plus.navigator.setStatusBarBackground('#fff');
+		// 	plus.navigator.setStatusBarStyle('dark');
+		// }
 		updatePKBtn(0);
 		if(targetTab == activeTab) {
 			return;
@@ -338,7 +338,7 @@ function checkUpdate(appVer) {
 		timeout: 60000, //超时时间设置为6秒；	
 		success: function(json) {
 			log("服务应用版本：" + JSON.stringify(json));
-			if(json.code == 0) {
+			if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 				var data = json.data;
 				var ckver = data.Version;
 				var downurl = data.VersionUrl;

@@ -80,13 +80,13 @@ function loadData(isnextpage, isreload) {
 		pageindex: pageno
 	}, function(json) {
 		var nomore = true;
-		if(json.code == 0) {
+		if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 			pagecount = json.pagecount || 0; //总页码
 			render("#list_warp", "list_view", json, isappend);
 			appPage.imgInit();
 			nomore = pageno >= pagecount;
 		} else {
-			appUI.showTopTip(json.msg);
+			appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 		}
 		appPage.endPullRefresh(nomore);
 	}, false, function() {
