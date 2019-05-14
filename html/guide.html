@@ -1,81 +1,226 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>LingPowerAI</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<script type="text/javascript">
 			document.write('<script src="../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link(['../css/mui.min.css', '../css/swiper-3.4.2.min.css','../css/iconfont.css'],true);
+			link(['../css/mui.min.css', '../css/swiper-3.4.2.min.css', '../css/iconfont.css', '../css/app.css'], true);
 		</script>
 		<style type="text/css">
+			.mui-content {
+				background-color: white;
+			}
+
+			.swiper-wrapper {
+				height: 75vh;
+			}
+
 			.swiper-slide img {
 				width: 100%;
-				height: 100vh;
+				height: 50vh;
 				display: block;
 			}
-			
+
 			.swiper-pagination-bullet-active {
 				background: #fff none repeat scroll 0 0;
 				opacity: 1;
 			}
-			#join{
-				position: absolute;
-				bottom: 60px;
-				text-align: center;
-				width: 100%;
-				font-size: 10rem;				
-				color: #fff;
-				padding: 5px 10px;
-				border-radius:5px ;
-			}
-			#pass{
+
+			#pass {
 				position: fixed;
 				top: 15px;
 				right: 15px;
 				z-index: 999;
 				border: none;
-				border-radius: 6px;
-				padding: 7px 13px;				
+				border-radius: 15px;
+				padding: 7px 13px;
 				color: #fff;
-				background: rgba(0,0,0,0.5);
+				background: rgba(0, 0, 0, 0.5);
+			}
+
+			.paddedBtn {
+				margin: 25px;
+			}
+
+			.paddedBtn button {
+				border: 1px solid #f7f7f7;
+				background-color: #47BAFE;
+				width: 40%;
+				font-size: 16px;
+				height: 40px;
+				padding: 0px;
+				float: left;
+				margin-left: 7%;
+				border-radius: 40px;
+			}
+
+			.oauth-area {
+				position: absolute;
+				bottom: 20px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+
+			.oauth-area .oauth-btn.disabled {
+				background-color: #ddd;
+			}
+
+			.tips {
+				padding-top: 5px;
+				padding-right: 10px;
+				text-align: right;
+			}
+
+			.tips p {
+				color: #47BAFE;
+			}
+
+			.functionDiv {
+				background-color: #00B4FF;
+				height: 20vh;
+			}
+
+			.titleDiv {
+				text-align: center;
+			}
+
+			.titleDiv h3 {
+				color: white;
+			}
+
+			.detailDiv p {
+				color: white;
+				padding: 0px 40px;
 			}
 		</style>
 	</head>
 
-	<body>
-		<button id="pass">
-			跳过
-		</button>
+	<body style="background-color: white;">
+		<button id="pass">跳过</button>
 		<div class="mui-content">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img src="../images/hello1.jpg" class="swiperImg" /></div>
-					<div class="swiper-slide"><img src="../images/hello2.jpg" class="swiperImg" /></div>
-					<div class="swiper-slide" ><img src="../images/hello3.jpg" class="swiperImg" /></div>	
-					<div class="swiper-slide" ><span id="join" class="iconfont icon-fight"></span><img src="../images/hello4.jpg" class="swiperImg" /></div>	
+					<div class="swiper-slide">
+						<img src="../images/hello1.jpg" class="swiperImg" />
+						<div class="tips">
+							<p>滑动了解更多>></p>
+						</div>
+						<div class="box box-info functionDiv">
+							<div class="titleDiv">
+								<h3>知客户</h3>
+							</div>
+							<hr />
+							<div class="detailDiv">
+								<p>一键管理手机通讯录、微信好友上的客户资源，全面了解客户，掌握客户最新动态，管理过去接触及保险购买情况</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<img src="../images/hello2.jpg" class="swiperImg" />
+						<div class="tips">
+							<p>滑动了解更多>></p>
+						</div>
+						<div class="box box-info functionDiv">
+							<div class="titleDiv">
+								<h3>知客户2</h3>
+							</div>
+							<hr />
+							<div class="detailDiv">
+								<p>一键管理手机通讯录、微信好友上的客户资源，全面了解客户，掌握客户最新动态，管理过去接触及保险购买情况</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<img src="../images/hello3.jpg" class="swiperImg" />
+						<div class="tips">
+							<p>滑动了解更多>></p>
+						</div>
+						<div class="box box-info functionDiv">
+							<div class="titleDiv">
+								<h3>知客户3</h3>
+							</div>
+							<hr />
+							<div class="detailDiv">
+								<p>一键管理手机通讯录、微信好友上的客户资源，全面了解客户，掌握客户最新动态，管理过去接触及保险购买情况</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<img src="../images/hello4.jpg" class="swiperImg" />
+						<div class="tips">
+							<p>滑动了解更多>></p>
+						</div>
+						<div class="box box-info functionDiv">
+							<div class="titleDiv">
+								<h3>知客户4</h3>
+							</div>
+							<hr />
+							<div class="detailDiv">
+								<p>一键管理手机通讯录、微信好友上的客户资源，全面了解客户，掌握客户最新动态，管理过去接触及保险购买情况</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="swiper-pagination"></div>
 			</div>
 		</div>
+		<div style="height: 22vh;">
+			<div class="paddedBtn">
+				<button id="reg" class="mui-btn mui-btn-block mui-btn-primary">快速注册</button>
+				<button id="login" class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			</div>
+			<div class="oauth-area">
+				<div class=""><a style="color:grey; padding-bottom: 15px;">-------一键登录-------</a></div>
+				<div class="oauth-btn" style="background-image: url(&quot;../images/qq.png&quot;);"></div>
+				<div class="oauth-btn disabled" style="background-image: url(&quot;../images/weixin.png&quot;);"></div>
+			</div>
+		</div>
 		<script type="text/javascript">
-			script(['../js/mui.min.js', '../libs/swiper-3.4.1.min.js'],true);
+			script(['../js/mui.min.js', '../libs/swiper-3.4.1.min.js'], true);
 		</script>
 		<script type="text/javascript">
 			var mySwiper = new Swiper('.swiper-container', {
 				pagination: '.swiper-pagination'
 			});
 			mui.ready(function() {
-				mui(".swiper-wrapper").on("tap", "#join", function() {
-					localStorage.setItem("guide","yes");
-					window.location.href='index.html';
-				});
 				mui("body").on("tap", "#pass", function() {
-					localStorage.setItem("guide","yes");
-					window.location.href='index.html';
+					localStorage.setItem("guide", "yes");
+					window.location.href = 'login/login.html';
+				});
+
+
+				mui("body").on("tap", "#reg", function() {
+					localStorage.setItem("guide", "yes");
+					window.location.href = 'login/reg.html';
+				});
+
+
+				mui("body").on("tap", "#login", function() {
+					localStorage.setItem("guide", "yes");
+					window.location.href = 'login/login.html';
 				});
 			})
 		</script>
