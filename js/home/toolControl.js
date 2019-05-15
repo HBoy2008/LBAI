@@ -22,7 +22,7 @@ mui.plusReady(function() {
 				return;
 			}
 			getList();
-			mui.fire(plus.webview.getWebviewById('home/tool.html'), "uploadList");
+			mui.fire(plus.webview.getWebviewById('home/home.html'), "uploadList");
 		})
 	})
 
@@ -40,7 +40,7 @@ mui.plusReady(function() {
 				return;
 			}
 			getList();
-			mui.fire(plus.webview.getWebviewById('home/tool.html'), "uploadList");
+			mui.fire(plus.webview.getWebviewById('home/home.html'), "uploadList");
 		})
 	})
 

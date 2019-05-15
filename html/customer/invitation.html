@@ -67,9 +67,9 @@
 			<span class="status match_s{{item.Status}}">{{item.StatusName}}</span>
 			<div class="btn_warp">
 				{{if item.Status==1}} {{if (item.InviteStatus!="1" && item.WhetherJoin=="N" && item.IsFixed!="1") || (item.IsFixed=="1"&& item.IsCanJoin=="Y")}}
-				<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/pk.html">加入</button> {{else if item.InviteStatus=="1"}}
-				<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/pk.html">接受</button>
-				<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/pk.html">拒绝</button> {{/if}} {{/if}}
+				<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/customer.html">加入</button> {{else if item.InviteStatus=="1"}}
+				<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/customer.html">接受</button>
+				<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/customer.html">拒绝</button> {{/if}} {{/if}}
 			</div>
 			{{if item.InviteStatus!=""}}
 			<div class="yqstatus yq_s{{item.InviteStatus}}">
@@ -120,9 +120,9 @@
 				<span class="status match_s{{item.Status}}">{{item.StatusName}}</span>
 				<div class="btn_warp">
 					{{if item.Status==1}} {{if (item.InviteStatus!="1" && item.WhetherJoin=="N" && item.IsFixed!="1") || (item.IsFixed=="1"&& item.IsCanJoin=="Y")}}
-					<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/pk.html">加入</button> {{else if item.InviteStatus=="1"}}
-					<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/pk.html">接受</button>
-					<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/pk.html">拒绝</button> {{/if}} {{/if}}
+					<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/customer.html">加入</button> {{else if item.InviteStatus=="1"}}
+					<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/customer.html">接受</button>
+					<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/customer.html">拒绝</button> {{/if}} {{/if}}
 				</div>
 				{{if item.InviteStatus!=""}}
 				<div class="yqstatus yq_s{{item.InviteStatus}}">

@@ -4,8 +4,8 @@ mui.init({
 		var backpage = plus.webview.getWebviewById(backid);
 		log("backid=" + backid + " backurl" + backurl);
 		if(backpage) {
-			if(_field == "signature" && backid != "mine/user.html") {
-				var user_page = plus.webview.getWebviewById("mine/user.html");
+			if(_field == "signature" && backid != "mine/mine.html") {
+				var user_page = plus.webview.getWebviewById("mine/mine.html");
 				if(user_page) {
 					mui.fire(user_page, 'initPage')
 				}

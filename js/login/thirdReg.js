@@ -103,7 +103,7 @@ mui.plusReady(function() {
 							log(data);
 							storageUser.login(data);
 							storageUser.log();
-							openNew("../mine/user.html")
+							openNew("../mine/mine.html")
 						} else {
 							appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
 						}

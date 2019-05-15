@@ -64,7 +64,7 @@ mui.plusReady(function() {
 
 //添加订阅
 mui('#channelList').on('tap', '#addchannel', function() {
-	mui.fire(plus.webview.getWebviewById('services/bbs.html'), 'goChannel');
+	mui.fire(plus.webview.getWebviewById('services/services.html'), 'goChannel');
 })
 
 //展开收起

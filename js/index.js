@@ -3,9 +3,9 @@ mui.init();
 var showMenu = false,
 	showPop = "";
 
-// var subPages = ["index/home.html", "home/tool.html", "customer/pk.html", "services/bbs.html", "mine/user.html"];
+// var subPages = ["index/home.html", "home/home.html", "customer/customer.html", "services/services.html", "mine/mine.html"];
 // var subPagesLoad = [false, false, false, false, false];
-var subPages = ["home/tool.html", "customer/pk.html", "services/bbs.html", "mine/user.html"];
+var subPages = ["home/home.html", "customer/customer.html", "services/services.html", "mine/mine.html"];
 var subPagesLoad = [false, false, false, false];
 var subPageStyle = {
 	top: '0',
@@ -31,11 +31,11 @@ mui.plusReady(function() {
 
 	//底部切換
 	// activeTab = "index/home.html";
-	activeTab = "home/tool.html";
+	activeTab = "home/home.html";
 	mui('.mui-bar-tab').on('tap', 'a', function(e) {
 		targetTab = this.dataset.href;
 		tabindex = this.dataset.index;
-		// if(targetTab == 'mine/user.html') {
+		// if(targetTab == 'mine/mine.html') {
 		// 	plus.navigator.setStatusBarBackground('#13D1BE');
 		// 	plus.navigator.setStatusBarStyle('light');
 		// } else {
@@ -297,7 +297,7 @@ function createPKBtn() {
 	//自定义监听图标点击事件
 	pkbtn_def.addEventListener('click', function(e) {
 		updatePKBtn(1);
-		targetTab = "customer/pk.html";
+		targetTab = "customer/customer.html";
 		plus.navigator.setStatusBarBackground('#13D1BE');
 		plus.navigator.setStatusBarStyle('light');
 		if(targetTab == activeTab) {

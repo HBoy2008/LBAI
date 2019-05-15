@@ -19,6 +19,10 @@
 			.swiper-wrapper {
 				height: 75vh;
 			}
+			
+			.fastArea {
+				 height: 21vh;
+			 }
 
 			.swiper-slide img {
 				width: 100%;
@@ -143,7 +147,7 @@
 						<div class="tips">
 							<p>滑动了解更多>></p>
 						</div>
-						<div class="box box-info functionDiv">
+						<div class="box functionDiv">
 							<div class="titleDiv">
 								<h3>知客户2</h3>
 							</div>
@@ -187,7 +191,7 @@
 				<div class="swiper-pagination"></div>
 			</div>
 		</div>
-		<div style="height: 22vh;">
+		<div class="fastArea">
 			<div class="paddedBtn">
 				<button id="reg" class="mui-btn mui-btn-block mui-btn-primary">快速注册</button>
 				<button id="login" class="mui-btn mui-btn-block mui-btn-primary">登录</button>
@@ -212,6 +216,8 @@
 				});
 
 				mui("body").on("tap", "#reg", function() {
+					// mui.alert("当前系统尚未开放自主注册,请使用贵公司分配的账户信息登陆!");
+					// return;
 					localStorage.setItem("guide", "yes");
 					window.location.href = 'login/reg.html';
 				});

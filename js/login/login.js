@@ -14,8 +14,6 @@ mui.plusReady(function() {
 	backid = appPage.getParam("backid") || "index.html";
 	backurl = "../" + backid;
 
-	mui.alert(backurl);
-
 	var btn_login = document.getElementById("btn_login");
 	var inpt_mobile = document.getElementById("inpt_mobile");
 	var inpt_pwd = document.getElementById("inpt_pwd");
@@ -113,6 +111,8 @@ mui.plusReady(function() {
 
 	//注册
 	document.getElementById("btn_reg").addEventListener("tap", function() {
+		// mui.alert("当前系统尚未开放自主注册,请使用贵公司分配的账户信息登陆!");
+		// return;
 		openNew("reg.html");
 	});
 

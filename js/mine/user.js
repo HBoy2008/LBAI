@@ -101,7 +101,7 @@ var loginEvent = {
 		openNew("myEdit.html", {
 			field: "signature",
 			value: storageUser.Signature,
-			backid: "mine/user.html"
+			backid: "mine/mine.html"
 		});
 	},
 	editNickName: function() {
@@ -109,7 +109,7 @@ var loginEvent = {
 		openNew("myEdit.html", {
 			field: "nickname",
 			value: storageUser.NickName,
-			backid: "mine/user.html"
+			backid: "mine/mine.html"
 		});
 	},
 	myMsg: function() {

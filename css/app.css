@@ -16,18 +16,6 @@
 	color: white;
 }
 
-.common-btn-login {
-	color: white;
-	border: 1px white solid;
-	border-radius: 25px;
-}
-.common-btn-yzm {
-	background-color: #47BAFE;
-	color: white;
-	border-radius: 25px;
-	width: 30%;
-}
-
 html, body {
 	background-color: #EFEFF4;
 }
@@ -50,7 +38,7 @@ html, body {
 /* box封装 */
 .box{
 	background-color: white;
-	padding: 20px;
+	padding: 3px 20px;
 	border-radius: 3px;
 	margin: 10px;
 	box-shadow: 0 1px 1px rgba(0,0,0,0.1);

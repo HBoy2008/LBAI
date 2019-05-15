@@ -76,7 +76,7 @@ mui.plusReady(function() {
 			mui.fire(plus.webview.getWebviewById('index/home.html'), "citySelect", {
 				city: city
 			});
-			mui.fire(plus.webview.getWebviewById('customer/pk.html'), "refreshPage");
+			mui.fire(plus.webview.getWebviewById('customer/customer.html'), "refreshPage");
 			mui.back();
 		}, true)
 	})
@@ -126,7 +126,7 @@ mui.plusReady(function() {
 			mui.fire(plus.webview.getWebviewById('index/home.html'), "citySelect", {
 				city: cityname
 			});
-			mui.fire(plus.webview.getWebviewById('customer/pk.html'), "refreshPage");
+			mui.fire(plus.webview.getWebviewById('customer/customer.html'), "refreshPage");
 			mui.back();
 		})
 	})

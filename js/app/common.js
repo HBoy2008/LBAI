@@ -187,7 +187,7 @@ var kidstorageuser = (function() {
 			init(self);
 			//appPage.closeAllPage();
 			//通知用户中心页，登录了
-			//			var backid = "mine/user.html";
+			//			var backid = "mine/mine.html";
 			//			var backpage = plus.webview.getWebviewById(backid);
 			//			if(backpage) {
 			//				mui.fire(backpage, 'loginIn')
@@ -199,7 +199,7 @@ var kidstorageuser = (function() {
 			init(self);
 			appPage.closeAllPage();
 			//通知用户中心页，登出了
-			//			var backid = "mine/user.html";
+			//			var backid = "mine/mine.html";
 			//			var backpage = plus.webview.getWebviewById(backid);
 			//			if(backpage) {
 			//				mui.fire(backpage, 'loginOut')
@@ -257,7 +257,7 @@ var kidstorageuser = (function() {
 			self._refreshField(keyname_imgurl, val);
 
 			//刷新页面显示
-			var user_page = plus.webview.getWebviewById("mine/user.html");
+			var user_page = plus.webview.getWebviewById("mine/mine.html");
 			//var myinfo_page = plus.webview.getWebviewById("mine/myInfo.html");
 			if(user_page) {
 				mui.fire(user_page, 'initPage')
@@ -718,7 +718,7 @@ var appPage = {
 	registerCheckLoginEvent: function() { //需检测登录状态并绑定事件的地方
 		this.initCheckLoginEvent(); //初始化检测登录事件	
 
-		//var ckpageid=["mine/user.html","","","","",""];
+		//var ckpageid=["mine/mine.html","","","","",""];
 
 	},
 	initCheckLoginEvent: function() { //初始化检测登录事件	
@@ -798,7 +798,7 @@ var appPage = {
 				log("不存在" + backurl)
 			}
 			//页面刷新完，执行跳转或重新打开
-			if(backid == "mine/user.html" || backid == "services/bbsChannel.html") {
+			if(backid == "mine/mine.html" || backid == "services/bbsChannel.html") {
 				mui.back();
 			} else {
 				log("不存在打开我:" + backurl)
@@ -806,10 +806,10 @@ var appPage = {
 					comepage: "login"
 				});
 			}
-			mui.fire(plus.webview.getWebviewById("customer/pk.html"), 'refreshPage');
-			mui.fire(plus.webview.getWebviewById("home/tool.html"), 'refreshPage');
-			mui.fire(plus.webview.getWebviewById("mine/user.html"), 'refreshPage');
-			mui.fire(plus.webview.getWebviewById("services/bbs.html"), 'refreshPage');
+			mui.fire(plus.webview.getWebviewById("customer/customer.html"), 'refreshPage');
+			mui.fire(plus.webview.getWebviewById("home/home.html"), 'refreshPage');
+			mui.fire(plus.webview.getWebviewById("mine/mine.html"), 'refreshPage');
+			mui.fire(plus.webview.getWebviewById("services/services.html"), 'refreshPage');
 			mui.fire(plus.webview.getWebviewById("services/bbsIndex.html"), 'refreshPage');
 			mui.fire(plus.webview.getWebviewById("services/bbsChannel.html"), 'refreshPage');
 			//appPage.closeAllPage(backid, true);
@@ -830,7 +830,7 @@ var appPage = {
 				//alert(pageid)
 			} else if(pageid == "index/home.html" || pageid == "index.html") {
 
-			} else if(pageid == "customer/pk.html" || pageid == "home/tool.html" || pageid == "mine/user.html" || pageid == "services/bbs.html" || pageid == "services/bbsIndex.html" || pageid == "services/bbsChannel.html") {
+			} else if(pageid == "customer/customer.html" || pageid == "home/home.html" || pageid == "mine/mine.html" || pageid == "services/services.html" || pageid == "services/bbsIndex.html" || pageid == "services/bbsChannel.html") {
 				log("刷新了：" + pageid);
 				mui.fire(plus.webview.getWebviewById(pageid), 'refreshPage');
 			} else {

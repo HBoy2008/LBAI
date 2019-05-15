@@ -44,7 +44,7 @@ mui.plusReady(function() {
 						}, function(json) {
 							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 								mui.toast("加入成功");
-								//mui.fire(plus.webview.getWebviewById('customer/pk.html'), 'uploadList');
+								//mui.fire(plus.webview.getWebviewById('customer/customer.html'), 'uploadList');
 								loadData();
 							} else {
 								mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
@@ -71,7 +71,7 @@ mui.plusReady(function() {
 				}, function(json) {
 					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						mui.toast("加入成功");
-						//mui.fire(plus.webview.getWebviewById('customer/pk.html'), 'uploadList');
+						//mui.fire(plus.webview.getWebviewById('customer/customer.html'), 'uploadList');
 						loadData();
 					} else {
 						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
