@@ -4,6 +4,8 @@ var app_config = {
 		'../../css/mui.min.css',
 		'../../css/icons-extra.css',
 		'../../libs/font-awesome/css/font-awesome.min.css',
+		'../../css/picker/mui.picker.css',
+		'../../css/picker/mui.poppicker.css',
 		'../../css/common.css',
 		'../../css/iconfont.css',
 		'../../css/app.css'
@@ -11,7 +13,9 @@ var app_config = {
 	jsAr: [
 		'../../js/mui.min.js',
 		'../../libs/md5.min.js',
-		'../../libs/artTemplate.js',,
+		'../../libs/artTemplate.js',
+		'../../libs/picker/mui.picker.js',
+		'../../libs/picker/mui.poppicker.js',
 		'../../js/app/constants.js',
 		'../../js/app/sysUtils.js',
 		'../../js/app/common.js',
