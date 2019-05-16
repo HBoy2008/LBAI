@@ -11,6 +11,11 @@
 		<script type="text/javascript">
 			link(['../../css/reset.css']);
 		</script>
+		<style type="text/css">
+			.loginformwarp form span {
+				color: darkgray;
+			}
+		</style>
 	</head>
 
 	<body class="bg-lan-default">
@@ -22,46 +27,126 @@
 			<div class="mui-scroll">
 				<div class="loginformwarp">
 					<div class="m1rem">
-						<div class="input-group">
-							<div class="mui-input-row">
-								<input id='inpt_mobile' type="text" class="mui-input-clear mui-input bor-no" placeholder="请输入手机号" value="18221786693">
-							</div>
-							<div class="mui-input-row clearr100">
-								<input id='inpt_validcode' type="text" class="mui-input-clear mui-input bor-no" placeholder="请输入手机验证码" value="8888">
-								<button id="btn_sendvalidcode" class="btn-rightwarp">获取验证码</button>
-							</div>
-							<div class="mui-input-row">
-								<input id='inpt_password' type="password" class="mui-input-clear mui-input bor-no" placeholder="请输入密码" value="Password00">
-							</div>
-							<div class="mui-input-row">
-								<input id='inpt_name' type="text" class="mui-input-clear mui-input bor-no" placeholder="请输入你的姓名(可选)" value="李小龙">
-							</div>
-						</div>
-						<div>
-							<button id='btn_ok' class="mui-btn mui-btn-block btn-ok">注册账号</button>
-							<div class=" w100p">
-								<div class="mui-input-row mui-checkbox mui-left mlrauto" style="width: 160px;">
-									<label><a id="servicedesc" style="color: white;">同意服务协议</a></label>
-									<input name="checkbox" type="checkbox" checked id="ckb_agree">
+						<form class="mui-input-group">
+							<div class="input-group">
+								<div class="mui-input-row">
+									<span class="mui-icon fa fa-tablet"></span>
+									<input id='inpt_mobile' type="text" class="mui-input-clear mui-input" placeholder="请输入手机号" value="18221786693">
+								</div>
+								<div class="mui-input-row clearr100">
+									<span class="mui-icon fa fa-shield"></span>
+									<input id='inpt_validcode' type="text" class="mui-input-clear mui-input" placeholder="请输入手机验证码" value="8888">
+									<button id="btn_sendvalidcode" class="btn-rightwarp">获取验证码</button>
+								</div>
+								<div class="mui-input-row">
+									<span class="mui-icon fa fa-lock"></span>
+									<input id='inpt_password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码" value="Password00">
+								</div>
+								<div class="mui-input-row">
+									<span class="mui-icon fa fa-address-book-o"></span>
+									<input id='inpt_name' type="text" class="mui-input-clear mui-input" placeholder="请输入你的姓名(可选)" value="李小龙">
 								</div>
 							</div>
-						</div>
-
-					</div>
-					<div class="oauthwarp">
-						<div class="oauth-title"><span>快速注册会员</span></div>
-						<div id="oauth-area">
+						</form>
+						<div>
+							<button id='btn_ok' class="mui-btn mui-btn-block btn-ok">注册账号</button>
+							<div class="linkArea">
+								<a id='btn_login' class="mui-pull-right">已有账号?马上登录</a>
+							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 		<script type="text/javascript">
 			//必须顺序加载
-			script(['../../js/login/reg.js']);
+			script();
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				storage.init();
+			
+				var btn_sendvalidcode = document.getElementById("btn_sendvalidcode");
+				var btn_ok = document.getElementById("btn_ok");
+				var btn_login = document.getElementById("btn_login");
+				var inpt_mobile = document.getElementById("inpt_mobile");
+				var inpt_validcode = document.getElementById("inpt_validcode");
+				var inpt_password = document.getElementById("inpt_password");
+				var inpt_name = document.getElementById("inpt_name");
+			
+				if(ismobileno(inpt_mobile.value)) {
+					appUI.removeDisabled(btn_sendvalidcode);
+				}
+			
+				//发送验证码
+				btn_sendvalidcode.addEventListener("tap", function() {
+					if(inpt_mobile.value.trim() == "") {
+						appUI.showTopTip("请输入手机号");
+						//mui.toast("请输入手机号");
+						//inpt_mobile.focus();
+					} else if(!ismobileno(inpt_mobile.value)) {
+						appUI.showTopTip("手机号格式不正确");
+						//mui.toast("手机号格式不正确");
+					} else {
+						appUI.setDisabled(btn_sendvalidcode);
+						request("/Base/sendCode", {
+							mobile: inpt_mobile.value,
+							type: 'SMS1001'
+						}, function(json) {
+							mui.toast(json.msg);
+							appUI.removeDisabled(btn_sendvalidcode);
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+								time(btn_sendvalidcode);
+							}
+						});
+					}
+				});
+			
+				//注册账号
+				btn_ok.addEventListener("tap", function() {
+					if(inpt_mobile.value.trim() == "") {
+						appUI.showTopTip("请输入手机号");
+						//mui.toast("请输入手机号");
+						//inpt_mobile.focus();
+					} else if(!ismobileno(inpt_mobile.value)) {
+						appUI.showTopTip("手机号格式不正确");
+						//mui.toast("手机号格式不正确");
+					} else if(inpt_validcode.value.trim() == "") {
+						appUI.showTopTip("请输入验证码");
+						//mui.toast("请输入验证码");
+						//inpt_pwd.focus();
+					} else {
+						appUI.setDisabled(btn_ok);
+						// request("/Login/checkMobileSmsCode", {
+						// 	mobile: inpt_mobile.value,
+						// 	verifycode: inpt_validcode.value
+						
+						request("http://192.168.8.101:8000/sqldb/register/", {
+							login_id: inpt_mobile.value,
+							validcode: inpt_validcode.value,
+							login_pwd: inpt_password.value,
+							user_nm: inpt_name.value,
+							user_sn : "20000"
+						}, function(json) {
+							appUI.removeDisabled(btn_ok);
+							if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+								openNew("login.html", {
+									mobile: inpt_mobile.value,
+									type: "reg"
+								});
+							} else {
+								appUI.showTopTip(json[SysConstants.ERROR_MESSAGE_KEY]);
+								//mui.toast(json.msg);
+							}
+						});
+					}
+				});
+				
+				btn_login.addEventListener("tap", function() {
+					openNew("login.html");
+				});
+			});
 		</script>
 	</body>
-
 </html>

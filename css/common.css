@@ -50,7 +50,7 @@ img.loadok {
 .mui-bar-nav {
 	box-shadow: none;
 	background: #fff;
-	border-bottom: 1px solid #E6EBEF;
+	/* border-bottom: 1px solid #E6EBEF; */
 }
 
 .mui-bar-nav a {

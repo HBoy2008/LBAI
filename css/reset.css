@@ -420,8 +420,8 @@
 .btn-rightwarp {
 	width: 100px;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	bottom: 0px;
+	right: 5px;
 	line-height: 40px;
 	background: #00B4FF;
 	color: #fff;
@@ -571,15 +571,17 @@
 /*授权图标*/
 
 .oauth-title {
-	border-bottom: 1px solid #E6EBEF;
+	border-bottom: 1px solid white;
 	height: 9px;
+	width: 70%;
 	margin-bottom: 29px;
+	margin-left: 15%;
 }
 
 .oauth-title span {
-	background: #fff;
-	padding: 0px 15%;
-	color: #999;
+	background: #47BAFE;
+	padding: 0px 10px;
+	color: white;
 }
 
 .oauth-btn {
@@ -639,15 +641,55 @@
 	position: relative;
 }
 
+.loginformwarp form {
+	margin: 20px 0px;
+	border-radius: 10px;
+}
+
+.loginformwarp form span {
+	font-size: 20px;
+	color: #47BAFE;
+	padding-left: 15px;
+}
+
+.loginformwarp form input {
+	width: 80%;
+	height: 50px;
+}
+
+.loginformwarp .mui-input-row {
+	height: 50px;
+}
+
+.loginformwarp .mui-input-group:before {
+	content: none;
+	background-color: #47BAFE;
+}
+
+.loginformwarp .mui-input-group:after {
+	content: none;
+	background-color: #47BAFE;
+}
+
+.loginformwarp .mui-input-row:after {
+	background-color: #47BAFE;
+	right: 15px;
+}
+
+.linkArea {
+	padding-top: 20px;
+}
+
+.linkArea a {
+	color: white;
+}
+
 .oauthwarp {
 	min-height: 88px;
-	position: absolute;
-	left: 0;
-	bottom: 0;
 	text-align: center;
 	width: 100%;
 	margin: 0px;
-	padding: 0px;
+	padding-top: 20px;
 }
 
 

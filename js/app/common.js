@@ -14,7 +14,7 @@ var debug = true;
 
 //页面回弹
 var sw = document.getElementsByClassName(".mui-scroll-wrapper.scroll");
-if(sw) {
+if (sw) {
 	mui('.mui-scroll-wrapper.scroll').scroll();
 }
 
@@ -33,9 +33,9 @@ var kidstorage = (function() {
 
 	function _getInstance(keyname) {
 		var item;
-		for(var i = 0; i < instancearr.length; i++) {
+		for (var i = 0; i < instancearr.length; i++) {
 			item = instancearr[i];
-			if(item.keyname == keyname) {
+			if (item.keyname == keyname) {
 				return item.obj;
 			}
 		}
@@ -43,13 +43,13 @@ var kidstorage = (function() {
 
 	function setInstance(_keyname, _obj) {
 		var item, oldobj;
-		for(var i = 0; i < instancearr.length; i++) {
+		for (var i = 0; i < instancearr.length; i++) {
 			item = instancearr[i];
-			if(item.keyname == _keyname) {
+			if (item.keyname == _keyname) {
 				item = _obj;
 			}
 		}
-		if(oldobj == undefined || oldobj == null) {
+		if (oldobj == undefined || oldobj == null) {
 			instancearr.push({
 				keyname: _keyname,
 				obj: _obj
@@ -64,7 +64,7 @@ var kidstorage = (function() {
 		self.data = {};
 		self.log = function() {
 			var str = plus.storage.getItem(self.keyname);
-			if(self.keyname.indexOf("base") == 0) {
+			if (self.keyname.indexOf("base") == 0) {
 				log("本地不可清除基础数据=" + str);
 			} else
 				log("本地可清除数据=" + str);
@@ -78,14 +78,14 @@ var kidstorage = (function() {
 		self.setItem = function(key, field, val) {
 			var str = plus.storage.getItem(self.keyname);
 			var obj = JSON.parse(str || "{}");
-			if(str == undefined || str == "" || str == "{}") {
+			if (str == undefined || str == "" || str == "{}") {
 				plus.storage.setItem(self.keyname, JSON.stringify(obj));
 			}
 			var obj1 = obj[key];
-			if(!obj1) {
+			if (!obj1) {
 				obj[key] = {};
 			}
-			if(field != undefined) { //属性名
+			if (field != undefined) { //属性名
 				obj[key][field] = val;
 				//alert(key + "|" + field + "|" + val)
 			} else
@@ -98,12 +98,12 @@ var kidstorage = (function() {
 		self.getItem = function(key, field) {
 			var str = plus.storage.getItem(self.keyname);
 			var obj = JSON.parse(str || "{}");
-			if(str == undefined || str == "" || str == "{}") {
+			if (str == undefined || str == "" || str == "{}") {
 				return null;
 			}
 			var obj1 = obj[key];
-			if(obj1) {
-				if(field != undefined) { //属性名
+			if (obj1) {
+				if (field != undefined) { //属性名
 					return obj[key][field];
 				} else
 					return obj[key];
@@ -113,10 +113,10 @@ var kidstorage = (function() {
 		self.removeItem = function(key, field) {
 			var str = plus.storage.getItem(self.keyname);
 			var obj = JSON.parse(str || "{}");
-			if(str == undefined || str == "" || str == "{}") {
+			if (str == undefined || str == "" || str == "{}") {
 				return null;
 			}
-			if(field != undefined) { //属性名
+			if (field != undefined) { //属性名
 				delete obj[key][field];
 			} else
 				delete obj[key];
@@ -128,7 +128,7 @@ var kidstorage = (function() {
 		getInstance: function(_keyname) { //获取单例对象
 			//单例实例 
 			var instance = _getInstance(_keyname);
-			if(instancearr === undefined || instance == undefined) {
+			if (instancearr === undefined || instance == undefined) {
 				//log("又一个")
 				instance = new singlekidstorage(_keyname);
 				setInstance(_keyname, instance);
@@ -199,20 +199,20 @@ var kidstorageuser = (function() {
 			init(self);
 			appPage.closeAllPage();
 			//通知用户中心页，登出了
-			//			var backid = "mine/mine.html";
-			//			var backpage = plus.webview.getWebviewById(backid);
-			//			if(backpage) {
-			//				mui.fire(backpage, 'loginOut')
-			//			}
+			// var backid = "mine/mine.html";
+			// var backpage = plus.webview.getWebviewById(backid);
+			// if(backpage) {
+			// 	mui.fire(backpage, 'loginOut')
+			// }
 		};
 		self.refreshField = function(field, val) {
-			if(field == keyname_signature) {
+			if (field == keyname_signature) {
 				self.refreshSignature(val);
-			} else if(field == keyname_imgurl) {
+			} else if (field == keyname_imgurl) {
 				self.refreshImgUrl(val);
-			} else if(field == keyname_mobile) {
+			} else if (field == keyname_mobile) {
 				self.refreshMobile(val);
-			} else if(field == keyname_realname) {
+			} else if (field == keyname_realname) {
 				self.refreshRealName(val);
 			}
 			//			else if(field == keyname_imgurl) {
@@ -259,7 +259,7 @@ var kidstorageuser = (function() {
 			//刷新页面显示
 			var user_page = plus.webview.getWebviewById("mine/mine.html");
 			//var myinfo_page = plus.webview.getWebviewById("mine/myInfo.html");
-			if(user_page) {
+			if (user_page) {
 				mui.fire(user_page, 'initPage')
 			}
 			//			if(myinfo_page) {
@@ -305,7 +305,7 @@ var kidstorageuser = (function() {
 			plus.downloader.createDownload(url, {
 				filename: "_doc/headimg/"
 			}, function(d, status) {
-				if(status == 200) {
+				if (status == 200) {
 					plus.io.resolveLocalFileSystemURL(d.filename, function(entry) {
 						log("下载头像成功：" + entry.toLocalURL());
 						self.refreshImgUrl(entry.toLocalURL()); //路径刷新为本地图片
@@ -366,7 +366,7 @@ var kidstoragelocation = (function() {
 		keyname_timestamp = "timestamp",
 		keyname_position = "position",
 		keyname_cityid = "cityid",
-		againNum=0;
+		againNum = 0;
 	//单例方法 
 	function singlekidstoragelocation() {
 		var self = this;
@@ -376,7 +376,7 @@ var kidstoragelocation = (function() {
 		};
 		//刷新缓存中值
 		self.refreshData = function(data) {
-			if(!data || !data.coords || !data.address) {
+			if (!data || !data.coords || !data.address) {
 				return;
 			}
 			var lon = data.coords.longitude,
@@ -397,12 +397,12 @@ var kidstoragelocation = (function() {
 			self.Position = JSON.stringify(position) || "";
 			self.Timestamp = timespan || "";
 
-			if(city) {
+			if (city) {
 				//刷新城市id
 				request("/Base/getPlaceInfo", {
 					cityname: city
 				}, function(json) {
-					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+					if (json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						log("城市id刷新成功" + json.data.CityId)
 						self.CityId = json.data.CityId
 						baseStorage.setItem(keyname, keyname_cityid, self.CityId);
@@ -429,44 +429,44 @@ var kidstoragelocation = (function() {
 		//定时刷新位置信息
 		self.timeRefresh = function(interval) {
 			interval = interval || 0;
-			if(interval == 0) { //只刷新一次
+			if (interval == 0) { //只刷新一次
 				plus.geolocation.getCurrentPosition(function(position) {
 					self.refreshData(position);
-					log('位置信息++++：'+JSON.stringify(position));
-					plus.storage.setItem('location',true);
+					log('位置信息++++：' + JSON.stringify(position));
+					plus.storage.setItem('location', true);
 				}, function(e) {
 					var btnArray = ['否', '是'];
 					mui.confirm('定位失败，是否请手动选择城市?', '', btnArray, function(e) {
 						if (e.index == 1) {
 							openNew('index/citySelect.html');
-						}else{
-							if(!plus.storage.getItem('whether')){
+						} else {
+							if (!plus.storage.getItem('whether')) {
 								//取消手动定位，默认设置上海
-								var posi={
-								    "coordsType": "wgs84",
-								    "address": {
-								        "district": "徐汇区",
-								        "country": "中国",
-								        "street": "桂平路",
-								        "city": "上海市",
-								        "streetNum": "415号"
-								    },
-								    "addresses": "桂平路415号",
-								    "coords": {
-								        "latitude": 31.16612421590823,
-								        "longitude": 121.3995927625786,
-								        "accuracy": 65,
-								        "altitude": 61.54365158081055,
-								        "heading": null,
-								        "speed": null,
-								        "altitudeAccuracy": 10
-								    },
-								    "timestamp": 1506496454842.604
+								var posi = {
+									"coordsType": "wgs84",
+									"address": {
+										"district": "徐汇区",
+										"country": "中国",
+										"street": "桂平路",
+										"city": "上海市",
+										"streetNum": "415号"
+									},
+									"addresses": "桂平路415号",
+									"coords": {
+										"latitude": 31.16612421590823,
+										"longitude": 121.3995927625786,
+										"accuracy": 65,
+										"altitude": 61.54365158081055,
+										"heading": null,
+										"speed": null,
+										"altitudeAccuracy": 10
+									},
+									"timestamp": 1506496454842.604
 								};
-								plus.storage.setItem('location',false);
+								plus.storage.setItem('location', false);
 								self.refreshData(posi);
-								mui.fire(plus.webview.getWebviewById('index/home.html'),"citySelect",{
-									city:'上海市'
+								mui.fire(plus.webview.getWebviewById('index/home.html'), "citySelect", {
+									city: '上海市'
 								});
 							}
 						}
@@ -474,13 +474,13 @@ var kidstoragelocation = (function() {
 				}, {
 					geocode: true
 				});
-			} else if(interval > 0) { //每隔几秒刷新一次				
+			} else if (interval > 0) { //每隔几秒刷新一次				
 				var timer = setInterval(function() {
 					plus.geolocation.getCurrentPosition(function(position) {
 						self.refreshData(position);
-						log('位置信息++++：'+JSON.stringify(position));
-						plus.storage.setItem('location',true);
-						if(storageUser.UId > 0) {
+						log('位置信息++++：' + JSON.stringify(position));
+						plus.storage.setItem('location', true);
+						if (storageUser.UId > 0) {
 							request("/Player/savePlayerLonLat", {
 								playerid: storageUser.UId,
 								lon: position.coords.longitude,
@@ -490,7 +490,7 @@ var kidstoragelocation = (function() {
 							});
 						}
 					}, function(e) {
-						
+
 					}, {
 						geocode: true
 					});
@@ -538,22 +538,22 @@ var kidstoragesearchhistory = (function() {
 			val = val.trim();
 			var jsonstr = baseStorage.getItem(keyname, field) || "{}";
 			var _list = JSON.parse(jsonstr);
-			if(_list && _list.length > 0) {
+			if (_list && _list.length > 0) {
 				var index = -1;
 				var item;
-				for(var i = 0; i < _list.length; i++) {
+				for (var i = 0; i < _list.length; i++) {
 					item = _list[i];
-					if(item == val) {
+					if (item == val) {
 						index = i;
 					}
 				}
-				if(index == -1) { //不存在，加到第一个位置上
+				if (index == -1) { //不存在，加到第一个位置上
 					_list.unshift(val);
 				} else { //存在，移动到首位
 					_list.splice(index, 1);
 					_list.unshift(val);
 				}
-				if(_list.length > 10) { //删除第11个
+				if (_list.length > 10) { //删除第11个
 					_list.pop();
 				}
 				baseStorage.setItem(keyname, field, JSON.stringify(_list));
@@ -577,7 +577,7 @@ var kidstoragesearchhistory = (function() {
 			instance = new singlekidstoragesearchhistory(field);
 			return instance;
 		},
-		clear:function(){
+		clear: function() {
 			baseStorage.removeItem(keyname);
 		}
 	}
@@ -618,7 +618,7 @@ var appUI = {
 		self.removeAttribute("disabled");
 	},
 	countDown: function(date) {
-		if(!date) {
+		if (!date) {
 			var obj = {
 				day: 0,
 				hour: 0,
@@ -636,7 +636,7 @@ var appUI = {
 
 		var timediff = Math.floor(date1.getTime() - new Date().getTime()) / 1000;
 
-		if(timediff < 0) {
+		if (timediff < 0) {
 			var obj = {
 				day: 0,
 				hour: 0,
@@ -656,23 +656,23 @@ var appUI = {
 
 		var obj = {
 			day: days,
-			hour: hours+days*24,
+			hour: hours + days * 24,
 			minute: minutes,
 			second: seconds
 		};
 		return obj;
 	},
 	showTopTip: function(msg) { //头部显示提示信息
-		if(msg && msg != "") {
+		if (msg && msg != "") {
 			var tip = document.getElementById("toptip");
 			var haveTip = tip != undefined;
-			if(haveTip) {
+			if (haveTip) {
 				tip.setAttribute("class", "showend");
 			} else {
 				tip = document.createElement("div");
 				tip.id = "toptip";
 				var node;
-				if(document.body.children[0]) {
+				if (document.body.children[0]) {
 					node = document.body.children[0];
 					document.body.insertBefore(tip, node); //插入到body第一个元素之前
 				} else {
@@ -694,9 +694,9 @@ var appPage = {
 	//获取页面参数
 	getParam: function(name) {
 		var currPage = plus.webview.currentWebview();
-		if(mui.os.plus) {
+		if (mui.os.plus) {
 			//log(currPage.id + "的全部参数=" + JSON.stringify(currPage));
-			if(currPage.info)
+			if (currPage.info)
 				return currPage.info[name] || null;
 			else
 				return null;
@@ -728,15 +728,15 @@ var appPage = {
 			storageUser = kidstorageuser.getInstance();
 			var backid = this.getAttribute("data-loginbackid");
 			var loginevent = this.getAttribute("data-loginevent");
-			if(!storageUser.IsLogin) { //未登录	
-				if(backid) {
+			if (!storageUser.IsLogin) { //未登录	
+				if (backid) {
 					self.openLogin({
 						backid: backid
 					});
 				}
 
 			} else { //已登录
-				if(loginevent)
+				if (loginevent)
 					eval(loginevent);
 				//openNew(backid.replace("mine/",""))
 			}
@@ -750,25 +750,25 @@ var appPage = {
 		var _forgetPwd = plus.webview.getWebviewById("login/forgetPwd.html");
 		var needClose = _login || _mobileLogin || _reg || _setPwd || _forgetPwd;
 
-		if(needClose) {
+		if (needClose) {
 			//setTimeout(function() {
-			if(_login) {
+			if (_login) {
 				_login.close();
 				log("关闭了:_login");
 			}
-			if(_mobileLogin) {
+			if (_mobileLogin) {
 				_mobileLogin.close();
 				log("关闭了:_mobileLogin");
 			}
-			if(_reg) {
+			if (_reg) {
 				_reg.close();
 				log("关闭了:_reg");
 			}
-			if(_setPwd) {
+			if (_setPwd) {
 				_setPwd.close();
 				log("关闭了:_setPwd");
 			}
-			if(_forgetPwd) {
+			if (_forgetPwd) {
 				_forgetPwd.close();
 				log("关闭了:_forgetPwd");
 			}
@@ -785,11 +785,11 @@ var appPage = {
 		storageUser = kidstorageuser.getInstance();
 		storageUser.log();
 
-		if(storageUser.IsLogin) {
+		if (storageUser.IsLogin) {
 
 			var backpage = plus.webview.getWebviewById(backid);
 			log("backid=" + backid + " backurl" + backurl);
-			if(backpage) { //存在，先刷新
+			if (backpage) { //存在，先刷新
 				log("存在:" + backurl)
 				mui.fire(backpage, 'refreshPage', {
 					comepage: "login"
@@ -798,7 +798,7 @@ var appPage = {
 				log("不存在" + backurl)
 			}
 			//页面刷新完，执行跳转或重新打开
-			if(backid == "mine/mine.html" || backid == "services/bbsChannel.html") {
+			if (backid == "mine/mine.html" || backid == "services/bbsChannel.html") {
 				mui.back();
 			} else {
 				log("不存在打开我:" + backurl)
@@ -822,15 +822,16 @@ var appPage = {
 		var allpage = plus.webview.all(),
 			pageid, str, currpage = plus.webview.currentWebview();
 		ckprevpage = ckprevpage || false; //是否检测前一页，如果关闭时候是前一页，延迟关闭，否则会导致未打开新页面，就已关闭前一页，打开页面也会失败
-		for(var i = 0; i < allpage.length; i++) {
+		for (var i = 0; i < allpage.length; i++) {
 			pageid = allpage[i].id;
 			log("webview" + i + ": " + pageid);
 
-			if(pageid == "HBuilder" || pageid == "cn.kayou110.kidapp") {
+			if (pageid == "HBuilder" || pageid == "cn.kayou110.kidapp") {
 				//alert(pageid)
-			} else if(pageid == "index/home.html" || pageid == "index.html") {
+			} else if (pageid == "home/home.html" || pageid == "index.html") {
 
-			} else if(pageid == "customer/customer.html" || pageid == "home/home.html" || pageid == "mine/mine.html" || pageid == "services/services.html" || pageid == "services/bbsIndex.html" || pageid == "services/bbsChannel.html") {
+			} else if (pageid == "customer/customer.html" || pageid == "mine/mine.html" ||
+				pageid == "services/services.html" || pageid == "services/bbsIndex.html" || pageid == "services/bbsChannel.html") {
 				log("刷新了：" + pageid);
 				mui.fire(plus.webview.getWebviewById(pageid), 'refreshPage');
 			} else {
@@ -845,15 +846,15 @@ var appPage = {
 			cls = this.getAttribute("class") || "";
 			isok = cls.replace(/\s/g, '').length != 0 && cls.indexOf("loadok") != -1;
 			isdefuserimg = cls.replace(/\s/g, '').length != 0 && cls.indexOf("defuserimg") != -1;
-			if(isok)
+			if (isok)
 				return;
 			this.setAttribute("onerror", "javascript:this.src='../../images/nopic.jpg';");
 
 			url = this.getAttribute("data-url");
-			if(isdefuserimg && url.trim() == "") {
+			if (isdefuserimg && url.trim() == "") {
 				this.src = "../../images/defuser.jpg";
 				return;
-			} else if(url.trim() == "") {
+			} else if (url.trim() == "") {
 				this.src = "../../images/nopic.jpg";
 				return;
 			}
@@ -863,16 +864,16 @@ var appPage = {
 			w = arr[0];
 			h = arr[1];
 			whstr = "", src = "";
-			if(w != "") {
+			if (w != "") {
 				whstr += ',w_' + w;
 			}
-			if(h != "") {
+			if (h != "") {
 				whstr += ',h_' + h;
 			}
-			if(whstr == "") {
+			if (whstr == "") {
 				src = url;
-			} else if(url.indexOf(".aliyuncs.com") != -1) {
-				if(w != "" && h != "") {//表示固定尺寸
+			} else if (url.indexOf(".aliyuncs.com") != -1) {
+				if (w != "" && h != "") { //表示固定尺寸
 					model = 'm_pad';
 				}
 				src = url + '?x-oss-process=image/resize,' + model + whstr;
@@ -898,7 +899,7 @@ var appPage = {
 		//stopdown 下拉刷新
 		//是否重置插件
 		//id 容器id
-		if(id == undefined) //容器id
+		if (id == undefined) //容器id
 			id = "pullrefresh";
 
 		setTimeout(function() {
@@ -906,7 +907,7 @@ var appPage = {
 			mui('#' + id).pullRefresh().endPulldownToRefresh(true);
 			//重置
 			mui('#' + id).pullRefresh().refresh(true);
-			if(stopup != undefined) { //不为空表示，页面包含 上拉加载事件
+			if (stopup != undefined) { //不为空表示，页面包含 上拉加载事件
 				//停止上拉加载
 				mui('#' + id).pullRefresh().endPullupToRefresh(stopup);
 			}
@@ -914,9 +915,9 @@ var appPage = {
 		}, 1000);
 	},
 	enablePullRefresh: function(enable, id) { //禁用、启用上拉加载、下拉刷新
-		if(id == undefined) //容器id
+		if (id == undefined) //容器id
 			id = "pullrefresh";
-		if(enable) { //禁用
+		if (enable) { //禁用
 			//mui('#' + id).pullRefresh().endPulldown(true);
 			mui('#' + id).pullRefresh().disablePullupToRefresh(); //禁用上拉加载			
 		} else { //启用
@@ -935,8 +936,8 @@ var PAY_DOMAIN = ''
  */
 
 function log(data) {
-	if(debug) {
-		if(typeof(data) == "object") {
+	if (debug) {
+		if (typeof(data) == "object") {
 			console.log(JSON.stringify(data)); //console.log(JSON.stringify(data, null, 4));
 		} else {
 			console.log(data);
@@ -957,22 +958,23 @@ function mklog() {
 	var month = date.getMonth() + 1; //获取月份
 	var strDate = date.getDate(); //获取日期
 	var ss = date.getSeconds(); //获取秒
-	if(month >= 1 && month <= 9) { //判断月份
+	if (month >= 1 && month <= 9) { //判断月份
 		month = "0" + month;
 	}
-	if(strDate >= 0 && strDate <= 9) {
+	if (strDate >= 0 && strDate <= 9) {
 		strDate = "0" + strDate;
 	}
-	if(ss >= 0 && ss <= 9) {
+	if (ss >= 0 && ss <= 9) {
 		ss = "0" + ss;
 	}
 	var ms = date.getMilliseconds();
-	if(ms >= 10 && ms <= 100) {
+	if (ms >= 10 && ms <= 100) {
 		ms = '0' + ms;
-	} else if(ms >= 0 & ms <= 9) {
+	} else if (ms >= 0 & ms <= 9) {
 		ms = '00' + ms;
 	}
-	var currentdate = ('2' + date.getYear() - 100) + seperator1 + month + seperator1 + strDate + " " + date.getHours() + seperator2 + date.getMinutes() + ":" + ss + "'" + ms;
+	var currentdate = ('2' + date.getYear() - 100) + seperator1 + month + seperator1 + strDate + " " + date.getHours() +
+		seperator2 + date.getMinutes() + ":" + ss + "'" + ms;
 	//	var currentdate = date.getHours() + seperator2 + date.getMinutes() + ":" + ss + "'" + ms;
 
 	return currentdate + '|';
@@ -987,7 +989,7 @@ function mkwv() {
 	var wvs = plus.webview.all(); //循环显示当前webv
 	var t1 = "|debug:当前共有" + wvs.length + "个webview\n";
 	var t2 = "";
-	for(var i = 0; i < wvs.length; i++) {
+	for (var i = 0; i < wvs.length; i++) {
 		t2 += "|webview" + i + "|id:" + wvs[i].id + "|@url:" + wvs[i].getURL().substr(82) + '\n';
 	}
 	return t1 + t2;
@@ -1013,12 +1015,12 @@ var waitingStyle = {
 function openNew(target, parm, autoShow) {
 	var currPageId = plus.webview.currentWebview().id;
 	var id = "index.html"; //除了一级目录，其它目录id组成结构为：二级文件夹/页面.html
-	if(currPageId != undefined) {
+	if (currPageId != undefined) {
 		var sp_xg = target.split("/");
-		if(sp_xg.length == 3) //target结构为 ../二级文件夹/页面.html,表示跨文件夹打开页面
+		if (sp_xg.length == 3) //target结构为 ../二级文件夹/页面.html,表示跨文件夹打开页面
 		{
 			id = sp_xg[1] + "/" + sp_xg[2];
-		} else if(sp_xg.length == 2) { //target结构为 二级文件夹/页面.html，表示html下一级目录打开页面
+		} else if (sp_xg.length == 2) { //target结构为 二级文件夹/页面.html，表示html下一级目录打开页面
 			id = target;
 		} else { //同级打开页面，需从currpageid中拿取二级文件夹名
 			var curr_sp_xg = currPageId.split("/");
@@ -1026,7 +1028,8 @@ function openNew(target, parm, autoShow) {
 		}
 	}
 	var isAutoShow = autoShow || true;
-	log("currPageId=" + currPageId + " target=" + target + " id=" + id + " parm=" + JSON.stringify(parm) + " isAutoShow=" + isAutoShow);
+	log("currPageId=" + currPageId + " target=" + target + " id=" + id + " parm=" + JSON.stringify(parm) + " isAutoShow=" +
+		isAutoShow);
 	mui.openWindow({
 		url: target,
 		id: id,
@@ -1051,7 +1054,7 @@ function openNew(target, parm, autoShow) {
 
 function md5sign(parm) {
 	var signstr = "";
-	for(var p in parm) {
+	for (var p in parm) {
 		signstr += "+" + parm[p];
 	}
 	signstr = signstr.replace("+", "");
@@ -1067,7 +1070,7 @@ function md5sign(parm) {
 function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 	showwait = showwait == undefined ? false : showwait; //若需要显示等到，传递true
 	shownetmsg = shownetmsg == undefined ? true : shownetmsg;
-	if(showwait)
+	if (showwait)
 		appUI.showWaiting();
 	parm.hmac = md5sign(parm);
 	mui.ajax(APP_DOMAIN + method, {
@@ -1082,7 +1085,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 		success: function(data) {
 			//alert(method+data)
 			log(mklog() + '【AJAX:OK!】' + method + '】【响应：' + JSON.stringify(data) + '】');
-			if(data && data[SysConstants.ERROR_CODE_KEY] && data[SysConstants.ERROR_CODE_KEY] != undefined) {
+			if (data && data[SysConstants.ERROR_CODE_KEY] && data[SysConstants.ERROR_CODE_KEY] != undefined) {
 				setRequestMsg("");
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
 				callback(data);
@@ -1093,35 +1096,35 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 		error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
 			log(mklog() + '【AJAX:ERR!】【' + method + '】错误');
 			log(xhr.responseText + " " + xhr.status + " " + xhr.statusText)
-			if(showwait)
+			if (showwait)
 				appUI.closeWaiting();
 			log(xhr.status)
 			log(mklog() + '【AJAX:ERR】【' + method + '】错误T:' + type + '|H:' + errorThrown);
-			if(type == 'timeout' || type == 'abort') {
+			if (type == 'timeout' || type == 'abort') {
 				setRequestMsg("请求超时：请检查网络");
-				if(shownetmsg)
+				if (shownetmsg)
 					mui.toast("请求超时：请检查网络：" + type)
 			} else {
 				setRequestMsg("服务器累了");
-				if(shownetmsg)
+				if (shownetmsg)
 					mui.toast("服务器累了：" + type)
 			}
-			if(errcallback) {
+			if (errcallback) {
 				errcallback();
 			}
 		},
 		complete: function() {
 			//setRequestMsg("");
 			log(mklog() + '【AJAX:END】【' + method + '】【命令执行完成】');
-			if(showwait)
+			if (showwait)
 				appUI.closeWaiting();
 		}
 	}); //ajax end
 } //获取数据结束
 function setRequestMsg(msg) {
 	var arr = mui(".nodata");
-	if(arr) {
-		for(var i = 0; i < arr.length; i++) {
+	if (arr) {
+		for (var i = 0; i < arr.length; i++) {
 			arr[i].innerText = msg;
 		}
 	}
@@ -1144,7 +1147,7 @@ function getPayData(payType, parm, callback) {
 		},
 		success: function(data) {
 			//			log(mklog() + '【AJAX:OK!】【响应：' + JSON.stringify(data) + '】');
-			if(data.result == 0) {
+			if (data.result == 0) {
 
 				callback(data);
 			} else {
@@ -1155,7 +1158,7 @@ function getPayData(payType, parm, callback) {
 		},
 		error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
 			log(mklog() + '【AJAX:ERR】-|T:' + type + '|H:' + errorThrown);
-			if(type == 'timeout' || type == 'abort') {
+			if (type == 'timeout' || type == 'abort') {
 				mui.toast("请求超时：请检查网络")
 			}
 		},
@@ -1177,7 +1180,7 @@ function render(selector, tpl, data, type) {
 	//	log('Render:[D:' + selector + '|M:' + tpl + '|T:' + type + '|D:' + JSON.stringify(data).length)
 	var elem = document.querySelector(selector);
 	var html = template(tpl, data);
-	if(type) {
+	if (type) {
 		elem.innerHTML += html;
 	} else {
 		elem.innerHTML = html;
@@ -1190,23 +1193,23 @@ function render(selector, tpl, data, type) {
  * */
 Array.prototype.contains = function(str) {
 	var i = this.length;
-	while(i--) {
-		if(this[i] === str) {
+	while (i--) {
+		if (this[i] === str) {
 			return true;
 		}
 	}
 	return false;
 }
 /*替换空格*/
-　
-String.prototype.trim = function() {　　
-	return this.replace(/(^\s*)|(\s*$)/g, "");　　
-}　　
-String.prototype.ltrim = function() {　　
-	return this.replace(/(^\s*)/g, "");　　
-}　　
-String.prototype.rtrim = function() {　　
-	return this.replace(/(\s*$)/g, "");　　
+
+String.prototype.trim = function() {
+	return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.ltrim = function() {
+	return this.replace(/(^\s*)/g, "");
+}
+String.prototype.rtrim = function() {
+	return this.replace(/(\s*$)/g, "");
 }
 
 /*是否为手机号*/
@@ -1216,8 +1219,8 @@ function ismobileno(num) {
 	var isPhone = /^(?:(?:0\d{2,3})-)?(?:\d{7,8})(-(?:\d{3,}))?$/;;
 
 	//如果为1开头则验证手机号码  
-	if(mobile.substring(0, 1) == 1) {
-		if(!isMobile.exec(mobile) && mobile.length != 11) {
+	if (mobile.substring(0, 1) == 1) {
+		if (!isMobile.exec(mobile) && mobile.length != 11) {
 			return false;
 		} else {
 			return true;
@@ -1236,7 +1239,7 @@ function ismobileno(num) {
 var wait = 60;
 
 function time(o) {
-	if(wait == 0) {
+	if (wait == 0) {
 
 		o.removeAttribute("disabled");
 		//o.classList.remove('mui-disabled');
@@ -1261,9 +1264,9 @@ function time(o) {
  * */
 function checkPaymentChannels(pc) {
 
-	if(!pc.serviceReady && pc.serviceReady != undefined) {
+	if (!pc.serviceReady && pc.serviceReady != undefined) {
 		var txt = null;
-		switch(pc.id) {
+		switch (pc.id) {
 			case 'alipay':
 				txt = '检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
 				break;
@@ -1283,7 +1286,7 @@ function checkPaymentChannels(pc) {
 function sunHomeOrderTobase64(o) {
 	//	log('加密订单获取到的数组：' + JSON.stringify(o))
 	var tArr = []
-	for(var i = 0; i < o.length; i++) {
+	for (var i = 0; i < o.length; i++) {
 		var t = {
 			"itemId": parseInt(o[i].itemId),
 			"itemName": o[i].itemName.toString(),
@@ -1304,10 +1307,10 @@ function getNowFormatDate() {
 	var seperator2 = ":";
 	var month = date.getMonth() + 1;
 	var strDate = date.getDate();
-	if(month >= 1 && month <= 9) {
+	if (month >= 1 && month <= 9) {
 		month = "0" + month;
 	}
-	if(strDate >= 0 && strDate <= 9) {
+	if (strDate >= 0 && strDate <= 9) {
 		strDate = "0" + strDate;
 	}
 	var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
@@ -1318,17 +1321,17 @@ function getNowFormatDate() {
 //保留两位小数
 function stringtoDecimal2(x) {
 	var f = parseFloat(x);
-	if(isNaN(f)) {
+	if (isNaN(f)) {
 		return false;
 	}
 	var f = Math.round(x * 100) / 100;
 	var s = f.toString();
 	var rs = s.indexOf('.');
-	if(rs < 0) {
+	if (rs < 0) {
 		rs = s.length;
 		s += '.';
 	}
-	while(s.length <= rs + 2) {
+	while (s.length <= rs + 2) {
 		s += '0';
 	}
 	return s;
@@ -1372,10 +1375,10 @@ function stringtoDecimal2(x) {
 //}
 
 function plusIsInstalled(id) {
-	if(id === 'qihoo' && mui.os.plus) {
+	if (id === 'qihoo' && mui.os.plus) {
 		return true;
 	}
-	if(mui.os.android) {
+	if (mui.os.android) {
 		var main = plus.android.runtimeMainActivity();
 		var packageManager = main.getPackageManager();
 		var PackageManager = plus.android.importClass(packageManager)
@@ -1386,9 +1389,9 @@ function plusIsInstalled(id) {
 		}
 		try {
 			return packageManager.getPackageInfo(packageName[id], PackageManager.GET_ACTIVITIES);
-		} catch(e) {}
+		} catch (e) {}
 	} else {
-		switch(id) {
+		switch (id) {
 			case "qq":
 				var TencentOAuth = plus.ios.import("TencentOAuth");
 				return TencentOAuth.iphoneQQInstalled();
