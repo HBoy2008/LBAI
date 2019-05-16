@@ -1,0 +1,80 @@
+html,body{
+	background-color: #fff;
+}
+
+.content {
+	/* background-color: #fff; */
+	width: 100%;
+	/* height: 600px; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top:180px;
+	}
+
+.content .left{
+	background: url(../../images/kh.png) no-repeat;
+
+}
+.content .cont{
+	width: 23px;
+	height: 20px;
+	margin: 0 40px;
+	background:url(../../images/kk.png);
+	background-size:100% 100%;
+
+}
+.content .rigth{
+	background: url(../../images/hg.png) no-repeat;
+}
+.content .left,
+.content .rigth{
+	width: 80px;
+	height: 80px;
+	background-size:100% 100%;
+}
+.texts {
+	width: 100%;
+	padding-top:50px;
+}
+.texts p {
+	font-size: 14px;
+	text-align:center;
+	color: #50C1FD;	
+}
+.btns {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.btns .phone,
+.btns .wei {
+	width: 233px;
+	height: 37px;
+	margin-top: 30px;
+	line-height: 37px;
+	background:url(../../images/an.png) no-repeat;
+	color: #fff;
+	background-size: 100% 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.btns .phone div {
+	width: 18px;
+	height: 18px;
+	margin-right: 7px;
+	background:url(../../images/dh.png) no-repeat;
+	background-size: 100% 100%;
+}
+.btns .wei div {
+	width: 22px;
+	height: 18px;
+	margin-right: 7px;
+	background:url(../../images/wx.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
