@@ -8,8 +8,118 @@
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link(['../../css/customer/addressbook.css']);
+			link([]);
 		</script>
+		<style type="text/css">
+			html,body{
+				background-color: #fff;
+			}
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.centre {
+				width: 100%;
+				margin-top: 44px;
+			}
+			.centre .iput {
+				
+				width: 100%;
+				height: 50px;
+				border: 1px solid #ccc;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+			.centre .iput input {
+				width: 90%;
+				height: 25px;
+				border: 0;
+				background:url(../../images/ssk.png);
+				background-size:100% 100%;
+				padding-left: 25px;
+				font-size: 14px;
+			}
+			.centre .iput span {
+				position: absolute;
+				left: 29px;
+				top: 18px;
+				width: 13px;
+				height: 13px;
+				background:url(../../images/ss.png);
+				background-size:100% 100%;
+			}
+			.centre .linkman {
+				width: 100%;
+			}
+			.centre .linkman .list {
+				width: 100%;
+				background-color: powderblue;
+				padding-left: 20px;
+				font-weight: 700;
+			}
+			.centre .linkman .mui-table-view-cell{
+				padding: 0;
+			}
+			 .centre .linkman .mui-table-view-cell input{
+				position: absolute;
+				top:17px;
+			}
+			.centre .linkman label {
+				display: flex;
+				align-items: center;
+			}
+			.centre .linkman label .mui-media-object{
+				margin:0 20px 0 5px;
+			}
+			.centre .linkman label .mui-media-object{
+				border-radius: 30px;
+			}
+			.centre .linkman label .mui-media-body p{
+				margin-top: 10px;
+				font-size: 12px;
+				color: #ccc;
+			}
+			footer {
+				width: 100%;
+				height: 50px;
+				position: fixed;
+				bottom: 0;
+			}
+			footer .mui-input-row.mui-checkbox.mui-left input{
+				position: absolute;
+			    top: 10px;
+				width: ;
+			}
+			footer .mui-input-row span {
+				margin-left: 60px;
+				font-size: 18px;
+			}
+			footer button {
+				border: 0;
+				width: 100px;
+				height: 50px;
+				float: right;
+				border-radius: 25px 0 0 25px;
+				background-color: #47BAFE;
+				color: #fff;
+				font-size: 16px;
+			}
+			footer span:nth-of-type(1){
+				line-height: 50px;
+				color: #47BAFE;
+				font-size: 16px;
+			}
+			footer span:nth-of-type(2) {
+				color: #ccc;
+				float: right;
+				line-height: 50px;
+				margin-right: 15px;
+				font-size: 14px;
+			}
+			
+		</style>
 	</head>
 <header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title">通讯录导入</h1>
@@ -112,8 +222,21 @@
 		</footer>
 		
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		script(['../../js/app/common.js','../../js/customer/addressbook.js']);
+	</script> -->
+	<script type="text/javascript">
+		var box = document.getElementById("boxid");
+		var chek = document.getElementsByName("checkbox1");
+		    if(box.checked == false){
+		        for (var i = 0; i < chek.length; i++) {
+		            chek[i].checked = false;
+		        }
+		    }else{
+		        for (var i = 0; i < chek.length; i++) {
+		            chek[i].checked = true;
+		        }
+		    }
 	</script>
 	<body>
 		
