@@ -1,0 +1,141 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"LetterID":"A",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "张三丰",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "令狐冲",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"UserName" : "大白",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "唐伯虎",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"UserName" : "秋香",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		},
+		{
+			"LetterID":"B",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "张三丰",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "令狐冲",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"UserName" : "大白",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "唐伯虎",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"UserName" : "秋香",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		},
+		{
+			"LetterID":"C",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "张三丰",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "令狐冲",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"UserName" : "大白",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"UserName" : "唐伯虎",
+					"Number":"12321321321",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"UserName" : "秋香",
+					"Number":"12321321321",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		}
+	]
+}

@@ -1,224 +1,136 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 
 	<head>
-		<meta charset="UTF-8">
-		<title>LingPowerAI</title>
+		<meta charset="utf-8">
+		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<script type="text/javascript">
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link(['../../css/customer/pk.css']);
+			link();
 		</script>
-
 		<style type="text/css">
-			.match_s3 {
-				margin-top: 26px;
+			html,body{
+				background-color: #fff;
 			}
+			
+			.content {
+				/* background-color: #fff; */
+				width: 100%;
+				/* height: 600px; */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding-top:180px;
+				}
+			
+			.content .left{
+				background: url(../../images/kh.png) no-repeat;
+			
+			}
+			.content .cont{
+				width: 23px;
+				height: 20px;
+				margin: 0 40px;
+				background:url(../../images/kk.png);
+				background-size:100% 100%;
+			
+			}
+			.content .rigth{
+				background: url(../../images/hg.png) no-repeat;
+			}
+			.content .left,
+			.content .rigth{
+				width: 80px;
+				height: 80px;
+				background-size:100% 100%;
+			}
+			.texts {
+				width: 100%;
+				padding-top:50px;
+			}
+			.texts p {
+				font-size: 14px;
+				text-align:center;
+				color: #50C1FD;	
+			}
+			.btns {
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				
+			}
+			
+			.btns .phone,
+			.btns .wei {
+				width: 233px;
+				height: 37px;
+				margin-top: 30px;
+				line-height: 37px;
+				background:url(../../images/an.png) no-repeat;
+				color: #fff;
+				background-size: 100% 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.btns .phone div {
+				width: 18px;
+				height: 18px;
+				margin-right: 7px;
+				background:url(../../images/dh.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.btns .wei div {
+				width: 22px;
+				height: 18px;
+				margin-right: 7px;
+				background:url(../../images/wx.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			
+			
 		</style>
 	</head>
 
-	<body class="bg23">
-		<header class="mui-bar mui-bar-nav bg4b">
-			<div class="mui-pull-left titleBg">
-				<div id="yaoqing" class="ckecklogin" data-loginevent="pkEvent.goInvitation()" data-loginbackid="customer/invitation.html"></div>
-			</div>
-			<h1 class="mui-title">战帖列表</h1>
-			<a class="mui-pull-right iconfont icon-searchIcon1 head-righticonbtn" id="search"></a>
-			<!--<a class="headBtb mui-pull-right ckecklogin" id="invited" data-loginevent="pkEvent.goInvitation()" data-loginbackid="customer/invitation.html">受邀战帖</a>-->
-		</header>
-		<nav class="mui-bar mui-bar-tab kidNav bg4b">
-			<a class="mui-tab-item mui-active" data-type="1">
-				<span class="mui-tab-label">全部<i></i></span>
-			</a>
-			<a class="mui-tab-item" data-type="2">
-				<span class="mui-tab-label">最新<i></i></span>
-			</a>
-			<a class="mui-tab-item" data-type="3" id="myfriendmatch">
-				<span class="mui-tab-label">好友参加<i></i></span>
-			</a>
-			<a class="mui-tab-item" data-type="4" id="">
-				<span class="mui-tab-label">我发起的<i></i></span>
-			</a>
-		</nav>
-		<div id="war" class="ckecklogin" data-loginevent="pkEvent.goPK()" data-loginbackid="customer/war.html">
-			<!--约战-->
+	<body>
+		<div class="content">
+			<div class="left"></div>
+			<div class="cont"></div>
+			<div class="rigth"></div>
+			
 		</div>
-		<div class="mui-content mui-scroll-wrapper bg23" id="pullrefresh">
-			<div class="mui-scroll">
-				<ul class="mui-table-view tblv-nl" id="list_warp">
-					<div class="nodata"></div>
-
-					<li id="match_{{item.MatchId}}" class="mui-table-view-cell mui-media iscrt_{{item.IsNowPlayerCreate}}">
-						<div class="detail" data-id="{{item.MatchId}}">
-							<img class="mui-media-object mui-pull-left img4r loadthumb" data-url="{{item.ImgUrl}}" data-wh="128,128">
-							<div class="mui-media-body">
-								<h5 class="mui-col-xs-9 mui-ellipsis col4b">一起来战斗吧!</h5>
-								<p class="mui-row">
-									<span class="mui-col-xs-8  mui-ellipsis">2018-6-10 15:25:08</span>
-									<span class="mui-col-xs-8  mui-ellipsis">人数<strong>3</strong>/10</span>
-								</p>
-							</div>
-							<p class="mui-row">
-								<span class="mui-col-xs-12  mui-ellipsis">
-									<i class="iconfont icon-shop fs12"></i>
-								</span>
-							</p>
-						</div>
-						<div class="peoplewarp">
-							<div class="imgbox">
-								<span>5个好友参加</span>
-								<a>
-									<img src="../../images/1v.png" class="loadthumb" data-url="{{playeritem.ImgUrl}}" data-wh="50,50" />
-								</a>
-								<a class="names">
-									马上开始
-								</a>
-							</div>
-						</div>
-					</li>
-					<li id="match_{{item.MatchId}}" class="mui-table-view-cell mui-media iscrt_{{item.IsNowPlayerCreate}}">
-						<div class="detail" data-id="{{item.MatchId}}">
-							<img class="mui-media-object mui-pull-left img4r loadthumb" data-url="{{item.ImgUrl}}" data-wh="128,128">
-							<div class="mui-media-body">
-								<h5 class="mui-col-xs-9 mui-ellipsis col4b">一起来战斗吧!</h5>
-								<p class="mui-row">
-									<span class="mui-col-xs-8  mui-ellipsis">2018-6-10 15:25:08</span>
-									<span class="mui-col-xs-8  mui-ellipsis">人数<strong>3</strong>/10</span>
-								</p>
-							</div>
-							<p class="mui-row">
-								<span class="mui-col-xs-12  mui-ellipsis">
-									<i class="iconfont icon-shop fs12"></i>
-								</span>
-							</p>
-						</div>
-						<div class="peoplewarp">
-							<div class="imgbox">
-								<span>5个好友参加</span>
-								<a>
-									<img src="../../images/1v.png" class="loadthumb" data-url="{{playeritem.ImgUrl}}" data-wh="50,50" />
-								</a>
-								<a class="names">
-									马上开始
-								</a>
-							</div>
-						</div>
-					</li>
-
-				</ul>
-			</div>
+		<div class="texts">
+			<p>客户潜力诊断</p>
+			<p>开启智能销售之旅</p>
 		</div>
-		<script type="text/html" id="detail_view">
-
-			<div class="detail" data-id="{{item.MatchId}}">
-				<img class="mui-media-object mui-pull-left img4r loadthumb defuserimg" data-url="{{item.ImgUrl}}" data-wh="128,128">
-				<div class="mui-media-body">
-					<h5 class="mui-col-xs-9 mui-ellipsis col4b">{{item.MatchName}}</h5>
-					<p class="mui-row">
-						<span class="mui-col-xs-8  mui-ellipsis">{{item.MatchBeginTime}}</span>
-						<span class="mui-col-xs-8  mui-ellipsis">人数<strong>{{item.PlayerJoinNum}}</strong>/{{item.PlayerMaxNum}}</span>
-					</p>
-				</div>
-				<p class="mui-row">
-					<span class="mui-col-xs-12  mui-ellipsis">
-									<i class="iconfont icon-shop fs12"></i>
-									{{item.StoreName}} {{if item.distance}}
-									{{item.distance}}m									
-									{{/if}}
-									</span>
-				</p>
-			</div>
-			{{if item.JoinFriendNum>0}}
-			<div class="peoplewarp">
-				<div class="mui-col-xs-12 imgbox">
-					<span>{{item.JoinFriendNum}}个好友参加</span> {{each item.JoinFriend as playeritem}}
-					<a>
-						<img class="loadthumb defuserimg" data-url="{{playeritem.ImgUrl}}" data-wh="50,50" />
-					</a>
-					{{/each}}
-					<a class="names">
-						{{each item.JoinFriend as playeritem}} {{playeritem.ShowName}}、 {{/each}}
-					</a>
-				</div>
-			</div>
-			{{/if}}
-			<span class="status match_s{{item.Status}}">{{item.StatusName}}</span>
-			<div class="btn_warp">
-				{{if item.Status==1}} {{if (item.InviteStatus!="1" && item.WhetherJoin=="N" && item.IsFixed!="1") || (item.IsFixed=="1"&& item.IsCanJoin=="Y")}}
-				<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/customer.html">加入</button> {{else if item.InviteStatus=="1"}}
-				<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/customer.html">接受</button>
-				<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/customer.html">拒绝</button> {{/if}} {{/if}}
-			</div>
-			{{if item.InviteStatus!=""}}
-			<div class="yqstatus yq_s{{item.InviteStatus}}">
-				{{if item.InviteStatus=="1"}}
-				<i>邀</i> {{else if item.InviteStatus=="2"}}
-				<i>接</i> {{else if item.InviteStatus=="3"}}
-				<i>拒</i> {{/if}}
-			</div>
-			{{/if}}
-
-		</script>
-		<script type="text/html" id="list_view">
-			{{if data==null||data.length==0}}
-			<div class="nodata">暂无内容</div>
-			{{else}} {{each data as item}}
-			<li id="match_{{item.MatchId}}" class="mui-table-view-cell mui-media iscrt_{{item.IsNowPlayerCreate}}">
-				<div class="detail" data-id="{{item.MatchId}}">
-					<img class="mui-media-object mui-pull-left img4r loadthumb defuserimg" data-url="{{item.ImgUrl}}" data-wh="128,128">
-					<div class="mui-media-body">
-						<h5 class="mui-col-xs-9 mui-ellipsis col4b">{{item.MatchName}}</h5>
-						<p class="mui-row">
-							<span class="mui-col-xs-8  mui-ellipsis">{{item.MatchBeginTime}}</span>
-							<span class="mui-col-xs-8  mui-ellipsis">人数<strong>{{item.PlayerJoinNum}}</strong>/{{item.PlayerMaxNum}}</span>
-						</p>
-					</div>
-					<p class="mui-row">
-						<span class="mui-col-xs-12  mui-ellipsis">
-									<i class="iconfont icon-shop fs12"></i>
-									{{item.StoreName}} {{if item.distance}}
-									{{item.distance}}m									
-									{{/if}}
-									</span>
-					</p>
-				</div>
-				{{if item.JoinFriendNum>0}}
-				<div class="peoplewarp">
-					<div class="mui-col-xs-12 imgbox">
-						<span>{{item.JoinFriendNum}}个好友参加</span> {{each item.JoinFriend as playeritem}}
-						<a>
-							<img class="loadthumb defuserimg" data-url="{{playeritem.ImgUrl}}" data-wh="50,50" />
-						</a>
-						{{/each}}
-						<a class="names">
-							{{each item.JoinFriend as playeritem}} {{playeritem.ShowName}}、 {{/each}}
-						</a>
-					</div>
-				</div>
-				{{/if}}
-				<span class="status match_s{{item.Status}}">{{item.StatusName}}</span>
-				<div class="btn_warp">
-					{{if item.Status==1}} {{if (item.InviteStatus!="1" && item.WhetherJoin=="N" && item.IsFixed!="1") || (item.IsFixed=="1"&& item.IsCanJoin=="Y")}}
-					<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="customer/customer.html">加入</button> {{else if item.InviteStatus=="1"}}
-					<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="customer/customer.html">接受</button>
-					<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="customer/customer.html">拒绝</button> {{/if}} {{/if}}
-				</div>
-				{{if item.InviteStatus!=""}}
-				<div class="yqstatus yq_s{{item.InviteStatus}}">
-					{{if item.InviteStatus=="1"}}
-					<i>邀</i> {{else if item.InviteStatus=="2"}}
-					<i>接</i> {{else if item.InviteStatus=="3"}}
-					<i>拒</i> {{/if}}
-				</div>
-				{{/if}}
-			</li>
-			{{/each}} {{/if}}
+		<div class="btns">
+			<div class="phone" id="phone">
+				<div></div>
+				诊断手机联系人潜力</div>
+			<div class="wei" id="wei">
+				<div></div>诊断微信好友潜力</div>
+		</div>
+		
+		<script type="text/javascript">
+			script()
 		</script>
 		<script type="text/javascript">
-			//必须顺序加载
-			script(['../../libs/plus.js', '../../js/customer/pk.js']);
+			mui.init()
+			mui.plusReady(function() {
+				var phone = document.getElementById('phone');
+				var weixin = document.getElementById('wei')
+				phone.addEventListener("tap", function() {
+					openNew("addressbook.html")
+				})
+				weixin.addEventListener("tap", function() {
+					openNew("addwei.html")
+				})
+			})
 		</script>
 	</body>
 

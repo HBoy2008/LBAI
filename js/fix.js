@@ -19,8 +19,7 @@ var app_config = {
 		'../../js/app/constants.js',
 		'../../js/app/sysUtils.js',
 		'../../js/app/common.js',
-		'../../js/app/utils.js',
-		'../../js/customer/costomer.js'
+		'../../js/app/utils.js'
 	]
 }
 

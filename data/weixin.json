@@ -1,0 +1,141 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"LetterID":"A",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "张三丰",
+					"weixinNumber":"hello11",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "令狐冲",
+					"weixinNumber":"hello22",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"WeixinName" : "大白",
+					"weixinNumber":"hello44",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "唐伯虎",
+					"weixinNumber":"hello34",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"WeixinName" : "秋香",
+					"weixinNumber":"hello54",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		},
+		{
+			"LetterID":"B",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "张三丰",
+					"weixinNumber":"hello67",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "令狐冲",
+					"weixinNumber":"hello53",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"WeixinName" : "大白",
+					"weixinNumber":"hello43",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "唐伯虎",
+					"weixinNumber":"hello12",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"WeixinName" : "秋香",
+					"weixinNumber":"hello23",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		},
+		{
+			"LetterID":"C",
+			"User":[
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "张三丰",
+					"weixinNumber":"hello11",
+					"img":"../../images/defuser.jpg",
+					"id" : "1"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "令狐冲",
+					"weixinNumber":"hello22",
+					"img":"../../images/qq.png",
+					"id" : "2"
+				},
+				{
+					"sex" : "nv",
+					"age" : "36",
+					"WeixinName" : "大白",
+					"weixinNumber":"hello44",
+					"img":"../../images/defuser.jpg",
+					"id" : "3"
+				},
+				{
+					"sex" : "男",
+					"age" : "36",
+					"WeixinName" : "唐伯虎",
+					"weixinNumber":"hello34",
+					"img":"../../images/qq.png",
+					"id" : "4"
+				},
+				{
+					"sex" : "女",
+					"age" : "36",
+					"WeixinName" : "秋香",
+					"weixinNumber":"hello54",
+					"img":"../../images/defuser.jpg",
+					"id" : "5"
+				}
+			]
+		}
+	]
+}
