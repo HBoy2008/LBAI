@@ -64,6 +64,22 @@
 				color: #47BAFE;
 				margin: 17px auto;
 			}
+			
+			#addActionManual {
+				position: fixed;
+				bottom: 10px;
+				right: 15px;
+				width: 80px;
+				height: 80px;
+				background: url(../../images/home/fubiao.png) 0 0 no-repeat;
+				background-size: 100%;
+				text-align: center;
+				line-height: 60px;
+				color: #fff;
+				font-weight: bold;
+				font-size: 16px;
+				z-index: 99;
+			}
 		</style>
 	</head>
 
@@ -71,8 +87,10 @@
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title" style="color:white;">首页</h1>
 		</header>
+		
+		<div id="addActionManual" class="none"></div>
+		
 		<div class="mui-content">
-
 			<!-- 首页无数据 -->
 			<div id="NoneCustomerArea" class="none">
 				<div class="box box-info" style="height: 120px;">
@@ -373,110 +391,118 @@
 									});
 								});
 							}
+						});
 							
-							document.getElementById("AICalendarArea").classList.remove("none");
+						//处理悬浮按钮
+						document.getElementById("addActionManual").classList.remove("none");
+						//绑定[悬浮按钮]事件
+						document.getElementById("addActionManual").addEventListener("tap", function(){
+							mui.alert("【悬浮按钮】功能尚未开放!");
+							// openNew("");
+						});
+						
+						document.getElementById("AICalendarArea").classList.remove("none");
 
-							//动态生成行动推荐卡片信息
-							request("../../data/home/SuggestedActionTemplate.json", {}, function(result) {
-								log(result);
-								render("#SuggestedActionList", "SuggestedActionTemplate", result);
-								//动态加载滑动控件时需要手动调用一下滑动事件
-								var slider2 = mui(".SuggestedAction-slider");
-								slider2.slider();
-								//四个标签页二级
-								mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
-									mui.alert("你点击了" + storageUser.NickName + "的(ID为" + this.dataset.id + ")行动推荐卡片!");
-								});
+						//动态生成行动推荐卡片信息
+						request("../../data/home/SuggestedActionTemplate.json", {}, function(result) {
+							log(result);
+							render("#SuggestedActionList", "SuggestedActionTemplate", result);
+							//动态加载滑动控件时需要手动调用一下滑动事件
+							var slider2 = mui(".SuggestedAction-slider");
+							slider2.slider();
+							//四个标签页二级
+							mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
+								mui.alert("你点击了" + storageUser.NickName + "的(ID为" + this.dataset.id + ")行动推荐卡片!");
 							});
-							
-							//绑定[查看所有日程]事件
-							document.getElementById("reviewAllPlanBtn").addEventListener("tap", function(){
-								mui.alert("【查看所有日程】功能尚未开放!");
-								// openNew("");
-							});
-							
-							//绑定[查看heuristic详细分析报告]事件
-							document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function(){
-								mui.alert("【查看heuristic详细分析报告】功能尚未开放!");
-								// openNew("");
-							});
+						});
+						
+						//绑定[查看所有日程]事件
+						document.getElementById("reviewAllPlanBtn").addEventListener("tap", function(){
+							mui.alert("【查看所有日程】功能尚未开放!");
+							// openNew("");
+						});
+						
+						//绑定[查看heuristic详细分析报告]事件
+						document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function(){
+							mui.alert("【查看heuristic详细分析报告】功能尚未开放!");
+							// openNew("");
+						});
 
-							//生成客户分析图
-							var pieChartOption = {
-								calculable: false,
-								series: [{
-									name: "",
-									type: "pie",
-									radius: ["30%", "95%"],
-									center: ["47%", "50%"],
-									itemStyle: {
-										normal: {
-											label: {
-												position: "inner",
-												formatter: function(params) {
-													return params.name + ":" + params.value + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
-												}
-											},
-											labelLine: {
-												show: false
+						//生成客户分析图
+						var pieChartOption = {
+							calculable: false,
+							series: [{
+								name: "",
+								type: "pie",
+								radius: ["30%", "95%"],
+								center: ["47%", "50%"],
+								itemStyle: {
+									normal: {
+										label: {
+											position: "inner",
+											formatter: function(params) {
+												return params.name + ":" + params.value + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
 											}
 										},
-										emphasis: {
-											label: {
-												show: true,
-												formatter: "{b}\n{d}%"
-											}
+										labelLine: {
+											show: false
 										}
 									},
-									data: [{
-										value: 30,
-										name: "高潜力",
-										selected: true
-									}, {
-										value: 25,
-										name: "中潜力"
-									}, {
-										value: 45,
-										name: "低潜力"
-									}]
-								}]
-							};
-							var pieChartDiv = document.getElementById("pieChart");
-							var pieChart = echarts.init(pieChartDiv);
-							pieChart.setOption(pieChartOption);
-
-							//生成业务趋势图
-							var lineChartOption = {
-								calculable: false,
-								legend: {
-									data:["行动推荐","计划日程","成交量"]
+									emphasis: {
+										label: {
+											show: true,
+											formatter: "{b}\n{d}%"
+										}
+									}
 								},
-								xAxis: [{
-									type: "category",
-									data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-								}],
-								yAxis: [{
-									type: "value"
-								}],
-								series: [{
-									name: "行动推荐",
-									type: "line",
-									data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
-								},{
-									name: "计划日程",
-									type: "line",
-									data: [10, 24, 40, 150, 140, 450, 700, 300, 100, 170, 500, 1000]
-								},{
-									name: "成交量",
-									type: "line",
-									data: [5, 16, 20, 12, 32, 40, 45, 33, 50, 55, 50, 56]
+								data: [{
+									value: 30,
+									name: "高潜力",
+									selected: true
+								}, {
+									value: 25,
+									name: "中潜力"
+								}, {
+									value: 45,
+									name: "低潜力"
 								}]
-							};
+							}]
+						};
+						var pieChartDiv = document.getElementById("pieChart");
+						var pieChart = echarts.init(pieChartDiv);
+						pieChart.setOption(pieChartOption);
 
-							var lineChartDiv = document.getElementById("lineChart");
-							var lineChart = echarts.init(lineChartDiv);
-							lineChart.setOption(lineChartOption);
-						});
+						//生成业务趋势图
+						var lineChartOption = {
+							calculable: false,
+							legend: {
+								data:["行动推荐","计划日程","成交量"]
+							},
+							xAxis: [{
+								type: "category",
+								data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+							}],
+							yAxis: [{
+								type: "value"
+							}],
+							series: [{
+								name: "行动推荐",
+								type: "line",
+								data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
+							},{
+								name: "计划日程",
+								type: "line",
+								data: [10, 24, 40, 150, 140, 450, 700, 300, 100, 170, 500, 1000]
+							},{
+								name: "成交量",
+								type: "line",
+								data: [5, 16, 20, 12, 32, 40, 45, 33, 50, 55, 50, 56]
+							}]
+						};
+
+						var lineChartDiv = document.getElementById("lineChart");
+						var lineChart = echarts.init(lineChartDiv);
+						lineChart.setOption(lineChartOption);
 					}
 				});
 			});
