@@ -1,0 +1,15 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"name" : "Zhang",
+			"phone_no" : "136****6666",
+			"cnName" : "张三丰",
+			"wechat_nm" : "微信昵称",
+			"src" : "通讯录导入",
+			"create_date" : "2019年2月1日",
+			"contact_date" : "2019年2月1日"
+		}
+	]
+}

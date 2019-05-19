@@ -1,0 +1,46 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"name" : "Zhang",
+			"sex" : "男",
+			"age" : "36",
+			"BrandId" : "136****6666",
+			"weixinNumber":"hello11",
+			"BrandName" : "张三丰",
+			"img":"../../images/defuser.jpg",
+			"level" : "1"
+		},
+		{
+			"name" : "Ling",
+			"sex" : "男",
+			"age" : "28",
+			"BrandId" : "128****8888",
+			"BrandName" : "令狐冲",
+			"weixinNumber":"hello1788",
+			"img":"../../images/defuser.jpg",
+			"level" : "2"
+		},
+		{
+			"name" : "Tang",
+			"sex" : "男",
+			"age" : "40",
+			"BrandId" : "140****0000",
+			"BrandName" : "唐伯虎",
+			"weixinNumber":"hello177",
+			"img":"../../images/defuser.jpg",
+			"level" : "3"
+		},
+		{
+			"name" : "Qiu",
+			"sex" : "女",
+			"age" : "35",
+			"BrandId" : "135****5555",
+			"BrandName" : "秋香",
+			"weixinNumber":"hello71",
+			"img":"../../images/defuser.jpg",
+			"level" : "4"
+		}
+	]
+}

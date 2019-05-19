@@ -20,7 +20,7 @@
 			}
 			.centre {
 				width: 100%;
-				margin-top: 44px;
+				margin-top: 40px;
 				margin-bottom: 50px;
 			}
 			.centre .iput {
@@ -30,6 +30,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				background-color: #fff;
 				position: relative;
 			}
 			.centre .iput input {
@@ -61,7 +62,7 @@
 			}
 			.centre .linkman ul li{
 				border-bottom: 2px dashed #000;
-				margin: 0 20px;
+				margin: 0 10px;
 				padding: 0;
 				height: 50px;
 			}
@@ -140,17 +141,16 @@
 				margin-right: 15px;
 				font-size: 14px;
 			}
-			
 		</style>
 	</head>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">微信导入</h1>
 		</header>
-		<div class="centre">
+		<div class="centre" id="pullrefresh">
 			<div class="iput">
 				<span></span>
-				<input type="" placeholder="搜索"/>
+				<input placeholder="搜索"/>
 			</div>
 			<div class="linkman" id="weiinfo"></div>
 		</div>
@@ -159,7 +159,7 @@
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
 				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
-				  <button type="button">导入</button>
+				  <button type="button" id="daobtn">导入</button>
 				  <span>已选择 100 人</span>
 				</div>
 		</footer>
@@ -200,48 +200,44 @@
 		script();
 	</script>
 	<script type="text/javascript">
-	mui.init();
-	mui.plusReady(function() {
-		request("../../data/weixin.json", {}, function(r) {
-			log(r);
-			
-			// if(r.SysConstants.ERROR_CODE_KEY == -1) {
-			// 	appUI.showTopTip(r.DATASET);
-			// 	return;
-			// }
+		mui.init();
+		mui.plusReady(function() {
+			request("../../data/weixin.json", {}, function(request) {
+				log(request);
+				// if(r.SysConstants.ERROR_CODE_KEY == -1) {
+				// 	appUI.showTopTip(r.DATASET);
+				// 	return;
+				// }
+				render("#weiinfo", "weitamplate", request);
+				})
 		
-			render("#weiinfo", "weitamplate", r);
+			var box = document.getElementById("boxid");
+			var btn = document.getElementById("daobtn");
+			var chek = document.getElementsByName("checkbox1");
+			btn.addEventListener("tap", function() {
+				openNew("AssociatedUser.html")
 			})
 
-		var box = document.getElementById("boxid");
-		var chek = document.getElementsByName("checkbox1");
-		box.addEventListener("tap", function() {
-			if(box.checked == true){
-				for(var i=0;i<chek.length;i++){
-					chek[i].checked = false
-				}
-			}else {
-				for(var i=0;i<chek.length;i++){
-					chek[i].checked = true	
-				}
-			}		
+			box.addEventListener("tap", function() {
+				if(box.checked == true){
+					for(var i=0;i<chek.length;i++){
+						chek[i].checked = false
+					}
+				}else {
+					for(var i=0;i<chek.length;i++){
+						chek[i].checked = true	
+					}
+				}		
+			})
+			//子复选框有一个没有选中 全选框就没有选中
+			// for(var i=0;i<chek.length;i++){
+			// 	chek[i].addEventListener("tap", function() {
+			// 		if(!this.checked){
+			// 			box.checked = false 
+			// 		}
+			// 	})
+			// }
 		})
-		//子复选框有一个没有选中 全选框就没有选中
-		// for(var i=0;i<chek.length;i++){
-		// 	chek[i].addEventListener("tap", function() {
-		// 		if(!this.checked){
-		// 			box.checked = false 
-		// 		}
-		// 	})
-		// }
-		
-		
-		
-		
-		
-		
-	})
-
 		
 	</script>
 	<body>
