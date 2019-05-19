@@ -1,0 +1,20 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"cust_id" : "1234",
+			"score" : "85",
+			"status" : "1",
+			"score_label" : [
+				{"label" : "已婚"},
+				{"label" : "子女"},
+				{"label" : "父母"},
+				{"label" : "有房"},
+				{"label" : "有车"},
+				{"label" : "资产AA级"},
+				{"label" : "已购买"}
+			]
+		}
+	]
+}
