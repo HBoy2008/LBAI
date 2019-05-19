@@ -1083,11 +1083,16 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 			setRequestMsg("加载中...");
 		},
 		success: function(data) {
-			//alert(method+data)
 			log(mklog() + '【AJAX:OK!】' + method + '】【响应：' + JSON.stringify(data) + '】');
 			if (data && data[SysConstants.ERROR_CODE_KEY] && data[SysConstants.ERROR_CODE_KEY] != undefined) {
 				setRequestMsg("");
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
+				
+				if(data[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+					appUI.showTopTip(data[SysConstants.ERROR_MESSAGE_KEY]);
+				}else {
+					mui.alert(data[SysConstants.ERROR_MESSAGE_KEY]);
+				}
 				callback(data);
 			} else {
 				setRequestMsg("服务器繁忙,请稍后再试");
@@ -1105,9 +1110,9 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 				if (shownetmsg)
 					mui.toast("请求超时：请检查网络：" + type)
 			} else {
-				setRequestMsg("服务器累了");
+				setRequestMsg("服务器连接失败");
 				if (shownetmsg)
-					mui.toast("服务器累了：" + type)
+					mui.toast("服务器连接失败：" + type)
 			}
 			if (errcallback) {
 				errcallback();
@@ -1121,6 +1126,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 		}
 	}); //ajax end
 } //获取数据结束
+
 function setRequestMsg(msg) {
 	var arr = mui(".nodata");
 	if (arr) {

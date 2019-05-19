@@ -1,0 +1,42 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"id" : "111",
+			"sellerId" : "李小龙",
+			"customerId" : "张先生",
+			"actionName" : "张先生咨询健康险11",
+			"actionType" : "wx",
+			"actionTime" : "13:30",
+			"lastAction" : "2019年1月1日"
+		},
+		{
+			"id" : "222",
+			"sellerId" : "李小龙",
+			"customerId" : "李女士",
+			"actionName" : "李女士升职,祝贺一下22",
+			"actionType" : "phone",
+			"actionTime" : "10:30",
+			"lastAction" : "2019年2月1日"
+		},
+		{
+			"id" : "333",
+			"sellerId" : "李小龙",
+			"customerId" : "赵先生",
+			"actionName" : "赵先生生病,拜访一下33",
+			"actionType" : "wx",
+			"actionTime" : "15:30",
+			"lastAction" : "2019年3月1日"
+		},
+		{
+			"id" : "444",
+			"sellerId" : "李小龙",
+			"customerId" : "孙小姐",
+			"actionName" : "与孙小姐签订购买保险合同44",
+			"actionType" : "bf",
+			"actionTime" : "11:30",
+			"lastAction" : "2019年3月15日"
+		}
+	]
+}

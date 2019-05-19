@@ -1,0 +1,30 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"id" : "1",
+			"sellerId" : "李小龙",
+			"customerId" : "张先生",
+			"actionName" : "张先生咨询健康险"
+		},
+		{
+			"id" : "2",
+			"sellerId" : "李小龙",
+			"customerId" : "李女士",
+			"actionName" : "李女士升职,祝贺一下"
+		},
+		{
+			"id" : "3",
+			"sellerId" : "李小龙",
+			"customerId" : "赵先生",
+			"actionName" : "赵先生生病,拜访一下"
+		},
+		{
+			"id" : "4",
+			"sellerId" : "李小龙",
+			"customerId" : "孙小姐",
+			"actionName" : "与孙小姐签订购买保险合同"
+		}
+	]
+}

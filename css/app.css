@@ -6,42 +6,63 @@
 .common-bg-color-blue {
 	background-color: #47BAFE;
 }
+
 .common-bg-color-white {
 	background-color: white;
 }
+
 .common-font-color-blue {
 	color: #47BAFE;
 }
+
 .common-font-color-white {
 	color: white;
 }
 
-html, body {
+html,
+body {
 	background-color: #EFEFF4;
 }
-			
+
+/* 共同操作按钮样式定义 */
+.actionButton {
+	border: 1px solid #f7f7f7;
+	background-color: #47BAFE;
+	width: 80%;
+	border-radius: 50px;
+	margin: 15px auto;
+}
+
+.actionButton span {
+	font-size: 23px !important;
+}
+
 /* 页面Header部分共通样式 */
 .mui-bar-nav {
 	background-color: #47BAFE;
 }
+
 .mui-bar-nav h1 {
 	color: white;
 }
+
 .mui-bar-nav a {
 	color: white;
 }
+
 .mui-bar-nav a span {
 	font-size: 15px;
 	font-weight: bolder;
 }
 
 /* box封装 */
-.box{
+.box {
+	width: unset;
 	background-color: white;
 	padding: 3px 20px;
 	border-radius: 3px;
 	margin: 10px;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .box-info {
@@ -60,3 +81,48 @@ html, body {
 	border-top: 3px solid red;
 }
 
+.littlebluespan {
+	border: 2px #47BAFE solid;
+	margin: 1px 5px;
+	border-radius: 3px;
+}
+
+.xu-line-default {
+	border-top: 1px #47BAFE dashed;
+	margin: 5px auto;
+}
+
+.shi-line-default {
+	border-top: 1px #47BAFE solid;
+	margin: 5px auto;
+}
+
+.xu-line-gray {
+	border-top: 1px #CCCCCC dashed;
+	margin: 5px auto;
+}
+
+.shi-line-gray {
+	border-top: 1px #CCCCCC solid;
+	margin: 5px auto;
+}
+
+.xu-line-default-column {
+	border-right: 1px #47BAFE dashed;
+	margin: 10px 5px;
+}
+
+.shi-line-default-column {
+	border-right: 1px #47BAFE solid;
+	margin: 10px 5px;
+}
+
+.xu-line-gray-column {
+	border-right: 1px #CCCCCC dashed;
+	margin: 10px 5px;
+}
+
+.shi-line-gray-column {
+	border-right: 1px #CCCCCC solid;
+	margin: 10px 5px;
+}

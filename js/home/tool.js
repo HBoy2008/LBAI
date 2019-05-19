@@ -50,13 +50,13 @@ var pkEvent = {
 
 //拉取数据
 function getList() {
-	request("../../data/tools.json", {}, function(r) {
-		log(r);
-		if(r.code == -1) {
-			appUI.showTopTip(r.msg);
-			return;
-		}
-		render("#toolList", "toolListTep1", r);
+	request("../../data/tools.json", {}, function(result) {
+		log(result);
+		// if(result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+		// 	appUI.showTopTip(result[SysConstants.ERROR_MESSAGE_KEY]);
+		// 	return;
+		// }
+		render("#toolList", "toolListTep1", result);
 		appPage.imgInit();
 		//四个标签页二级
 		mui(".mui-collapse-content").on("tap", "span", function() {
@@ -66,7 +66,6 @@ function getList() {
 					BrandId: this.dataset.id
 				});
 			}
-
 		})
 	})
 }
