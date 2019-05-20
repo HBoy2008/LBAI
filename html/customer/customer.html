@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 	<head>
@@ -9,127 +9,157 @@
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link();
+			link(['../../css/font-awesome/css/font-awesome.min.css']);
 		</script>
 		<style type="text/css">
-			html,body{
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.centre {
+				margin-bottom: 50px;
+			}
+			.centre .iput {
+				width: 100%;
+				height: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #fff;
+				position: fixed;
+			}
+			.centre .iput .iputinfo{
+				width: 90%;
+				position: relative;
+			}
+			.centre .iput .iputinfo input {
+				width: 100%;
+				height: 25px;
+				border: 0;
+				background-color: #e9f0f4;
+				border-radius: 25px;
+				padding-left: 28px;
+				font-size: 14px;
+			}
+			.centre .iput .iputinfo span {
+				position: absolute;
+				left: 8px;
+				top: 6px;
+				width: 13px;
+				height: 13px;
+				background:url(../../images/ss.png);
+				background-size:100% 100%;
+			}
+			.centre .linkman {
+				margin-top: 60px;
+				/* padding-top: 50px; */
 				background-color: #fff;
 			}
-			
-			.content {
-				/* background-color: #fff; */
+			.centre .linkman .head{
 				width: 100%;
-				/* height: 600px; */
+				height: 35px;
+				line-height: 35px;
+				color: #47BAFE;
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				padding-top:180px;
-				}
-			
-			.content .left{
-				background: url(../../images/kh.png) no-repeat;
-			
+				position: fixed;
+				background-color: #fff;
 			}
-			.content .cont{
-				width: 23px;
-				height: 20px;
-				margin: 0 40px;
-				background:url(../../images/kk.png);
-				background-size:100% 100%;
-			
+			.centre .linkman .head span {
+				text-align: center;
+				flex: 1;
 			}
-			.content .rigth{
-				background: url(../../images/hg.png) no-repeat;
+			.centre .linkman ul {
+				border-top: 1px solid #f3f3f3;
+				padding-top: 40px;
 			}
-			.content .left,
-			.content .rigth{
-				width: 80px;
-				height: 80px;
-				background-size:100% 100%;
-			}
-			.texts {
-				width: 100%;
-				padding-top:50px;
-			}
-			.texts p {
-				font-size: 14px;
-				text-align:center;
-				color: #50C1FD;	
-			}
-			.btns {
-				width: 100%;
+			.centre .linkman ul li{
 				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				
-			}
-			
-			.btns .phone,
-			.btns .wei {
-				width: 233px;
-				height: 37px;
-				margin-top: 30px;
-				line-height: 37px;
-				background:url(../../images/an.png) no-repeat;
-				color: #fff;
-				background-size: 100% 100%;
-				display: flex;
-				justify-content: center;
+				height: 50px;
 				align-items: center;
 			}
-			.btns .phone div {
-				width: 18px;
-				height: 18px;
-				margin-right: 7px;
-				background:url(../../images/dh.png) no-repeat;
-				background-size: 100% 100%;
+			.centre .linkman ul li span {
+				flex: 1;
+				text-align: center;
 			}
-			.btns .wei div {
-				width: 22px;
-				height: 18px;
-				margin-right: 7px;
-				background:url(../../images/wx.png) no-repeat;
-				background-size: 100% 100%;
+			.centre .linkman ul li .touxiang img {
+				height: 34px;
+				border-radius: 17px;
+				margin-top: 6px;
 			}
-			
-			
-			
+			.centre .linkman ul li .mui-icon-star{
+				color: #47BAFE;
+			}
 		</style>
+		
 	</head>
 
 	<body>
-		<div class="content">
-			<div class="left"></div>
-			<div class="cont"></div>
-			<div class="rigth"></div>
-			
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">客户列表</h1>
+			<a class="mui-icon mui-icon-plusempty  mui-pull-right"></a>
+		</header>
+		<div class="centre mui-content">
+			<div class="iput">
+				<div class="iputinfo">
+					<span></span>
+					<input placeholder="搜索"/>
+				</div>
+			</div>
+			<div class="linkman" >
+				<div class="head">
+					<span></span>
+					<span>姓名</span>
+					<span>零豹分</span>
+					<span >资产</span>
+					<span>上次互动</span>
+					<span>星标</span>
+				</div>
+				<ul id="users"></ul>
+			</div>
 		</div>
-		<div class="texts">
-			<p>客户潜力诊断</p>
-			<p>开启智能销售之旅</p>
-		</div>
-		<div class="btns">
-			<div class="phone" id="phone">
-				<div></div>
-				诊断手机联系人潜力</div>
-			<div class="wei" id="wei">
-				<div></div>诊断微信好友潜力</div>
-		</div>
-		
+
+
+		<script type="text/html" id="userlist">
+			{{each DATASET as value}}
+				<li>
+					<span class="touxiang">
+						<img src="{{value.img}}">
+					</span>
+					<span>{{value.UserName}}</span>
+					<span>{{value.Average}}</span>
+					<span>{{value.Level}}</span>
+					<span>{{value.Data}}</span>
+					<span class="mui-icon mui-icon-star"></span>
+				</li>
+			{{/each}}
+		</script>	
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<script type="text/javascript">
-			script()
+			script();
 		</script>
 		<script type="text/javascript">
-			mui.init()
-			mui.plusReady(function() {
-				var phone = document.getElementById('phone');
-				var weixin = document.getElementById('wei')
-				phone.addEventListener("tap", function() {
-					openNew("addressbook.html")
-				})
-				weixin.addEventListener("tap", function() {
-					openNew("addwei.html")
-				})
+			mui.init();
+			mui.plusReady(function () {
+				request("../../data/userlist.json", {}, function(request) {
+					log(request);
+					// if(r.SysConstants.ERROR_CODE_KEY == -1) {
+					// 	appUI.showTopTip(r.DATASET);
+					// 	return;
+					// }
+					render("#users", "userlist", request);
+					})
 			})
 		</script>
 	</body>

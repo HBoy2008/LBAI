@@ -11,41 +11,39 @@
 			link();
 		</script>
 		<style type="text/css">
-			html,body{
-				background-color: #fff;
-			}
 			* {
 				padding: 0;
 				margin: 0;
 			}
 			.centre {
-				width: 100%;
-				margin-top: 40px;
 				margin-bottom: 50px;
 			}
 			.centre .iput {
 				width: 100%;
 				height: 50px;
-				border: 1px solid #ccc;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				background-color: #fff;
 				position: relative;
 			}
-			.centre .iput input {
+			.centre .iput .iputinfo{
 				width: 90%;
+				position: relative;
+			}
+			.centre .iput .iputinfo input {
+				width: 100%;
 				height: 25px;
 				border: 0;
-				background:url(../../images/ssk.png);
-				background-size:100% 100%;
-				padding-left: 25px;
+				background-color: #e9f0f4;
+				border-radius: 25px;
+				padding-left: 28px;
 				font-size: 14px;
 			}
-			.centre .iput span {
+			.centre .iput .iputinfo span {
 				position: absolute;
-				left: 29px;
-				top: 18px;
+				left: 8px;
+				top: 6px;
 				width: 13px;
 				height: 13px;
 				background:url(../../images/ss.png);
@@ -56,23 +54,24 @@
 			}
 			.centre .linkman .list {
 				width: 100%;
-				background-color: powderblue;
+				background-color: #e9f0f4;
 				padding-left: 20px;
 				font-weight: 700;
+				font-size: 18px;
 			}
 			.centre .linkman ul li{
-				border-bottom: 2px dashed #000;
-				margin: 0 10px;
+				border-bottom: 1px solid #ccc;
+				margin: 0 15px;
 				padding: 0;
 				height: 50px;
 			}
 			.centre .linkman ul li:last-child{
 				border: none;
-			} 
-			 .centre .linkman li input{
+			}
+			 .centre .linkman li .mui-checkbox input{
 				position: absolute;
-				top:11px;
-				margin-left: -22px;
+				top:14px;
+				left: 2px;
 			}
 			 .centre .linkman label {
 				 padding-left: 30px;
@@ -99,9 +98,10 @@
 				height: 280px;
 				background:url(../../images/zm.png) no-repeat;
 				background-size: 100% 100%;
-				position: absolute;
+				position: fixed;
 				top: 120px;
 				right: 0;
+				z-index: 99;
 			}
 			footer {
 				width: 100%;
@@ -113,10 +113,11 @@
 			}
 			footer .mui-input-row.mui-checkbox.mui-left input{
 				position: absolute;
-			    top: 10px;
+			    top: 14px;
+				left: 16px;
 			}
 			footer .mui-input-row span {
-				margin-left: 60px;
+				margin-left: 45px;
 				font-size: 18px;
 			}
 			footer button {
@@ -147,10 +148,12 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">微信导入</h1>
 		</header>
-		<div class="centre" id="pullrefresh">
+		<div class="centre mui-content">
 			<div class="iput">
-				<span></span>
-				<input placeholder="搜索"/>
+				<div class="iputinfo">
+					<span></span>
+					<input placeholder="搜索"/>
+				</div>
 			</div>
 			<div class="linkman" id="weiinfo"></div>
 		</div>
@@ -173,12 +176,11 @@
 		{{each DATASET as value}}
 		<div class="list">{{value.LetterID}}</div>
 		<ul class="mui-table-view">
-
 			{{each value.User as value}}
 					<li>
 						<div class="mui-input-row mui-checkbox mui-left">
 						  <label>
-							  <img class="mui-media-object mui-pull-left" src="../../images/defuser.jpg">
+							  <img class="mui-media-object mui-pull-left" src="{{value.img}}">
 							  <div class="mui-media-body">
 								{{value.WeixinName}}								
 								<p class='mui-ellipsis'>微信号:{{value.weixinNumber}}</p>

@@ -8,7 +8,7 @@
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link([]);
+			link();
 		</script>
 		<style type="text/css">
 			html,body{
@@ -19,33 +19,35 @@
 				margin: 0;
 			}
 			.centre {
-				width: 100%;
-				margin-top: 40px;
 				margin-bottom: 50px;
 			}
 			.centre .iput {
 				width: 100%;
 				height: 50px;
-				border: 1px solid #ccc;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				position: relative;
 				background-color: #fff;
 			}
-			.centre .iput input {
+			.centre .iput .iputinfo{
 				width: 90%;
+				position: relative;
+			}
+			.centre .iput .iputinfo input {
+				width: 100%;
 				height: 25px;
 				border: 0;
-				background:url(../../images/ssk.png);
-				background-size:100% 100%;
-				padding-left: 25px;
+				background-color: #e9f0f4;
+				border-radius: 25px;
+				padding-left: 28px;
 				font-size: 14px;
+				border-radius: 25px;
+
 			}
-			.centre .iput span {
+			.centre .iput .iputinfo span {
 				position: absolute;
-				left: 29px;
-				top: 18px;
+				left: 8px;
+				top: 6px;
 				width: 13px;
 				height: 13px;
 				background:url(../../images/ss.png);
@@ -56,30 +58,30 @@
 			}
 			.centre .linkman .list {
 				width: 100%;
-				background-color: powderblue;
 				padding-left: 20px;
 				font-weight: 700;
+				font-size: 18px;
+				background-color: #e9f0f4;
 			}
 			.centre .linkman ul li{
-				border-bottom: 2px dashed #000;
-				margin: 0 10px;
-				padding: 0;
+				border-bottom: 1px solid #ccc;
+				margin: 0 14px;
 				height: 50px;
 			}
 			.centre .linkman ul li:last-child{
 				border: none;
 			}
-			 .centre .linkman li input{
+			 .centre .linkman ul li .mui-checkbox input{
 				position: absolute;
-				top:11px;
-				margin-left: -22px;
+				top:14px;
+				left:2px;
 			}
 			 .centre .linkman label {
 				 padding-left: 30px;
 				 padding-top: 8px;
 			 }
 			.centre .linkman label .mui-media-object{
-				margin:0 20px 0 10px;
+				margin:0 15px 0 10px;
 				border-radius: 17px;
 				width: 34px;
 				height: 34px;
@@ -88,29 +90,6 @@
 				font-size: 15px;
 				color: #000000;
 				height: 40px;
-			}
-			/* 标记按钮 */
-			.centre .linkman label .mui-media-body span {
-				display: inline-block;
-				float: right;
-				width: 70px;
-				height: 20px;
-				margin-top: 5px;
-				padding-left: 5px;
-				background: url(../../images/s.png) no-repeat;
-				background-size: 100% 100%;
-				color: #fff;
-				line-height: 20px;
-				position: relative;
-			}
-			.centre .linkman label .mui-media-body span p {
-				width: 18px;
-				height: 18px;
-				background: url(../../images/y.png) no-repeat;
-				background-size: 100% 100%;
-				position: absolute;
-				right: 1px;
-				top:-4px;
 			}
 			.centre .linkman label .mui-media-body p{
 				margin-top: 5px;
@@ -125,6 +104,7 @@
 				position: absolute;
 				top: 120px;
 				right: 0;
+				z-index: 99;
 			}
 			footer {
 				width: 100%;
@@ -136,10 +116,11 @@
 			}
 			footer .mui-input-row.mui-checkbox.mui-left input{
 				position: absolute;
-			    top: 10px;
+			    top: 14px;
+				left: 16px;
 			}
 			footer .mui-input-row span {
-				margin-left: 60px;
+				margin-left: 45px;
 				font-size: 18px;
 			}
 			footer button {
@@ -171,10 +152,12 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">通讯录导入</h1>
 		</header>
-		<div class="centre" id="pullrefresh"">
+		<div class="centre mui-content" id="pullrefresh"">
 			<div class="iput">
-				<span></span>
-				<input type="" placeholder="搜索"/>
+				<div class="iputinfo">
+					<span></span>
+					<input type="" placeholder="搜索"/>
+				</div>
 			</div>
 			<div class="linkman" id="weiinfo"></div>
 		</div>
@@ -182,7 +165,7 @@
 		<footer>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
-				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid" onclick="setAllNo()">
+				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
 				  <button type="button">导入</button>
 				  <span>已选择 100 人</span>
 				</div>
@@ -202,7 +185,7 @@
 						  	<p class='mui-ellipsis'>{{value.Number}}</p>
 						  </div>
 					  </label>
-					  <input name="checkbox1" value="Item 1" type="checkbox">
+					  <input name="checkbox1"  type="checkbox">
 					</div>
 				</li>
 			{{/each}}

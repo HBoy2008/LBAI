@@ -19,7 +19,7 @@
 			"BrandId" : "128****8888",
 			"BrandName" : "令狐冲",
 			"weixinNumber":"hello1788",
-			"img":"../../images/defuser.jpg",
+			"img":"../../images/qq.png",
 			"level" : "2"
 		},
 		{
@@ -39,7 +39,7 @@
 			"BrandId" : "135****5555",
 			"BrandName" : "秋香",
 			"weixinNumber":"hello71",
-			"img":"../../images/defuser.jpg",
+			"img":"../../images/qq.png",
 			"level" : "4"
 		}
 	]

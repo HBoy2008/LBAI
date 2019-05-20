@@ -29,19 +29,23 @@
 				align-items: center;
 				position: relative;
 			}
-			.centre .iput input {
+			.centre .iput .iputinfo{
 				width: 90%;
+				position: relative;
+			}
+			.centre .iput .iputinfo input {
+				width: 100%;
 				height: 25px;
 				border: 0;
-				background:url(../../images/ssk.png);
-				background-size:100% 100%;
-				padding-left: 25px;
+				background-color: #e9f0f4;
+				border-radius: 25px;
+				padding-left: 28px;
 				font-size: 14px;
 			}
-			.centre .iput span {
+			.centre .iput .iputinfo span {
 				position: absolute;
-				left: 29px;
-				top: 18px;
+				left: 8px;
+				top: 6px;
 				width: 13px;
 				height: 13px;
 				background:url(../../images/ss.png);
@@ -51,7 +55,7 @@
 				margin-top: 10px;
 			}
 			.centre .relation ul li{
-				border-bottom: 2px dashed #000;
+				border-bottom: 1px solid #ccc;
 				margin: 0 10px;
 				padding: 0;
 				height: 50px;
@@ -59,10 +63,10 @@
 			.centre .relation ul li:last-child{
 				border: none;
 			}
-			 .centre .relation li input{
+			 .centre .relation li .mui-checkbox input{
 				position: absolute;
-				top:11px;
-				margin-left: -22px;
+				top:14px;
+				left:2px;
 			}
 			.centre .relation .mui-input-row {
 				 height: 50px;
@@ -104,7 +108,7 @@
 				height: 280px;
 				background:url(../../images/zm.png) no-repeat;
 				background-size: 100% 100%;
-				position: absolute;
+				position: fixed;
 				top: 120px;
 				right: 0;
 				z-index: 99;
@@ -119,10 +123,11 @@
 			}
 			footer .mui-input-row.mui-checkbox.mui-left input{
 				position: absolute;
-			    top: 10px;
+				top: 14px;
+				left: 16px;
 			}
 			footer .mui-input-row span {
-				margin-left: 60px;
+				margin-left: 45px;
 				font-size: 18px;
 			}
 			footer button {
@@ -155,10 +160,12 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">可能关联的客户</h1>
 		</header>
-		<div class="mui-content mui-scroll-wrapper bg23 centre">
+		<div class="mui-content mui-scroll-wrapper  centre">
 			<div class="iput">
-				<span></span>
-				<input type="" placeholder="搜索"/>
+				<div class="iputinfo">
+					<span></span>
+					<input type="" placeholder="搜索"/>
+				</div>
 			</div>
 			<div class="relation">
 				<ul class="mui-table-view" id="associatedinfo"></ul>
