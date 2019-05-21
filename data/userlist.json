@@ -1,0 +1,134 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"UserName" : "张三丰",
+			"Average": "80",
+			"Data":"2月26日",
+			"Level":"AA级",
+			"img":"../../images/defuser.jpg",
+			"id" : "1"
+		},
+		{
+			"UserName" : "令狐冲",
+			"Average": "80",
+			"Data":"2月22日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "2"
+		},
+		{
+			"UserName" : "唐伯虎",
+			"Average": "90",
+			"Data":"2月23日",
+			"Level":"AA级",
+			"img":"../../images/defuser.jpg",
+			"id" : "3"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "4"
+		},
+		{
+			"UserName" : "大白",
+			"Average": "60",
+			"Data":"2月25日",
+			"Level":"AAA级",
+			"img":"../../images/defuser.jpg",
+			"id" : "5"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "6"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "7"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "8"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		},
+		{
+			"UserName" : "秋香",
+			"Average": "70",
+			"Data":"2月24日",
+			"Level":"A级",
+			"img":"../../images/qq.png",
+			"id" : "9"
+		}
+	]
+}
