@@ -19,6 +19,10 @@
 	color: white;
 }
 
+.common-font-color-red {
+	color: red;
+}
+
 html,
 body {
 	background-color: #EFEFF4;

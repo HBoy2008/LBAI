@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>LingPowerAI</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link();
+		</script>
+		<style type="text/css">
+			html,
+			body {
+				background-color: white;
+			}
+
+			.mui-content-padded {
+				margin: 0px;
+				box-shadow: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">客户</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-content-padded box" style="padding-top: 25%; text-align: center;">
+				<div>
+					<img src="../../images/customer/ch.png" style="width : 45%" />
+				</div>
+				<div style="margin: 20px auto;">
+					<a style="color: #47BAFE;">还没有添加客户信息，快去导入吧</a>
+				</div>
+				<button id="telImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
+					<span class="mui-icon mui-icon-phone-filled"></span>
+					诊断手机联系人潜力
+				</button>
+				<button id="wxImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
+					<span class="mui-icon mui-icon-weixin"></span>
+					诊断微信好友潜力
+				</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			script();
+		</script>
+
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+
+				//获取操作按钮对象
+				var telImpBotton = document.getElementById("telImp");
+				var wxImpButton = document.getElementById("wxImp");
+
+				//绑定[诊断手机联系人潜力]事件
+				telImpBotton.addEventListener("tap", function() {
+					openNew("addressbook.html");
+				});
+
+				//绑定[诊断微信好友潜力]事件
+				wxImpButton.addEventListener("tap", function() {
+					openNew("addwei.html");
+				})
+			});
+		</script>
+	</body>
+
+</html>

@@ -70,6 +70,13 @@
 				openNew("login/login.html", {
 					backid : "index.html"
 				});
+			} else {
+				// 获取当前用户拥有的客户数量,如果没有客户,则跳转到客户诊断画面
+				request("../data/home/NoneCustomer.json", {}, function(result_none) {
+					if (result_none[SysConstants.DATASET_KEY].length == 0) {
+						openNew("customer/customerDiagnosis.html");
+					}
+				});
 			}
 			
 			self = plus.webview.currentWebview();
