@@ -280,7 +280,8 @@
 				obj.progressbar({progress:val}).show();
 			}
 			function getBaseInfo(custId){
-				request("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				//request("sqldb/queryByCustomerI", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					document.getElementById("title_name").innerText=r.DATASET[0].cnName;
@@ -290,7 +291,7 @@
 				})
 			}
 			function getLbScore(custId){
-				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 					//log(r);
 					var score = r.DATASET[0].score;
@@ -301,7 +302,7 @@
 			}
 			
 			function getScheduleList(custId){
-				request("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
@@ -315,7 +316,7 @@
 				})
 			}
 			function getScheduleHistoryList(custId){
-				request("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
@@ -330,7 +331,7 @@
 			}
 				
 			function getActionList(custId){
-				request("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
