@@ -238,9 +238,9 @@
 					appPage.closeLogin();
 				}
 			})
-			//mui.plusReady(function() {
-			mui.ready(function() {
-				//storage.init();
+			mui.plusReady(function() {
+			//mui.ready(function() {
+				storage.init();
 				
 				circle = new ProgressBar.SemiCircle('#progress', {
 					color: '#47BAFE',
@@ -280,8 +280,8 @@
 				obj.progressbar({progress:val}).show();
 			}
 			function getBaseInfo(custId){
-				//request("../../data/customerdetail/baseinfo.json", {}, function(r) {
-				mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				request("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					document.getElementById("title_name").innerText=r.DATASET[0].cnName;
 					render("#baseInfo_div", "baseInfo", r);
@@ -290,8 +290,8 @@
 				})
 			}
 			function getLbScore(custId){
-				//request("../../data/customerdetail/score_result.json", {}, function(r) {
-				mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 					//log(r);
 					var score = r.DATASET[0].score;
 					circle.animate(score/100);
@@ -301,8 +301,8 @@
 			}
 			
 			function getScheduleList(custId){
-				//request("../../data/customerdetail/score_result.json", {}, function(r) {
-				mui.get("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
+				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				/mui.get("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
 						document.getElementById("schedule_count").innerText="（"+r.DATASET.length+"个）"
@@ -315,8 +315,8 @@
 				})
 			}
 			function getScheduleHistoryList(custId){
-				//request("../../data/customerdetail/score_result.json", {}, function(r) {
-				mui.get("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
+				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
 						document.getElementById("history_count").innerText="（"+r.DATASET.length+"个）"
@@ -330,8 +330,8 @@
 			}
 				
 			function getActionList(custId){
-				//request("../../data/customerdetail/score_result.json", {}, function(r) {
-				mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
 						document.getElementById("action_count").innerText="（"+r.DATASET.length+"个）"
