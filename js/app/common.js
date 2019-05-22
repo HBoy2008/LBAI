@@ -1076,7 +1076,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 	mui.ajax(APP_DOMAIN + method, {
 		data: parm,
 		dataType: 'json', //要求服务器返回json格式数据
-		type: 'POST', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+		type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
 		timeout: 60000, //超时时间设置为6秒；
 		beforeSend: function() {
 			log(mklog() + '【AJAX:-->】【' + method + '】【P=' + JSON.stringify(parm) + '】');

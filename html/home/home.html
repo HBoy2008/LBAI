@@ -14,6 +14,7 @@
 		<style>
 			.titleDiv {
 				height: 30px;
+				padding-top: 5px;
 			}
 			
 			.planDiv{
@@ -87,171 +88,173 @@
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title" style="color:white;">首页</h1>
 		</header>
-		
+
 		<div id="addActionManual" class="none"></div>
-		
-		<div class="mui-content">
-			<!-- 首页无数据 -->
-			<div id="NoneCustomerArea" class="none">
-				<div class="box box-info" style="height: 120px;">
+
+		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
+			<div class="mui-scroll">
+				<!-- 首页无数据 -->
+				<div id="NoneCustomerArea" class="none">
+					<div class="box box-info" style="height: 120px;">
+						<div class="titleDiv">
+							<div class="pull-left" style="width: 75%;">
+								<span class="littlebluespan"></span>
+								<b>今天日程</b>
+							</div>
+							<div class="pull-right" style="width: 20%; color: dimgray; text-align: right;">
+								<span class="mui-icon mui-icon-map"></span>
+							</div>
+						</div>
+						<div class="shi-line-gray"></div>
+						<div class="planDiv">
+							<div style="width: 33.33%;">
+								<p>已计划</p>
+								<span>0</span>
+							</div>
+							<div style="width: 33.33%;">
+								<p>行动推荐</p>
+								<span>0</span>
+							</div>
+							<div style="width: 33.33%;">
+								<p>已完成</p>
+								<span>0</span>
+							</div>
+						</div>
+					</div>
+					<div class="mui-content-padded box" style="padding-top: 20px; text-align: center;">
+						<div>
+							<img src="../../images/home/DATA.png" style="width : 30%" />
+						</div>
+						<div>
+							<a style="color: #47BAFE;">一个日程都没有,快去诊断客户资源,开始你的日程吧</a>
+						</div>
+						<button id="telImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
+							<span class="mui-icon mui-icon-phone-filled"></span>
+							诊断手机联系人潜力
+						</button>
+						<button id="wxImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
+							<span class="mui-icon mui-icon-weixin"></span>
+							诊断微信好友潜力
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 首页-判断有日程完成时 -->
+			<div id="HasFinishedActionArea" class="none">
+				<div class="mui-slider HasFinishedAction-slider" style="width: unset; margin: 10px;">
+					<div id="FinishedActionList" class="mui-slider-group">
+
+					</div>
+				</div>
+			</div>
+
+			<!-- 首页 - 智能日历展示 -->
+			<div id="AICalendarArea" class="none">
+				<div class="box box-info">
 					<div class="titleDiv">
 						<div class="pull-left" style="width: 75%;">
-							<span class="littlebluespan"></span>
+							<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
 							<b>今天日程</b>
 						</div>
-						<div class="pull-right" style="width: 20%; color: dimgray; text-align: right;">
-							<span class="mui-icon mui-icon-map"></span>
+						<div class="pull-right" style="width: 20%; text-align: right;">
+							<span id="gotoMap" class="mui-icon mui-icon-map common-font-color-blue"></span>
 						</div>
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="planDiv">
 						<div style="width: 33.33%;">
 							<p>已计划</p>
-							<span>0</span>
+							<span id="PlanedSechdualSpan">0</span>
 						</div>
 						<div style="width: 33.33%;">
 							<p>行动推荐</p>
-							<span>0</span>
+							<span id="SuggestedSechdualSpan">0</span>
 						</div>
 						<div style="width: 33.33%;">
 							<p>已完成</p>
-							<span>0</span>
+							<span id="FinishedSechdualSpan">0</span>
+						</div>
+					</div>
+					<div class="shi-line-gray"></div>
+					<div>
+						<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
+						<b>下个日程</b>
+					</div>
+					<div style="display: flex;">
+						<div style="width: 70%;">
+							<p style="color: #000000; margin-top: 10px;">
+								<span id="today_time_div">14:00</span>
+								<span id="today_action_div">拜访李子木</span>
+							</p>
+							<p>
+								<span id="today_date_div">今天</span>
+								<span id="today_contact_div">地址/电话/微信</span>
+							</p>
+							<p>
+								<span id="today_during_div">1小时</span>
+								<span id="today_last_div">上次互动:2019年3月1日</span>
+							</p>
+						</div>
+						<div class="shi-line-gray-column"></div>
+						<div id="today_action_type_div" style="text-align: center; margin: auto;">
+							<img src="../../images/home/call.png" style="width: 40%;" />
+						</div>
+					</div>
+					<div class="shi-line-gray"></div>
+					<div id="reviewAllPlanBtn" style="text-align: center;">
+						<p>查看全部日程&gt;&gt;</p>
+					</div>
+				</div>
+
+				<!-- 行动推荐 -->
+				<div class="SuggestedActionArea">
+					<div class="mui-slider SuggestedAction-slider" style="width: unset; margin: 10px;">
+						<div id="SuggestedActionList" class="mui-slider-group">
+							<!--  -->
 						</div>
 					</div>
 				</div>
-				<div class="mui-content-padded box" style="padding-top: 20px; text-align: center;">
-					<div>
-						<img src="../../images/home/DATA.png" style="width : 30%" />
-					</div>
-					<div>
-						<a style="color: #47BAFE;">一个日程都没有,快去诊断客户资源,开始你的日程吧</a>
-					</div>
-					<button id="telImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
-						<span class="mui-icon mui-icon-phone-filled"></span>
-						手机联系人诊断
-					</button>
-					<button id="wxImp" class="mui-btn mui-btn-block mui-btn-primary actionButton">
-						<span class="mui-icon mui-icon-weixin"></span>
-						微信好友诊断
-					</button>
-				</div>
-			</div>
-		</div>
 
-		<!-- 首页-判断有日程完成时 -->
-		<div id="HasFinishedActionArea" class="none">
-			<div class="mui-slider HasFinishedAction-slider" style="width: unset; margin: 10px;">
-				<div id="FinishedActionList" class="mui-slider-group">
+				<!-- 客户分析 -->
+				<div class="box box-info">
+					<div class="titleDiv">
+						<span class="mui-icon fa fa-pie-chart common-font-color-blue"></span>
+						<b>客户分析</b>
+					</div>
+					<div class="shi-line-gray"></div>
+					<div style="display: flex;">
+						<div style="width: 50%;">
+							<div class="pull-left custType">潜在客户</div>
+							<div id="lower_cust_Span" class="pull-left custCount">0</div>
+							<br />
+							<div class="pull-left custType">待联系</div>
+							<div id="mid_cust_Span" class="pull-left custCount">0</div>
+							<br />
+							<div class="pull-left custType">已联系</div>
+							<div id="high_cust_Span" class="pull-left custCount">0</div>
+						</div>
+						<div class="shi-line-gray-column"></div>
+						<div style="text-align: center; margin: auto;">
+							<div id="pieChart" style="height: 150px; width: 150px;"></div>
+						</div>
+					</div>
+					<div class="shi-line-gray"></div>
+					<div id="reviewCustomerReportBtn" style="text-align: center;">
+						<p>查看heuristic详细分析报告&gt;&gt;</p>
+					</div>
+				</div>
 
-				</div>
-			</div>
-		</div>
-
-		<!-- 首页 - 智能日历展示 -->
-		<div id="AICalendarArea" class="none">
-			<div class="box box-info">
-				<div class="titleDiv">
-					<div class="pull-left" style="width: 75%;">
-						<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
-						<b>今天日程</b>
+				<!-- 业务趋势 -->
+				<div class="box box-info">
+					<div class="titleDiv">
+						<span class="mui-icon fa fa-pie-chart common-font-color-blue"></span>
+						<b>业务趋势</b>
 					</div>
-					<div class="pull-right" style="width: 20%; text-align: right;">
-						<span id="gotoMap" class="mui-icon mui-icon-map common-font-color-blue"></span>
-					</div>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div class="planDiv">
-					<div style="width: 33.33%;">
-						<p>已计划</p>
-						<span id="PlanedSechdualSpan">3</span>
-					</div>
-					<div style="width: 33.33%;">
-						<p>行动推荐</p>
-						<span id="SuggestedSechdualSpan">2</span>
-					</div>
-					<div style="width: 33.33%;">
-						<p>已完成</p>
-						<span id="FinishedSechdualSpan">1</span>
-					</div>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div>
-					<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
-					<b>下个日程</b>
-				</div>
-				<div style="display: inline-flex;">
-					<div style="width: 100%;">
-						<p style="color: #000000; margin-top: 10px;">
-							<span>14:00</span>
-							<span>拜访李子木</span>
-						</p>
-						<p>
-							<span>今天</span>
-							<span>地址/电话/微信</span>
-						</p>
-						<p>
-							<span>1小时</span>
-							<span>上次互动:2019年3月1日</span>
-						</p>
-					</div>
-					<div class="shi-line-gray-column"></div>
+					<div class="shi-line-gray"></div>
 					<div style="text-align: center; margin: auto;">
-						<img src="../../images/home/call.png" style="width: 40%;" />
+						<div class="chart" id="lineChart"></div>
 					</div>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div id="reviewAllPlanBtn" style="text-align: center;">
-					<p>查看全部日程&gt;&gt;</p>
-				</div>
-			</div>
-
-			<!-- 行动推荐 -->
-			<div class="SuggestedActionArea">
-				<div class="mui-slider SuggestedAction-slider" style="width: unset; margin: 10px;">
-					<div id="SuggestedActionList" class="mui-slider-group">
-						<!--  -->
-					</div>
-				</div>
-			</div>
-
-			<!-- 客户分析 -->
-			<div class="box box-info">
-				<div class="titleDiv">
-					<span class="mui-icon fa fa-pie-chart common-font-color-blue"></span>
-					<b>客户分析</b>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div style="display: flex;">
-					<div style="width: 50%;">
-						<div class="pull-left custType">潜在客户</div>
-						<div class="pull-left custCount">10</div>
-						<br />
-						<div class="pull-left custType">待联系</div>
-						<div class="pull-left custCount">3</div>
-						<br />
-						<div class="pull-left custType">已联系</div>
-						<div class="pull-left custCount">2</div>
-					</div>
-					<div class="shi-line-gray-column"></div>
-					<div style="text-align: center; margin: auto;">
-						<div id="pieChart" style="height: 150px; width: 150px;"></div>
-					</div>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div id="reviewCustomerReportBtn" style="text-align: center;">
-					<p>查看heuristic详细分析报告&gt;&gt;</p>
-				</div>
-			</div>
-
-			<!-- 业务趋势 -->
-			<div class="box box-info">
-				<div class="titleDiv">
-					<span class="mui-icon fa fa-pie-chart common-font-color-blue"></span>
-					<b>业务趋势</b>
-				</div>
-				<div class="shi-line-gray"></div>
-				<div style="text-align: center; margin: auto;">
-					<div class="chart" id="lineChart"></div>
 				</div>
 			</div>
 		</div>
@@ -356,76 +359,165 @@
 		</script>
 
 		<script type="text/javascript">
-			mui.init();
-			mui.plusReady(function() {
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: { //下拉刷新
+						callback: pulldownRefresh,
+						style: mui.os.android ? "circle" : "default"
+					}
+				},
+				beforeback: function() {
+					appPage.closeLogin();
+				}
+			});
 
+			mui.plusReady(function() {
+			// mui.ready(function() {
+
+				//绑定[行动地图]事件
+				document.getElementById("gotoMap").addEventListener("tap", function() {
+					mui.alert("【行动地图】功能尚未开放!");
+				});
+
+				//绑定[悬浮按钮]事件
+				document.getElementById("addActionManual").addEventListener("tap", function() {
+					mui.alert("【悬浮按钮】功能尚未开放!");
+					// openNew("");
+				});
+
+				//绑定[查看所有日程]事件
+				document.getElementById("reviewAllPlanBtn").addEventListener("tap", function() {
+					mui.alert("【查看所有日程】功能尚未开放!");
+					// openNew("");
+				});
+
+				//绑定[查看heuristic详细分析报告]事件
+				document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function() {
+					// mui.alert("【查看heuristic详细分析报告】功能尚未开放!");
+					openNew("../customer/custAnalysisReport.html");
+				});
+
+				getData();
+			});
+
+			//下拉刷新具体业务实现
+			function pulldownRefresh() {
+
+				//初始化当前页
+				initPage();
+
+				setTimeout(function() {
+
+					//下拉刷新结束
+					getData();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					//重置上拉加载
+					// mui('#pullrefresh').pullRefresh().refresh(true);
+					//重置页码
+					page = 1;
+				}, 1000);
+			}
+
+			function initPage() {
+				if (!document.getElementById("NoneCustomerArea").classList.contains("none")) {
+					document.getElementById("NoneCustomerArea").classList.add("none");
+				}
+				if (!document.getElementById("HasFinishedActionArea").classList.contains("none")) {
+					document.getElementById("HasFinishedActionArea").classList.add("none");
+				}
+				if (!document.getElementById("AICalendarArea").classList.contains("none")) {
+					document.getElementById("AICalendarArea").classList.add("none");
+				}
+			}
+
+			function getData() {
 				storage.init();
 				storageUser = kidstorageuser.getInstance();
-				var pageType = "Has_Finished";
 
 				//获取当前用户是否有客户信息
-				request("../../data/home/FinishedActionTemplate.json", {}, function(result) {
-					if (pageType == "NO_DATA") {
+				request("../../data/home/NoneCustomer.json", {}, function(result_none) {
+					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
-						request("../../data/home/FinishedActionTemplate.json", {}, function(result) {
-							if (pageType == "Has_Finished") {
+						request("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
+							if (result_finished[SysConstants.DATASET_KEY].length > 0) {
 								document.getElementById("HasFinishedActionArea").classList.remove("none");
 
 								//动态生成已完成行动卡片信息
-								request("../../data/home/FinishedActionTemplate.json", {}, function(result) {
-									log(result);
-									render("#FinishedActionList", "FinishedActionTemplate", result);
-									//动态加载滑动控件时需要手动调用一下滑动事件
-									var slider1 = mui(".HasFinishedAction-slider");
-									slider1.slider();
-									// appPage.imgInit();
-									//四个标签页二级
-									mui(".actionTitle").on("tap", ".mui-icon-close", function() {
-										if (this.dataset.for != '') {
-											document.getElementById(this.dataset.for).classList.add('none');
-										}
-									});
-									mui(".actionArea").on("tap", "button", function() {
-										mui.alert("你点击了" + storageUser.NickName + "的(ID为" + this.dataset.id + ")录音及语音识别功能");
-									});
+								log(result_finished);
+								render("#FinishedActionList", "FinishedActionTemplate", result_finished);
+								//动态加载滑动控件时需要手动调用一下滑动事件
+								var slider1 = mui(".HasFinishedAction-slider");
+								slider1.slider();
+								// appPage.imgInit();
+								//四个标签页二级
+								mui(".actionTitle").on("tap", ".mui-icon-close", function() {
+									if (this.dataset.for != '') {
+										document.getElementById(this.dataset.for).classList.add('none');
+									}
+								});
+								mui(".actionArea").on("tap", "button", function() {
+									mui.alert("你点击了ID为" + this.dataset.id + "的录音及语音识别功能");
 								});
 							}
 						});
-							
+
 						//处理悬浮按钮
 						document.getElementById("addActionManual").classList.remove("none");
-						//绑定[悬浮按钮]事件
-						document.getElementById("addActionManual").addEventListener("tap", function(){
-							mui.alert("【悬浮按钮】功能尚未开放!");
-							// openNew("");
-						});
-						
 						document.getElementById("AICalendarArea").classList.remove("none");
 
-						//动态生成行动推荐卡片信息
-						request("../../data/home/SuggestedActionTemplate.json", {}, function(result) {
+						//动态生成今天日程统计数字
+						request("../../data/home/todayActionCount.json", {}, function(result_count) {
+							log(result_count);
+							document.getElementById("PlanedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].PS_CNT;
+							document.getElementById("SuggestedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].SS_CNT;
+							document.getElementById("FinishedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].FS_CNT;
+						});
+
+						//动态生成下个日程数据
+						request("../../data/home/nextAction.json", {}, function(result) {
 							log(result);
-							render("#SuggestedActionList", "SuggestedActionTemplate", result);
+							document.getElementById("today_time_div").innerHTML = result[SysConstants.DATASET_KEY].time;
+							document.getElementById("today_action_div").innerHTML = result[SysConstants.DATASET_KEY].action;
+							document.getElementById("today_date_div").innerHTML = result[SysConstants.DATASET_KEY].date;
+							document.getElementById("today_contact_div").innerHTML = result[SysConstants.DATASET_KEY].contact;
+							document.getElementById("today_during_div").innerHTML = result[SysConstants.DATASET_KEY].during;
+							document.getElementById("today_last_div").innerHTML = result[SysConstants.DATASET_KEY].last;
+							if (result[SysConstants.DATASET_KEY].type == "phone") {
+								document.getElementById("today_action_type_div").innerHTML =
+									"<img src='../../images/home/call.png' style='width: 40%;' />";
+							} else if (result[SysConstants.DATASET_KEY].type == "weixin") {
+								document.getElementById("today_action_type_div").innerHTML =
+									"<img src='../../images/home/wx.png' style='width: 40%;' />";
+							} else if (result[SysConstants.DATASET_KEY].type == "visit") {
+								document.getElementById("today_action_type_div").innerHTML =
+									"<img src='../../images/home/ditu.png' style='width: 40%;' />";
+							} else {
+								document.getElementById("today_action_type_div").innerHTML =
+									"<img src='../../images/home/wenhao.png' style='width: 40%;' />";
+							}
+						});
+
+						//动态生成客户统计
+						request("../../data/home/customerCount.json", {}, function(result_count) {
+							log(result_count);
+							document.getElementById("lower_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].LOW_CNT;
+							document.getElementById("mid_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].MID_CNT;
+							document.getElementById("high_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].HIGH_CNT;
+						});
+
+						//动态生成行动推荐卡片信息
+						request("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+							log(result_suggested);
+							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
 							var slider2 = mui(".SuggestedAction-slider");
 							slider2.slider();
 							//四个标签页二级
 							mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
-								mui.alert("你点击了" + storageUser.NickName + "的(ID为" + this.dataset.id + ")行动推荐卡片!");
+								mui.alert("你点击了ID为" + this.dataset.id + "的行动推荐卡片!");
 							});
-						});
-						
-						//绑定[查看所有日程]事件
-						document.getElementById("reviewAllPlanBtn").addEventListener("tap", function(){
-							mui.alert("【查看所有日程】功能尚未开放!");
-							// openNew("");
-						});
-						
-						//绑定[查看heuristic详细分析报告]事件
-						document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function(){
-							mui.alert("【查看heuristic详细分析报告】功能尚未开放!");
-							// openNew("");
 						});
 
 						//生成客户分析图
@@ -476,7 +568,7 @@
 						var lineChartOption = {
 							calculable: false,
 							legend: {
-								data:["行动推荐","计划日程","成交量"]
+								data: ["行动推荐", "计划日程", "成交量"]
 							},
 							xAxis: [{
 								type: "category",
@@ -489,11 +581,11 @@
 								name: "行动推荐",
 								type: "line",
 								data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
-							},{
+							}, {
 								name: "计划日程",
 								type: "line",
 								data: [10, 24, 40, 150, 140, 450, 700, 300, 100, 170, 500, 1000]
-							},{
+							}, {
 								name: "成交量",
 								type: "line",
 								data: [5, 16, 20, 12, 32, 40, 45, 33, 50, 55, 50, 56]
@@ -505,7 +597,7 @@
 						lineChart.setOption(lineChartOption);
 					}
 				});
-			});
+			}
 		</script>
 	</body>
 
