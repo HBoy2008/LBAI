@@ -43,7 +43,7 @@
 		</nav>
 	</body>
 	<script type="text/javascript">
-		script(['../js/mui.min.js', '../libs/md5.min.js', '../js/app/common.js'], true);
+		script(['../js/mui.min.js', '../libs/md5.min.js', '../js/app/constants.js', '../js/app/common.js'], true);
 	</script>
 	<script type="text/javascript">
 		var closeLoad = false;
@@ -72,8 +72,9 @@
 				});
 			} else {
 				// 获取当前用户拥有的客户数量,如果没有客户,则跳转到客户诊断画面
-				request("../data/home/NoneCustomer.json", {}, function(result_none) {
-					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
+				//requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
+						if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						openNew("customer/customerDiagnosis.html");
 					}
 				});

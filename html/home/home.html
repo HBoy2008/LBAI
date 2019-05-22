@@ -144,7 +144,7 @@
 			<div id="HasFinishedActionArea" class="none">
 				<div class="mui-slider HasFinishedAction-slider" style="width: unset; margin: 10px;">
 					<div id="FinishedActionList" class="mui-slider-group">
-
+						<!-- 已完成但是没有反馈的日程列表 -->
 					</div>
 				</div>
 			</div>
@@ -181,25 +181,8 @@
 						<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
 						<b>下个日程</b>
 					</div>
-					<div style="display: flex;">
-						<div style="width: 70%;">
-							<p style="color: #000000; margin-top: 10px;">
-								<span id="today_time_div">14:00</span>
-								<span id="today_action_div">拜访李子木</span>
-							</p>
-							<p>
-								<span id="today_date_div">今天</span>
-								<span id="today_contact_div">地址/电话/微信</span>
-							</p>
-							<p>
-								<span id="today_during_div">1小时</span>
-								<span id="today_last_div">上次互动:2019年3月1日</span>
-							</p>
-						</div>
-						<div class="shi-line-gray-column"></div>
-						<div id="today_action_type_div" style="text-align: center; margin: auto;">
-							<img src="../../images/home/call.png" style="width: 40%;" />
-						</div>
+					<div id="NextActionDetail" style="display: flex;">
+						<!-- 下个日程详情 -->
 					</div>
 					<div class="shi-line-gray"></div>
 					<div id="reviewAllPlanBtn" style="text-align: center;">
@@ -211,7 +194,7 @@
 				<div class="SuggestedActionArea">
 					<div class="mui-slider SuggestedAction-slider" style="width: unset; margin: 10px;">
 						<div id="SuggestedActionList" class="mui-slider-group">
-							<!--  -->
+							<!-- 行动推荐列表 -->
 						</div>
 					</div>
 				</div>
@@ -290,6 +273,40 @@
 						</button>
 					</div>
 				</div>
+			{{/each}} {{/if}}
+		</script>
+		
+		<!-- 下个日程详情模板 -->
+		<script type="text/html" id="NextActionDetailTemplate">
+			{{if DATASET==null||DATASET.length==0}}
+			<div class="nodata">暂无内容</div>
+			{{else}} {{each DATASET as record}}
+			<div style="width: 70%;">
+				<p style="color: #000000; margin-top: 10px;">
+					<span>{{record.time}}</span>
+					<span>{{record.action}}</span>
+				</p>
+				<p>
+					<span>{{record.date}}</span>
+					<span>{{record.contact}}</span>
+				</p>
+				<p>
+					<span>{{record.during}}</span>
+					<span>上次互动:{{record.last}}</span>
+				</p>
+			</div>
+			<div class="shi-line-gray-column"></div>
+			<div id="today_action_type_div" style="text-align: center; margin: auto;">
+				{{if record.type == "phone"}}
+				<img src="../../images/home/call.png" style="width: 40%;" />
+				{{else if record.type == "weixin"}}
+				<img src="../../images/home/wx.png" style="width: 40%;" />
+				{{else if record.type == "visit"}}
+				<img src="../../images/home/ditu.png" style="width: 40%;" />
+				{{else}}
+				<img src="../../images/home/wenhao.png" style="width: 40%;" />
+				{{/if}}
+			</div>
 			{{/each}} {{/if}}
 		</script>
 
@@ -481,34 +498,23 @@
 						//动态生成下个日程数据
 						requestJsonFile("../../data/home/nextAction.json", {}, function(result) {
 							log(result);
-							document.getElementById("today_time_div").innerHTML = result[SysConstants.DATASET_KEY].time;
-							document.getElementById("today_action_div").innerHTML = result[SysConstants.DATASET_KEY].action;
-							document.getElementById("today_date_div").innerHTML = result[SysConstants.DATASET_KEY].date;
-							document.getElementById("today_contact_div").innerHTML = result[SysConstants.DATASET_KEY].contact;
-							document.getElementById("today_during_div").innerHTML = result[SysConstants.DATASET_KEY].during;
-							document.getElementById("today_last_div").innerHTML = result[SysConstants.DATASET_KEY].last;
-							if (result[SysConstants.DATASET_KEY].type == "phone") {
-								document.getElementById("today_action_type_div").innerHTML =
-									"<img src='../../images/home/call.png' style='width: 40%;' />";
-							} else if (result[SysConstants.DATASET_KEY].type == "weixin") {
-								document.getElementById("today_action_type_div").innerHTML =
-									"<img src='../../images/home/wx.png' style='width: 40%;' />";
-							} else if (result[SysConstants.DATASET_KEY].type == "visit") {
-								document.getElementById("today_action_type_div").innerHTML =
-									"<img src='../../images/home/ditu.png' style='width: 40%;' />";
-							} else {
-								document.getElementById("today_action_type_div").innerHTML =
-									"<img src='../../images/home/wenhao.png' style='width: 40%;' />";
-							}
+							render("#NextActionDetail", "NextActionDetailTemplate", result);
 						});
 
 						//动态生成客户统计
-						//requestJsonFile("../../data/home/customerCount.json", {}, function(result_count) {
-						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result_count) {
-							log(result_count);
-							document.getElementById("lower_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].LOW_CNT;
-							document.getElementById("mid_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].MID_CNT;
-							document.getElementById("high_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].HIGH_CNT;
+						//requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
+						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result) {
+							log(result);
+							if(result[SysConstants.DATASET_KEY].length > 0){
+								var record = result[SysConstants.DATASET_KEY][0];
+								document.getElementById("lower_cust_Span").innerText = record.LOW_CNT;
+								document.getElementById("mid_cust_Span").innerText = record.MID_CNT;
+								document.getElementById("high_cust_Span").innerText = record.HIGH_CNT;
+							}else{
+								document.getElementById("lower_cust_Span").innerText = "N/A";
+								document.getElementById("mid_cust_Span").innerText = "N/A";
+								document.getElementById("high_cust_Span").innerText = "N/A";
+							}
 						});
 
 						//动态生成行动推荐卡片信息
