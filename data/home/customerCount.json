@@ -1,5 +1,9 @@
 {
 	"ERROR_CODE" : "SUCCESS",
 	"ERROR_MESSAGE" : "查询数据列表成功!",
-	"DATASET" : {"CUST_CNT" : 1}
+	"DATASET" : {
+			"LOW_CNT" : 15,
+			"MID_CNT" : 80,
+			"HIGH_CNT" : 20
+		}
 }

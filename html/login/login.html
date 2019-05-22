@@ -107,10 +107,10 @@
 						//cityid:data.CityId
 					}
 
-					storageUser.login(data);
-					storageUser.log();
-					appPage.loginBack(backid, backurl);
-					return;
+					// storageUser.login(data);
+					// storageUser.log();
+					// appPage.loginBack(backid, backurl);
+					// return;
 
 					//实际登陆校验
 					if (inpt_mobile.value.trim() == "") {
@@ -128,7 +128,7 @@
 
 						var md5pwd = md5(inpt_pwd.value || "");
 						appUI.setDisabled(btn_login);
-						request("http://192.168.8.101:8000/sqldb/login/", {
+						request("/sqldb/login/", {
 							// mobile: inpt_mobile.value,
 							// pwd: md5pwd
 

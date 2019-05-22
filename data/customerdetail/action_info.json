@@ -1,0 +1,19 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"act_type" : "1",
+			"cnName" : "张先生",
+			"act_nm" : "升职",
+			"act_event" : "电话",
+			"act_expire_date" : "今下午15：30"
+		},{
+			"act_type" : "2",
+			"cnName" : "张先生",
+			"act_nm" : "生日",
+			"act_event" : "电话",
+			"act_expire_date" : "今下午15：30"
+		}
+	]
+}
