@@ -1,47 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8">
-		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
 		<script type="text/javascript">
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link();
+			link('../../css/mui.indexedlist.css');
 		</script>
-		<style type="text/css">
-			html,body{
-				background-color: #fff;
+		<style>
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
 			}
-			* {
-				padding: 0;
-				margin: 0;
+			.mui-bar {
+				-webkit-box-shadow: none;
+				box-shadow: none;
 			}
-			.centre .iput {
-				width: 100%;
-				height: 50px;
+			.mui-content {
+				background-color:#e9f0f4;
+			}
+			.mui-content .mui-search {
 				display: flex;
-				background-color: #fff;
 				justify-content: center;
 				align-items: center;
-				position: relative;
 			}
-			.centre .iput .iputinfo{
+			.mui-content .mui-search {
+				background-color: #fff;
+				height: 50px;
+			}
+			.mui-content .mui-search .iputinfo{
 				width: 90%;
 				position: relative;
 			}
-			.centre .iput .iputinfo input {
+			.mui-search.mui-active:before {
+				left: -50px;
+			}
+			.mui-content .mui-search .iputinfo input{
 				width: 100%;
 				height: 25px;
 				border: 0;
 				background-color: #e9f0f4;
 				border-radius: 25px;
 				padding-left: 28px;
-				font-size: 14px;
+				font-size: 14px;    
 			}
-			.centre .iput .iputinfo span {
+			.mui-content .mui-search .iputinfo span {
 				position: absolute;
 				left: 8px;
 				top: 6px;
@@ -50,71 +58,91 @@
 				background:url(../../images/ss.png);
 				background-size:100% 100%;
 			}
-			.centre .relation {
+			.mui-content .mui-indexed-list-search{
+				border: 0;
+			}
+			.mui-content .mui-indexed-list-bar {
+				background-color: #fff;
 				margin-top: 10px;
 			}
-			.centre .relation ul {
-				border: none;
+			.mui-content .mui-indexed-list-bar a {
+				color: #47BAFE;
+				font-weight: 700;
 			}
-			.centre .relation ul li{
-				border-bottom: 1px solid #ccc;
-				margin: 0 10px;
+			.centre .linkman {
+				margin-top: 10px;
+			}
+			.centre .linkman .mui-table-view .mui-indexed-list-group {
+				width: 100%;
+				border: 0;
+				padding-left: 20px;
+				font-size: 18px;
+				padding: 0;
+				color: #000000;
+				padding-left: 20px;
+			}
+			.centre .linkman .mui-table-view-cell:after{
+				height: 0;
+			}
+			.centre .linkman .mui-table-view-divider:after{
+				height: 0;
+			}
+			.centre .linkman ul li{
+				margin: 0 23px 0 15px;
 				padding: 0;
 				height: 50px;
+				border-bottom: 1px solid #e9f0f4;
 			}
-			.centre .relation ul li:last-child{
+			.centre .linkman ul li:last-child{
 				border: none;
 			}
-			 .centre .relation li .mui-checkbox input{
+			 .centre .linkman ul li .mui-checkbox input{
 				position: absolute;
 				top:14px;
-				left:2px;
+				left: 2px;
 			}
-			.centre .relation .mui-input-row {
-				 height: 50px;
-			 }
-			.centre .relation label {
-				 padding-left: 30px;
-				 padding-top: 8px;
+			.centre .linkman ul li .mui-input-row{
 				 display: flex;
-				 justify-content: space-between;
-			 }
-			 .centre .relation label .info {
-				 width: 130px;
-			 }
-			 .centre .relation label .transformation{
-				 width: 17px;
-				 height: 15px;
-				 margin-top: 10px;
-				 background:url(../../images/glgl.png) no-repeat;
-				 background-size: 100% 100%;
-			 }
-			.centre .relation label .mui-media-object{
-				margin:0 10px 0 7px;
+				 color: #fff;
+			}
+			.centre .linkman ul li .mui-input-row .fatherinfo{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-left: 25px;
+				width: 140px;
+				width: 100%;
+			}
+			.centre .linkman ul li .mui-input-row .fatherinfo .transfor {
+				width: 17px;
+				height: 17px;
+				background:url(../../images/glgl.png) no-repeat;
+				background-size:100% 100%;
+			}
+			.centre .linkman ul li .mui-input-row .info {
+				display: flex;
+				align-items: center;
+				height: 50px;
+				width: 140px;
+			}
+			.centre .linkman ul li .mui-input-row .info .mui-media-body{
+				font-size: 16px;
+				padding:5px 0;
+				color: #000000;
+				height: 50px;
+			}
+			.centre .linkman .mui-input-row .mui-media-body p{
+				font-size: 12px;
+				color: #ccc;
+			}
+			.centre .linkman .mui-input-row .mui-media-object{
+				margin:0 10px 0 10px;
 				border-radius: 17px;
 				width: 34px;
 				height: 34px;
 			}
-			.centre .relation label .mui-media-body{
-				font-size: 15px;
-				color: #000000;
-				height: 40px;
-			}
-			.centre .relation label .mui-media-body p{
-				margin-top: 5px;
-				font-size: 12px;
-				color: #ccc;
-			}	
-			nav {
-				width: 10px;
-				height: 280px;
-				background:url(../../images/zm.png) no-repeat;
-				background-size: 100% 100%;
-				position: fixed;
-				top: 120px;
-				right: 0;
-				z-index: 99;
-			}
+			
+			
 			footer {
 				width: 100%;
 				height: 50px;
@@ -125,7 +153,7 @@
 			}
 			footer .mui-input-row.mui-checkbox.mui-left input{
 				position: absolute;
-				top: 14px;
+			    top: 14px;
 				left: 16px;
 			}
 			footer .mui-input-row span {
@@ -162,75 +190,125 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">可能关联的客户</h1>
 		</header>
-		<div class="mui-content mui-scroll-wrapper  centre">
-			<div class="iput">
-				<div class="iputinfo">
-					<span></span>
-					<input type="" placeholder="搜索"/>
+		<div class="mui-content centre">
+			<div id='list' class="mui-indexed-list">
+				<div class="mui-indexed-list-search mui-search mui-active">
+					<div class="iputinfo">
+						<span></span>
+						<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+					</div>
+				</div>
+				<div class="mui-indexed-list-bar" style="height: 550px;">
+					<a>A</a>
+					<a>B</a>
+					<a>C</a>
+					<a>D</a>
+					<a>E</a>
+					<a>F</a>
+					<a>G</a>
+					<a>H</a>
+					<a>I</a>
+					<a>J</a>
+					<a>K</a>
+					<a>L</a>
+					<a>M</a>
+					<a>N</a>
+					<a>O</a>
+					<a>P</a>
+					<a>Q</a>
+					<a>R</a>
+					<a>S</a>
+					<a>T</a>
+					<a>U</a>
+					<a>V</a>
+					<a>W</a>
+					<a>X</a>
+					<a>Y</a>
+					<a>Z</a>
+				</div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner linkman" >
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
+					<ul class="mui-table-view" id="weiinfo"></ul>
 				</div>
 			</div>
-			<div class="relation">
-				<ul class="mui-table-view" id="associatedinfo"></ul>
-			</div>
-			
 		</div>
-		<nav></nav>
 		<footer>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
 				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
-				  <button type="button">导入</button>
-				  <span>已选择 2 人</span>
+				  <button type="button" id="daobtn">导入</button>
+				  <span>已选择 100 人</span>
 				</div>
 		</footer>
 		
 		
 		
-		<script type="text/html" id="associated">
-			{{each DATASET as value}}
-				<li>
-					<div class="mui-input-row mui-checkbox mui-left">
-					  <label>
-						  <div class="info">
-						  	<img class="mui-media-object mui-pull-left" src="{{value.img}}">
-						  	<div class="mui-media-body">
-								{{value.BrandName}}
-								<p class='mui-ellipsis'>{{value.BrandId}}</p>
-						  	</div>
-						  </div>
-						  <div class="transformation"></div>
-						  <div class="info">
-						  	<img class="mui-media-object mui-pull-left" src="{{value.img}}">
-						  	<div class="mui-media-body">
-						  		{{value.BrandName}}
-								<p class='mui-ellipsis'>微信号:{{value.weixinNumber}}</p>
-						  	</div>
-						  </div>
-					  </label>
-					  <input name="checkbox1" value="Item 1" type="checkbox">
-					</div>
-				</li>
 		
+		<script type="text/html" id="weitamplate">
+			{{each DATASET as value}}
+				<div data-group="{{value.LetterID}}" class="mui-table-view-divider mui-indexed-list-group"></div>
+				{{each value.User as value}}	
+						<li data-value="AKU" data-tags="AKeSu" class="mui-table-view-cell mui-indexed-list-item">
+							<div class="mui-input-row mui-checkbox mui-left">
+								<div class="fatherinfo">
+									<div class="info">
+										<img class="mui-media-object" src="{{value.Phoneimg}}" >
+										<div class="mui-media-body">
+											{{value.PhoneName}}
+											<p class='mui-ellipsis'>{{value.PhoneNumber}}</p>
+										</div>
+									</div>
+									<span class="transfor"></span>
+									<div class="info">
+										<img class="mui-media-object" src="{{value.Weiimg}}" >
+										<div class="mui-media-body">
+											{{value.WeixinName}}							
+											<p class='mui-ellipsis'>微信号:{{value.weixinNumber}}</p>
+										</div>
+									</div>
+								</div>
+								<input name="checkbox1" type="checkbox" >
+							</div>	
+						</li>
+				{{/each}}
 			{{/each}}
 		</script>	
-
+		
+		
+		
+		
 		<script type="text/javascript">
-			script();
+			script("../../js/mui.indexedlist2.js")
 		</script>
-		<script type="text/javascript">
+		<script type="text/javascript" charset="utf-8">
 			mui.init();
+			mui.ready(function() {
+				var header = document.querySelector('header.mui-bar');
+				var list = document.getElementById('list');
+				//calc hieght
+				list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+				//create
+				window.indexedList = new mui.IndexedList(list);
+			});
 			mui.plusReady(function() {
-				request("../../data/associateuser.json", {}, function(request) {
+				requestJsonFile("../../data/associateuser.json", {}, function(request) {
 					log(request);
 					// if(r.SysConstants.ERROR_CODE_KEY == -1) {
 					// 	appUI.showTopTip(r.DATASET);
 					// 	return;
 					// }
-					render("#associatedinfo", "associated", request);
+					render("#weiinfo", "weitamplate", request);
 					})
-				
+			
+			
 				var box = document.getElementById("boxid");
+				var btn = document.getElementById("daobtn");
 				var chek = document.getElementsByName("checkbox1");
+				btn.addEventListener("tap", function() {
+					openNew("AssociatedUser.html")
+				})
+			
 				box.addEventListener("tap", function() {
 					if(box.checked == true){
 						for(var i=0;i<chek.length;i++){
@@ -242,8 +320,14 @@
 						}
 					}		
 				})
-				
-				
+				//子复选框有一个没有选中 全选框就没有选中
+				// for(var i=0;i<chek.length;i++){
+				// 	chek[i].addEventListener("tap", function() {
+				// 		if(!this.checked){
+				// 			box.checked = false 
+				// 		}
+				// 	})
+				// }
 			})
 		</script>
 	</body>
