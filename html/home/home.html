@@ -436,11 +436,11 @@
 				storageUser = kidstorageuser.getInstance();
 
 				//获取当前用户是否有客户信息
-				request("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
-						request("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
+						requestJsonFile("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
 							if (result_finished[SysConstants.DATASET_KEY].length > 0) {
 								document.getElementById("HasFinishedActionArea").classList.remove("none");
 
@@ -468,7 +468,7 @@
 						document.getElementById("AICalendarArea").classList.remove("none");
 
 						//动态生成今天日程统计数字
-						request("../../data/home/todayActionCount.json", {}, function(result_count) {
+						requestJsonFile("../../data/home/todayActionCount.json", {}, function(result_count) {
 							log(result_count);
 							document.getElementById("PlanedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].PS_CNT;
 							document.getElementById("SuggestedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].SS_CNT;
@@ -476,7 +476,7 @@
 						});
 
 						//动态生成下个日程数据
-						request("../../data/home/nextAction.json", {}, function(result) {
+						requestJsonFile("../../data/home/nextAction.json", {}, function(result) {
 							log(result);
 							document.getElementById("today_time_div").innerHTML = result[SysConstants.DATASET_KEY].time;
 							document.getElementById("today_action_div").innerHTML = result[SysConstants.DATASET_KEY].action;
@@ -500,7 +500,7 @@
 						});
 
 						//动态生成客户统计
-						request("../../data/home/customerCount.json", {}, function(result_count) {
+						requestJsonFile("../../data/home/customerCount.json", {}, function(result_count) {
 							log(result_count);
 							document.getElementById("lower_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].LOW_CNT;
 							document.getElementById("mid_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].MID_CNT;
@@ -508,7 +508,7 @@
 						});
 
 						//动态生成行动推荐卡片信息
-						request("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+						requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
 							log(result_suggested);
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
