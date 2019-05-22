@@ -3,7 +3,7 @@
 	"ERROR_MESSAGE" : "查询数据列表成功!",
 	"DATASET" : [
 		{
-			"cust_id" : "1234",
+			"cust_id" : "123",
 			"score" : "85",
 			"status" : "1",
 			"score_label" : [

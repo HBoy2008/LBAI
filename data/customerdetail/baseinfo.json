@@ -9,7 +9,8 @@
 			"wechat_nm" : "微信昵称",
 			"src" : "通讯录导入",
 			"create_date" : "2019年2月1日",
-			"contact_date" : "2019年2月1日"
+			"contact_date" : "2019年2月1日",
+			"wechat_img" : ""
 		}
 	]
 }
