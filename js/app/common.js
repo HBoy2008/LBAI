@@ -337,7 +337,7 @@ var kidstorageuser = (function() {
 		_self.ImgUrl = baseStorage.getItem(keyname, keyname_imgurl) || "";
 		_self.Signature = baseStorage.getItem(keyname, keyname_signature) || "";
 		_self.Version = baseStorage.getItem(keyname_version) || "";
-		_self.IsLogin = _self.UId > 0;
+		_self.IsLogin = _self.UId != "";
 	}
 	//单例实例 
 	var instance;

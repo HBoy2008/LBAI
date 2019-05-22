@@ -434,9 +434,12 @@
 			function getData() {
 				storage.init();
 				storageUser = kidstorageuser.getInstance();
+				log("***********************************")
+				log(storageUser)
 
 				//获取当前用户是否有客户信息
-				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				//requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
@@ -500,7 +503,8 @@
 						});
 
 						//动态生成客户统计
-						requestJsonFile("../../data/home/customerCount.json", {}, function(result_count) {
+						//requestJsonFile("../../data/home/customerCount.json", {}, function(result_count) {
+						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result_count) {
 							log(result_count);
 							document.getElementById("lower_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].LOW_CNT;
 							document.getElementById("mid_cust_Span").innerText = result_count[SysConstants.DATASET_KEY].MID_CNT;
@@ -508,7 +512,8 @@
 						});
 
 						//动态生成行动推荐卡片信息
-						requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+						//requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.PlayerId,work_date:"2019-05-20"}, function(result_suggested) {
 							log(result_suggested);
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
