@@ -337,7 +337,7 @@ var kidstorageuser = (function() {
 		_self.ImgUrl = baseStorage.getItem(keyname, keyname_imgurl) || "";
 		_self.Signature = baseStorage.getItem(keyname, keyname_signature) || "";
 		_self.Version = baseStorage.getItem(keyname_version) || "";
-		_self.IsLogin = _self.UId > 0;
+		_self.IsLogin = _self.UId != "";
 	}
 	//单例实例 
 	var instance;
@@ -1141,7 +1141,7 @@ function requestJsonFile(method, parm, callback, showwait, errcallback, shownetm
 	mui.ajax(method, {
 		data: parm,
 		dataType: 'json', //要求服务器返回json格式数据
-		type: 'POST', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+		type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
 		timeout: 60000, //超时时间设置为6秒；
 		beforeSend: function() {
 			log(mklog() + '【AJAX:-->】【' + method + '】【P=' + JSON.stringify(parm) + '】');
