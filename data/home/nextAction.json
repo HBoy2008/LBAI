@@ -1,0 +1,13 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : {
+			"time" : "15:50",
+			"date" : "今天",
+			"during" : "1小时",
+			"action" : "拜访李子木木",
+			"contact" : "上海市环球金融中心",
+			"last" : "2019年05月20日",
+			"type" : "phone"
+		}
+}
