@@ -14,7 +14,6 @@
 			.pick_photo{width: 50px;height: 50px;}
 			.display-inline{display: inline-block;}
 			label,i {color: #5A5A5A;}
-			.border-dashed {border: #5A5A5A dashed 1px;}
 			.card-dash{width:100%; background-color: #FFFFFF;margin-top: 10px; padding: 10px 0;}
 			.i_blue{color:#47BAFE}
 			.cont_table td{width:25%;text-align: center;}
@@ -32,172 +31,61 @@
 			.tips{color:#5A5A5A; font-size: 0.5625rem;}
 			.sp_date{padding:20px;display: block; background-color: #47BAFE;}
 			.sp_month{display: block;color: #47BAFE;}
-			.div_ac_type{padding:2px 10px;border: grey dashed 1px;vertical-align: middle;}
+			.div_ac_type{padding:2px 10px;border: grey solid 1px;vertical-align: middle;}
 			.bg_color_blue1{background-color: #186FFF;}
 			.bg_color_blue2{background-color: #0DA3FF;}
 			.bg_color_blue3{background-color: #05CDE5;}
 			.bg_color_green{background-color: #03D58D;}
-			.span_product{color:#9C9C9C ;padding :5px 10px;border: grey dashed 1px;width: 80px;word-break:normal; display:inline-block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ;}
+			.span_product{color:#9C9C9C ;padding :5px 10px;border: grey solid 1px;width: 80px;word-break:normal; display:inline-block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ;}
+			ul{padding-left: 0;width:90%;margin: 0 auto;}
+			li{ padding:5px !important;margin: 0 auto;}
 		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left" id="btn_back"></a>
-			<h1 class="mui-title">张三丰</h1>
+			<h1 class="mui-title" id="title_name"></h1>
 			<a class="mui-pull-right mui-icon mui-icon-more-filled" id="btn_more"></a>
 		</header>
 		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
 			<div class="mui-scroll">
-			<div class="border-dashed card-dash">
-				<table class="float-m9" style="padding:10px 10px;">
-					<tr>
-						<td style="padding:10px 10px;width:80px;">
-							<img class="pick_photo" src="../../images/default_pick_photo.png" />
-						</td>
-						<td>
-							<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">张三丰</label><i class="mui-icon mui-icon-star common-font-color-blue"></i></div>
-							<div id="div_concat">
-								<div id="div_wx" class="display-inline"><i class="mui-icon fa fa-weixin"></i>&nbsp;<label id="label_wx">微信昵称</label></div>
-								<div id="div_phone" class="display-inline" style="margin-left:15px;"><i class="mui-icon fa fa-mobile"></i>&nbsp;<label id="label_wx">13579023847</label></div>
-								<div id="div_lastInteract"><label>上次互动时间：</label><label id="label_lastInteract">2019年2月1日</label></div>
-								<div id="div_inputType"><label id="label_inputType">通讯录导入</label><label id="label_inputDate">(2019年2月1日)</label></div>
-							</div>
-						</td>
-						<td style="width:25px;">
-							<i class="mui-icon mui-icon-forward"></i>
-						</td>
-					</tr>
-				</table>
-				<div class="clear10"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear10"></div>
-				<table class='cont_table float-m9' style="padding:10px 10px;">
-					<tr>
-						<td><i class="i_blue mui-icon mui-icon-phone-filled"></i><label>电话</label></td>
-						<td><i class="i_blue mui-icon mui-icon-map"></i><label>导航</label></td>
-						<td><i class="i_blue mui-icon mui-icon-weixin"></i><label>微信</label></td>
-						<td><i class="i_blue mui-icon mui-icon-plus-filled"></i><label>增加行程</label></td>
-					</tr>
-				</table>
+			<div class="border-solid card-dash" id="baseInfo_div" style="height:164px;">
+				
 			</div>
-			<div class="border-dashed card-dash" id="customer-lb-info">
+			<div class="border-solid card-dash" id="customer-lb-info">
 				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>灵豹智能分析</label></div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
 				<div class="clear5"></div>
 				<div class="div_lbscore float-m9">
 					<div class="progress" id="progress"></div>
-					<div class="div_tags tagList">
-						<span class='tags'>已婚</span>
-						<span class='tags'>子女</span>
-						<span class='tags'>父母</span>
-						<span class='tags'>有房</span>
-						<span class='tags'>有车</span>
-						<span class='tags'>资产AA级</span>
-						<span class='tags'>已购买</span>
+					<div class="div_tags tagList" id="score_label">
 					</div>
 					<span class="tips">Tips：补充客户信息可获得更精准的分析</span>
 				</div>
 			</div>
-			<div class="border-dashed card-dash" id="schedule-plan">
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>日程计划</label><label id="schedule-count">（3个）</label></div>
+			<div class="border-solid card-dash mui-hidden" id="schedule_plan">
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>日程计划</label><label id="schedule_count"></label></div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
-				<div class="div_schedule float-m9">
-					<div class="div_date" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_date">23</span>
-						<span class="sp_month">九月</span>
-					</div>
-					<div class="div_plan" style="display: inline-block;vertical-align:top;margin-left:15px;">
-						<span class="sp_plan_content">拜访  张先生</span>
-						<div class="clear2"></div>
-						<span class="sp_plan_time">11:40-14:40</span>
-						<div class="clear2"></div>
-						<span class="sp_plan_address">地点：厄瓜多尔7区99号1101室</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-location" style="line-height: 86px;"></i></div>
-				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
+				<ul id="schedule_m" class="mui-table-view"></ul>
 				<div class="div_plan_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
-			<div class="border-dashed card-dash" id="action_sujest">
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>行动推荐</label><label id="action-count">（10个）</label></div>
+			<div class="border-solid card-dash mui-hidden" id="action_sujest">
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>行动推荐</label><label id="action_count"></label></div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
-				<div class="div_action float-m9" style="height:44px;">
-					<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_ac_type">电话</span>
-					</div>
-					<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-						<span class="sp_action_content">张三丰升职，去祝贺一下</span>
-						<div class="clear2"></div>
-						<span class="sp_action_time">推荐日程：今天下午15：30</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
-				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
+				<ul id="action_m" class="mui-table-view"></ul>
 				<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
 			
-			<div class="border-dashed card-dash" id="action_log" >
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>互动记录</label><label id="action-count">（10个）</label></div>
+			<div class="border-solid card-dash mui-hidden" id="schedule_history" >
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>互动记录</label><label id="history_count"></label></div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
-				<div class="div_action float-m9" style="height:44px;">
-					<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_log_type">电话</span>
-					</div>
-					<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-						<span class="sp_log_content">张三丰升职，去祝贺一下</span>
-						<div class="clear2"></div>
-						<span class="sp_log_time">2019年3月25日14：00</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
-				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
-				<div class="div_action float-m9" style="height:44px;">
-					<div class="div_ac_type bg_color_blue2" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_log_type">拜访</span>
-					</div>
-					<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-						<span class="sp_log_content">张三丰升职，去祝贺一下</span>
-						<div class="clear2"></div>
-						<span class="sp_log_time">2019年3月25日14：00</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
-				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
-				<div class="div_action float-m9" style="height:44px;">
-					<div class="div_ac_type bg_color_green" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_log_type">微信</span>
-					</div>
-					<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-						<span class="sp_log_content">张三丰升职，去祝贺一下</span>
-						<div class="clear2"></div>
-						<span class="sp_log_time">2019年3月25日14：00</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
-				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
-				<div class="clear5"></div>
+				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+				<ul id="sHistory_m" class="mui-table-view"></ul>
 				<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
-			<div class="border-dashed card-dash" id="action_log" >
+			<div class="border-solid card-dash" id="bx_con" >
 				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>保险情况</label><label id="action-count">（2份）</label></div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
+				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<div class="clear5"></div>
 				<div class="div_action float-m9" style="height:86px;">
 					<div class="div_ac_type bg_color_blue3" style="display: inline-block;text-align: center;margin-left:15px;">
@@ -213,7 +101,7 @@
 					<div class="div_location" onclick="" style="float: right;margin-right:15px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 86px;font-size: 18px;"></i></div>
 				</div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
+				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<div class="clear5"></div>
 				<div class="div_products float-m9" style="text-align: center;">
 					<span class="span_product">保险需求测评结果</span>
@@ -221,19 +109,122 @@
 					<span class="span_product">保险需求测评结果</span>
 				</div>
 				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px dashed #5A5A5A;"/>
+				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<div class="clear5"></div>
 				<div class="div_action_showmore float-m9" style="text-align: center;">智能推荐产品<i class="mui-icon fa fa-angle-double-right"></i></div>
 			</div>
 			</div>
 		</div>
-		
+		<script type="text/html" id="baseInfo">
+			{{each DATASET as val}} {{if val!=''}}
+			<table class="float-m9" style="padding:10px 10px;">
+				<tr>
+					<td style="padding:10px 10px;width:80px;">
+						{{if val.wechat_img!=''}}
+						<img class="pick_photo" data-url="{{val.wechat_img}}" data-preview-group="1"/>
+						{{else}}
+						<img class="pick_photo" data-preview-group="1" src="../../images/default_pick_photo.png" />
+						{{/if}}
+					</td>
+					<td>
+						<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">{{val.cnName}}</label><i class="mui-icon mui-icon-star common-font-color-blue"></i></div>
+						<div id="div_concat">
+							<div id="div_wx" class="display-inline"><i class="mui-icon fa fa-weixin"></i>&nbsp;<label id="label_wx">{{val.wechat_nm}}</label></div>
+							<div id="div_phone" class="display-inline" style="margin-left:15px;"><i class="mui-icon fa fa-mobile"></i>&nbsp;<label id="label_wx">{{val.phone_no}}</label></div>
+							<div id="div_lastInteract"><label>上次互动时间：</label><label id="label_lastInteract">{{val.contact_date}}</label></div>
+							<div id="div_inputType"><label id="label_inputType">{{val.src}}</label><label id="label_inputDate">({{val.create_date}})</label></div>
+						</div>
+					</td>
+					<td style="width:25px;">
+						<i class="mui-icon mui-icon-forward"></i>
+					</td>
+				</tr>
+			</table>
+			<div class="clear10"></div>
+			<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+			<div class="clear10"></div>
+			<table class='cont_table float-m9' style="padding:10px 10px;">
+				<tr>
+					<td><i class="i_blue mui-icon mui-icon-phone-filled"></i><label>电话</label></td>
+					<td><i class="i_blue mui-icon mui-icon-map"></i><label>导航</label></td>
+					<td><i class="i_blue mui-icon mui-icon-weixin"></i><label>微信</label></td>
+					<td><i class="i_blue mui-icon mui-icon-plus-filled"></i><label>增加行程</label></td>
+				</tr>
+			</table>
+			{{/if}}
+			{{/each}}
+		</script>
+		<script type="text/html" id="label_tp">
+			{{each DATASET as val}} {{if val!=''}}
+				{{each val.score_label as lab}}
+				{{if lab!=''}}
+				<span class='tags'>{{lab.label}}</span>
+				{{/if}}
+				{{/each}}
+			{{/if}}
+			{{/each}}
+		</script>
+		<script type="text/html" id="schedule_tp">
+			{{each DATASET as val}} {{if val!=''}}
+			<li class="mui-table-view-cell mui-collapse">
+				<div class="div_date" style="display: inline-block;text-align: center;margin-left:15px;">
+					<span class="sp_date">{{val.sd_date}}</span>
+					<span class="sp_month">{{sd_month}}</span>
+				</div>
+				<div class="div_plan" style="display: inline-block;vertical-align:top;margin-left:15px;">
+					<span class="sp_plan_content">{{val.sd_content}}</span>
+					<div class="clear2"></div>
+					<span class="sp_plan_time">{{val.sd_time}}</span>
+					<div class="clear2"></div>
+					<span class="sp_plan_address">{{val.sd_address}}</span>
+				</div>
+				<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;">
+					<i class="i_blue mui-icon mui-icon-location" style="line-height: 67px;"></i></div>
+			</li>
+			{{/if}}
+			{{/each}}
+		</script>
+		<script type="text/html" id="action_tp">
+			{{each DATASET as val}} {{if val!=''}}
+			<li class="mui-table-view-cell mui-collapse">
+				<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
+					<span class="sp_ac_type">{{val.act_event}}</span>
+				</div>
+				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
+					<span class="sp_action_content">{{val.cnName}} {{val.act_nm}}</span>
+					<div class="clear2"></div>
+					<span class="sp_action_time">推荐日程：{{val.act_expire_date}}</span>
+				</div>
+				<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;">
+					<i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
+			</li>
+			{{/if}}
+			{{/each}}
+		</script>
+		<script type="text/html" id="history_tp">
+			{{each DATASET as val}} {{if val!=''}}
+			<li class="mui-table-view-cell mui-collapse">
+				<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
+					<span class="sp_log_type">{{val.act_event}}</span>
+				</div>
+				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
+					<span class="sp_log_content">{{val.sd_content}}</span>
+					<div class="clear2"></div>
+					<span class="sp_log_time">{{val.sd_time}}</span>
+				</div>
+				<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
+			</li>
+			
+			{{/if}}
+			{{/each}}
+		</script>
 		<script type="text/javascript">
-			script(['../../js/mui.min.js', '../../js/app/common.js', '../../js/customer/progressbar.min.js'], false);
+			script(['../../js/mui.min.js', '../../js/app/common.js', '../../libs/progressbar/progressbar.min.js'], false);
 		</script>
 		<script type="text/javascript">
 			var backid = "index.html";
 			var backurl = "../" + backid;
+			var circle;
 			
 			mui.init({
 				pullRefresh: {
@@ -248,8 +239,10 @@
 				}
 			})
 			mui.plusReady(function() {
+			//mui.ready(function() {
 				storage.init();
-				var circle = new ProgressBar.SemiCircle('#progress', {
+				
+				circle = new ProgressBar.SemiCircle('#progress', {
 					color: '#47BAFE',
 					trailColor: '#f4f4f4',
 					duration: 3000,
@@ -276,20 +269,87 @@
 						alignToBottom: true
 					}
 				});
-
-				circle.animate(0.85);
-				circle.setText("85<br>灵豹分");
+				getBaseInfo("123");
+				getLbScore("123");
+				getScheduleList("123");
+				getActionList("123");
+				getScheduleHistoryList("123");
 			});
 			function setPro(val){
 				var obj = mui('#lb_score');
 				obj.progressbar({progress:val}).show();
 			}
-			function getBaseInfo(){
+			function getBaseInfo(custId){
+				request("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+					//log(r);
+					document.getElementById("title_name").innerText=r.DATASET[0].cnName;
+					render("#baseInfo_div", "baseInfo", r);
+					appPage.imgInit();
+					
+				})
+			}
+			function getLbScore(custId){
+				request("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+					//log(r);
+					var score = r.DATASET[0].score;
+					circle.animate(score/100);
+					circle.setText(score+"<br>灵豹分");
+					render("#score_label", "label_tp", r);
+				})
+			}
+			
+			function getScheduleList(custId){
+				request("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/schedule_info.json", {custId:custId}, function(r) {
+					//log(r);
+					if (r.DATASET.length>0){
+						document.getElementById("schedule_count").innerText="（"+r.DATASET.length+"个）"
+						render("#schedule_m", "schedule_tp", r);
+						document.getElementById('schedule_plan').classList.remove('mui-hidden');
+					} else{
+						document.getElementById('schedule_plan').classList.add('mui-hidden');
+					}
+					
+				})
+			}
+			function getScheduleHistoryList(custId){
+				request("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/schedule_history.json", {custId:custId}, function(r) {
+					//log(r);
+					if (r.DATASET.length>0){
+						document.getElementById("history_count").innerText="（"+r.DATASET.length+"个）"
+						render("#sHistory_m", "history_tp", r);
+						document.getElementById('schedule_history').classList.remove('mui-hidden');
+					} else{
+						document.getElementById('schedule_history').classList.add('mui-hidden');
+					}
+					
+				})
+			}
 				
+			function getActionList(custId){
+				request("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+					//log(r);
+					if (r.DATASET.length>0){
+						document.getElementById("action_count").innerText="（"+r.DATASET.length+"个）"
+						render("#action_m", "action_tp", r);
+						document.getElementById('action_sujest').classList.remove('mui-hidden');
+					} else{
+						document.getElementById('action_sujest').classList.add('mui-hidden');
+					}
+					
+				})
 			}
 			//下拉刷新具体业务实现
 			function pulldownRefresh() {
-				
+				getBaseInfo("123");
+				getLbScore("123");
+				getScheduleList("123");
+				getActionList("123");
+				getScheduleHistoryList("123");
 			}
 	</script>
 	</body>

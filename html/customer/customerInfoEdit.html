@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>LingPowerAI</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(['../../css/reset.css']);
+		</script>
+		<style type="text/css">
+			.pick_photo{width: 30px;height: 30px;float:right;vertical-align: middle;}
+			.display-inline{display: inline-block;}
+			.card-dash{width:100%; background-color: #FFFFFF;margin-top: 10px; padding: 10px 0;}
+			.i_blue{color:#47BAFE}
+			.left-border3{border-left: 3px solid #47BAFE;}
+			.float-m9{margin: 0 auto; width:90%;}
+			.clear2{margin: 2px 0;}
+			.clear5{margin: 5px 0;}
+			.clear10{margin: 5px 0;}
+			label,i {color: #5A5A5A; font-size: 0.75rem;}
+			.input_m9 {width:90% !important; margin-bottom: 0 !important;border:0 !important;}
+			.input_m12 {width:100% !important; margin-bottom: 0 !important;border:0 !important;}
+			.male_div label {padding:0 10px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left" id="btn_back"></a>
+			<h1 class="mui-title">张三丰</h1>
+			<a class="mui-pull-right mui-icon mui-icon-more-filled" id="btn_more"></a>
+		</header>
+		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
+			<div class="mui-scroll">
+				<div class="card-dash" id="baseInfo_div">
+					<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+						<label style="line-height: 30px;vertical-align: middle;">头像</label>
+						<img class="pick_photo" data-preview-group="1" src="../../images/default_pick_photo.png" />
+					</div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:0.5px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+					<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+						<label style="line-height: 30px;vertical-align: middle;">手机</label>
+						<input name="phone_no" class="mui-input-clear input_m9" type="text" />
+					</div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:0.5px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+					<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+						<label style="line-height: 30px;vertical-align: middle;">姓名</label>
+						<input name="cnName" class="mui-input-clear input_m9" type="text" />
+					</div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:0.5px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+					<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+						<label style="line-height: 30px;vertical-align: middle;">微信号</label>
+						<input name="wechat_no" style="width:86% !important;" class="mui-input-clear input_m9" type="text" />
+					</div>
+				</div>
+				<div class="border-solid card-dash" id="person_info" >
+					<div class="left-border3 float-m9" style="padding-left:5px ;"><label>个人信息</label></div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+					<div class="div_sex float-m9">
+						<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+							<label style="line-height: 30px;vertical-align: middle;">性别</label>
+							<div class="male_div" style="display: inline-block;margin-left: 15px;">
+								<i class="mui-icon fa fa-male i_blue"></i><label class="i_blue">男</label><i style="margin-left: 20px;" class="mui-icon fa fa-female"></i><label>女</label>
+							</div>
+							<input name="sex" type="hidden" />
+						</div>
+					</div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+					
+					<div class="div_birthday float-m9">
+						<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+							<label style="line-height: 30px;vertical-align: middle;">出生年月</label>
+							<div class="male_div" style="display: inline-block;margin-left: 15px;">
+								<input name="wechat_no" class="mui-input-clear input_m12" type="date" />
+							</div>
+						</div>
+					</div>
+					<div class="div_city float-m9">
+						<div class="float-m9" style="line-height: 30px;vertical-align: middle;">
+							<label style="line-height: 30px;vertical-align: middle;">所在城市</label>
+							<div class="male_div " style="display: inline-block;margin-left: 15px;">
+								<a id='region' class="mui-col-xs-9 mui-pull-left">
+									<span class="cor-999">请选择</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="clear5"></div>
+					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+					<div class="clear5"></div>
+				</div>
+			</div>
+			<div id='regionbox' class="ui-alert"></div>
+		</div>
+		<script type="text/javascript">
+			script(['../../libs/picker/mui.picker.min.js', '../../libs/picker/mui.poppicker.js', '../../libs/region.js']);
+		</script>
+		<script type="text/javascript">
+			var backid = "index.html";
+			var backurl = "../" + backid;
+			mui.init();
+			//mui.plusReady(function() {
+			mui.ready(function() {
+				
+				var regionPicker;
+				//storage.init();
+				initPicker();
+			});
+			function initPicker(){
+				var regionobj = document.getElementById("region");
+				regionPicker = new mui.PopPicker({
+					layer: 3
+				});
+				
+				regionPicker.setData(region);
+				regionobj.addEventListener("click", function() {
+					regionPicker.show(function(items) {
+						var op1 = (items[0] || {});
+						var op2 = (items[1] || {});
+						var op3 = (items[2] || {});
+						postData = {
+							provinceid: op1.value,
+							cityid: op2.value,
+							districtid: op3.value
+						};
+						regionobj.innerText = (items[0] || {}).text + " - " + (items[1] || {}).text + " - " + (items[2] || {}).text;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				});
+			}
+		</script>
+	</body>
+</html>
