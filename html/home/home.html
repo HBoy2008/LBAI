@@ -298,9 +298,9 @@
 			<div class="shi-line-gray-column"></div>
 			<div id="today_action_type_div" style="text-align: center; margin: auto;">
 				{{if record.type == "phone"}}
-				<img src="../../images/home/call.png" style="width: 40%;" />
+				<img onclick="gotoCall('{{record.phone_no}}')" src="../../images/home/call.png" style="width: 40%;" />
 				{{else if record.type == "weixin"}}
-				<img src="../../images/home/wx.png" style="width: 40%;" />
+				<img onclick="gotoWeChat('{{record.wechat_nm}}')" src="../../images/home/wx.png" style="width: 40%;" />
 				{{else if record.type == "visit"}}
 				<img src="../../images/home/ditu.png" style="width: 40%;" />
 				{{else}}
