@@ -127,7 +127,7 @@
 						{{/if}}
 					</td>
 					<td>
-						<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">{{val.cnName}}</label><i class="mui-icon mui-icon-star common-font-color-blue"></i></div>
+						<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">{{val.phone_nm}}</label><i class="mui-icon mui-icon-star common-font-color-blue"></i></div>
 						<div id="div_concat">
 							<div id="div_wx" class="display-inline"><i class="mui-icon fa fa-weixin"></i>&nbsp;<label id="label_wx">{{val.wechat_nm}}</label></div>
 							<div id="div_phone" class="display-inline" style="margin-left:15px;"><i class="mui-icon fa fa-mobile"></i>&nbsp;<label id="label_wx">{{val.phone_no}}</label></div>
@@ -254,18 +254,19 @@
 			});
 			
 			function getBaseInfo(custId){
-				requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
-				//request("sqldb/queryByCustomerI", {custId:custId}, function(r) {
+				//requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
-					document.getElementById("title_name").innerText=r.DATASET[0].cnName;
+					document.getElementById("title_name").innerText=r.DATASET[0].phone_nm;
 					render("#baseInfo_div", "baseInfo", r);
 					appPage.imgInit();
 					
 				})
 			}
 			function getLbScore(custId){
-				requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				//requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				request("/sqldb/getScoreByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 					//log(r);
 					var score = r.DATASET[0].score;
@@ -305,7 +306,8 @@
 			}
 				
 			function getActionList(custId){
-				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				//requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length>0){
