@@ -306,8 +306,8 @@
 			}
 				
 			function getActionList(custId){
-				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
-				//request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
+				//requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					template.helper('dateFormat', Utils.dateFormat);
