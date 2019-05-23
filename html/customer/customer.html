@@ -172,17 +172,10 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		<script type="text/html" id="userlist">
 			{{each DATASET as value}}
-				<li>
+				<li onclick="ctEvent.goToDetail('{{value.id}}')">
 					<span class="touxiang">
 						<img src="{{value.img}}">
 					</span>
@@ -204,6 +197,7 @@
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function () {
+			//mui.ready(function () {
 				// request("../../data/userlist.json", {}, function(request) {
 				// 	log(request);
 				// 	// if(r.SysConstants.ERROR_CODE_KEY == -1) {
@@ -214,9 +208,9 @@
 				// 	})
 				
 
-
-				request("../../data/userlist.json", {}, function(request) {
-					log(request);
+				//request("../../data/userlist.json", {}, function(request) {
+				requestJsonFile("../../data/userlist.json", {}, function(request) {
+					//log(request);
 					if(request[SysConstants.DATASET_KEY].length == 0){
 						openNew("customer_none_data.html");
 					} else {
@@ -233,6 +227,16 @@
 
 				
 			})
+			var ctEvent = {
+				goToDetail: function(id) {
+					//alert(id);
+					openNew("../customer/customerDetailInfo.html", {
+						field: "customerId",
+						custId: id,
+						backid: "customer/customer.html"
+					});
+				}
+			}
 		</script>
 	</body>
 

@@ -241,44 +241,18 @@
 			mui.plusReady(function() {
 			//mui.ready(function() {
 				storage.init();
+				var self = plus.webview.currentWebview();
+				var custId = self.info.custId;
+				//alert(custId);
+				initProgressBar();
 				
-				circle = new ProgressBar.SemiCircle('#progress', {
-					color: '#47BAFE',
-					trailColor: '#f4f4f4',
-					duration: 3000,
-					easing: 'easeInOut',
-					text: {
-						value:'0<br>灵豹分',
-						className: 'progressbar__label',
-						style: {
-						// Text color.
-						// Default: same as stroke color (options.color)
-						color: '#5A5A5A',
-						position: 'absolute',
-						left: '50%',
-						top: '50%',
-						bottom: 0,
-						padding: 0,
-						margin: 0,
-						// You can specify styles which will be browser prefixed
-						transform: {
-							prefix: true,
-							value: 'translate(-50%, -50%)'
-						}},
-						autoStyleContainer: true,
-						alignToBottom: true
-					}
-				});
-				getBaseInfo("123");
-				getLbScore("123");
-				getScheduleList("123");
-				getActionList("123");
-				getScheduleHistoryList("123");
+				getBaseInfo(custId);
+				getLbScore(custId);
+				getScheduleList(custId);
+				getActionList(custId);
+				getScheduleHistoryList(custId);
 			});
-			function setPro(val){
-				var obj = mui('#lb_score');
-				obj.progressbar({progress:val}).show();
-			}
+			
 			function getBaseInfo(custId){
 				requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 				//request("sqldb/queryByCustomerI", {custId:custId}, function(r) {
@@ -346,11 +320,49 @@
 			}
 			//下拉刷新具体业务实现
 			function pulldownRefresh() {
-				getBaseInfo("123");
-				getLbScore("123");
-				getScheduleList("123");
-				getActionList("123");
-				getScheduleHistoryList("123");
+				setTimeout(function() {
+					//下拉刷新结束
+					getBaseInfo("123");
+					getLbScore("123");
+					getScheduleList("123");
+					getActionList("123");
+					getScheduleHistoryList("123");
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					//重置上拉加载
+					// mui('#pullrefresh').pullRefresh().refresh(true);
+					//重置页码
+					page = 1;
+				}, 1000);
+			}
+			
+			function initProgressBar(){
+				circle = new ProgressBar.SemiCircle('#progress', {
+					color: '#47BAFE',
+					trailColor: '#f4f4f4',
+					duration: 3000,
+					easing: 'easeInOut',
+					text: {
+						value:'0<br>灵豹分',
+						className: 'progressbar__label',
+						style: {
+						// Text color.
+						// Default: same as stroke color (options.color)
+						color: '#5A5A5A',
+						position: 'absolute',
+						left: '50%',
+						top: '50%',
+						bottom: 0,
+						padding: 0,
+						margin: 0,
+						// You can specify styles which will be browser prefixed
+						transform: {
+							prefix: true,
+							value: 'translate(-50%, -50%)'
+						}},
+						autoStyleContainer: true,
+						alignToBottom: true
+					}
+				});
 			}
 	</script>
 	</body>
