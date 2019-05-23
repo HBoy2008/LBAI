@@ -315,14 +315,14 @@
 			{{if DATASET==null||DATASET.length==0}}
 			<div class="nodata">暂无内容</div>
 			{{else}} {{each DATASET as value}}
-				<div id="{{value.id}}" class="box box-info mui-slider-item">
+				<div id="{{value.cust_id}}" class="box box-info mui-slider-item">
 					<div>
 						<b>行动推荐</b>
 					</div>
 					<div class="shi-line-gray"></div>
 					<div style="display: flex;">
 						<div>
-							{{if value.actionType == "wx"}}
+							{{if value.act_event == "发微信"}}
 							<span class="mui-icon fa fa-weixin common-font-color-blue" style="font-size: 25px;"></span>
 							{{else}}
 							<span class="mui-icon fa fa-phone-square common-font-color-blue" style="font-size: 25px;"></span>
@@ -330,20 +330,21 @@
 						</div>
 						<div style=" padding-left: 10px;">
 							<p style="color: #000000;">
-								<span>{{value.actionName}}</span>
+								<span>{{value.cust_nm}}{{value.act_nm}},联系一下</span>
 							</p>
 							<p>
-								<span>推荐日程：{{value.actionTime}}</span>
+								<span>推荐日程：{{value.act_expire_date}}</span>
 							</p>
 							<p>
-								<span>上次互动：{{value.lastAction}}</span>
+								<!-- <span>上次互动：{{value.lastAction}}</span> -->
+								<span>上次互动：--</span>
 							</p>
 						</div>
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="suggestedActionBtnArea" style="display: flex;">
 						<div class="suggestedAction" data-id="{{value.id}}">
-							{{if value.actionType == "wx"}}
+							{{if value.act_event == "发微信"}}
 							<img src="../../images/home/wx.png" style="width: 30%;" />
 								<br />
 								<span data-actiontype="phone">立即联系</span>
@@ -519,7 +520,7 @@
 
 						//动态生成行动推荐卡片信息
 						//requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
-						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.PlayerId,work_date:"2019-05-20"}, function(result_suggested) {
+						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId,work_date:"2019-05-20"}, function(result_suggested) {
 							log(result_suggested);
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件

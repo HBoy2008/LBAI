@@ -1,7 +1,7 @@
 /*
  * 系统共通样式定义
  * */
-
+* { touch-action: pan-y; } 
 /*系统级别主色调定义*/
 .common-bg-color-blue {
 	background-color: #47BAFE;
