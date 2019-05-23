@@ -22,10 +22,11 @@
 			<div class="mui-scroll">
 				<br />
 				<div class="mui-text-center lh30">
-					<span class="fs16" id="appname">卡游精灵</span><br />
-					<span class="cor-999">当前版本<span id="version">0</span></span><br />
-					<img class="loadthumb" data-wh="120,120" id="qrcodeimg"><br/>
-					<span class="cor-999">扫描二维码，让您的朋友下载更快捷！</span>
+					<span class="fs16" id="appname">灵豹智能</span><br />
+					<span class="cor-999">当前版本<span id="version">1.0.0</span></span><br />
+					<!-- <img class="loadthumb" data-wh="120,120" id="qrcodeimg"><br/> -->
+					<!-- <span class="cor-999">扫描二维码，让您的朋友下载更快捷！</span> -->
+					<img src="../../images/mine/aboutapp.png" style="width: 60%; border-radius: 50px;">
 				</div>
 				<br />
 				<ul class="mui-table-view tblv-nl" id="gostore" style="display: none;">
@@ -37,9 +38,11 @@
 				<div class="bg-fff lh20 mt15 p1rem">
 					<p>说明：</p>
 					<p id="desc">
+						灵豹智能作为国内第一家线下智能销售服务提供商,借助前沿机器学习算法,图像语音等人工智能技术积累,赋能保险线下销售场景.
+						依托线下销售行为数据化,智能销售预测,销售行动推荐等功能,灵豹智能致力于提升线下保险销售转化率及客户服务效率,帮助保险公司提升业务员产能
 					</p>
 				</div>
-				<p class="mui-text-center lh30 mt15 mb5">甲壳虫动漫股份有限公司版权所有<br/>Copyright©2017-<span id="lastyear"></span> Kayou Inc. All Rights Reserved</p>
+				<p class="mui-text-center lh30 mt15 mb5">上海达之科技有限公司版权所有<br/>Copyright©2019-<span id="lastyear"></span> LinkPowerAI Inc. All Rights Reserved</p>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -55,24 +58,25 @@
 				}
 				storage.init();
 				baseStorage.log();
-				document.getElementById("version").innerText = storageUser.Version;
+				// document.getElementById("version").innerText = storageUser.Version;
+				document.getElementById("version").innerText = app_config.version;
 				var iosurl, androidurl, appid;
 				document.getElementById("lastyear").innerText = ((new Date().getFullYear() + 1).toString());
-				request("/Base/getAPPInfo", {}, function(json) {
-					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
-						var data = json.data;
-						document.getElementById("appname").innerText = data.AppName;
-
-						document.getElementById("qrcodeimg").setAttribute("data-url", data.QrCodeUrl);
-						document.getElementById("desc").innerText = data.Description;
-						iosurl = data.IosUrl;
-						androidurl = data.AndriodUrl;
-						appid = data.AppPackageId;
-						log(data);
-					} else {
-						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
-					}
-				});
+// 				request("/Base/getAPPInfo", {}, function(json) {
+// 					if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+// 						var data = json.data;
+// 						document.getElementById("appname").innerText = data.AppName;
+// 
+// 						document.getElementById("qrcodeimg").setAttribute("data-url", data.QrCodeUrl);
+// 						document.getElementById("desc").innerText = data.Description;
+// 						iosurl = data.IosUrl;
+// 						androidurl = data.AndriodUrl;
+// 						appid = data.AppPackageId;
+// 						log(data);
+// 					} else {
+// 						mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
+// 					}
+// 				});
 
 				//去评分
 				document.getElementById("rate").addEventListener('tap', function() {
