@@ -224,10 +224,15 @@
 			mui.ready(function() {
 				var regionPicker;
 				//storage.init();
+				//var self = plus.webview.currentWebview();
+				//var custId = self.info.custId;
+				var custId ="124";
+				getData(custId);
+				
 				initPicker();
 			});
 			
-			function getData(){
+			function getData(custId){
 				requestJsonFile("../../data/customerdetail/baseinfo_edit.json", {custId:custId}, function(r) {
 				//request("sqldb/queryByCustomerI", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
@@ -248,7 +253,7 @@
 				});
 				
 				regionPicker.setData(region);
-				regionobj.addEventListener("click", function() {
+				regionobj.addEventListener("tab", function() {
 					regionPicker.show(function(items) {
 						var op1 = (items[0] || {});
 						var op2 = (items[1] || {});

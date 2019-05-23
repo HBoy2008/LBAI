@@ -6,14 +6,14 @@
 			"act_type" : "1",
 			"cnName" : "张先生",
 			"act_nm" : "升职",
-			"act_event" : "电话",
-			"act_expire_date" : "今下午15：30"
+			"act_event" : "打电话",
+			"act_expire_date" : "2019-05-23 15:30:20"
 		},{
 			"act_type" : "2",
 			"cnName" : "张先生",
 			"act_nm" : "生日",
 			"act_event" : "电话",
-			"act_expire_date" : "今下午15：30"
+			"act_expire_date" : "2019-05-23 15:30:20"
 		}
 	]
 }

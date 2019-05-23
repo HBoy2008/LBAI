@@ -193,7 +193,7 @@
 				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
 					<span class="sp_action_content">{{val.cnName}} {{val.act_nm}}</span>
 					<div class="clear2"></div>
-					<span class="sp_action_time">推荐日程：{{val.act_expire_date}}</span>
+					<span class="sp_action_time">推荐日程：{{val.act_expire_date | dateFormat: 'yyyy-MM-dd'}}</span>
 				</div>
 				<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;">
 					<i class="i_blue mui-icon mui-icon-plus-filled" style="line-height: 44px;"></i></div>
@@ -306,10 +306,11 @@
 			}
 				
 			function getActionList(custId){
-				//requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
-				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				//request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
+					template.helper('dateFormat', Utils.dateFormat);
 					if (r.DATASET.length>0){
 						document.getElementById("action_count").innerText="（"+r.DATASET.length+"个）"
 						render("#action_m", "action_tp", r);
