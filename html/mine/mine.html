@@ -76,20 +76,25 @@
 			mui.plusReady(function() {
 				storage.init();
 				checkMsg();
-				setInterval(function() {
-					checkMsg();
-				}, 10000);
+				
+				//每个10秒获取一次消息统计数据
+				// setInterval(function() {
+				// 	checkMsg();
+				// }, 10000);
 				
 				storageUser = kidstorageuser.getInstance();
 				document.getElementById("userName").innerText = storageUser.NickName;
 				document.getElementById("userInfo").innerText = storageUser.Signature;
 				
+				
+				document.getElementById("showMessageButton").addEventListener("tap", function(){
+					mui.alert("【消息展示】功能尚未开放!");
+				});
 				document.getElementById("mySetting").addEventListener("tap", function(){
 					openNew("mySetting.html");
 				});
 				document.getElementById("aboutUs").addEventListener("tap", function(){
-					// openNew("mySetting.html");
-					mui.alert("信息更新中,敬请期待!");
+					openNew("aboutApp.html");
 				});
 				document.getElementById("contractUs").addEventListener("tap", function(){
 					if(mui.os.plus){
@@ -100,7 +105,11 @@
 				});
 				document.getElementById("updateApp").addEventListener("tap", function(){
 					// openNew("mySetting.html");
-					mui.alert("恭喜您,已经是zui'xin'ban'ben最新版本了!");
+					appUI.showWaiting();
+					setTimeout(function(){
+						appUI.closeWaiting();
+						mui.alert("恭喜您,已经是最新版本了!");
+					}, 2000);
 				});
 			});
 			//下拉刷新具体业务实现
@@ -111,7 +120,7 @@
 
 			function checkMsg() {
 				if (storageUser.UId != "") {
-					requestJsonFile("../../data/mine/userMessage.json", {id: storageUser.UId}, function(data) {
+					requestJsonFile("../../data/mine/userMessage.json", {id : storageUser.UId}, function(data) {
 						// request("/Player/getPlayerNoReadNotify", {playerid: storageUser.UId}, function(data) {
 						if (data[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 							document.getElementById("messageCountSpan").setAttribute("class", "mui-badge");

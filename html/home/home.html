@@ -250,7 +250,7 @@
 				<div id="{{value.id}}" class="box box-info mui-slider-item">
 					<div class="actionTitle pull-left">
 						<span>日程({{value.actionName}})是否已完成？</span>
-						<span class="mui-icon mui-icon-close pull-right" aria-hidden="true" data-for = "{{value.id}}"></span>
+						<span class="mui-icon mui-icon-close pull-right" aria-hidden="true" data-id = "{{value.id}}"></span>
 					</div>
 					<div class="actionResult pull-left">
 						<div class="pull-left" style="width: 30%;">结果如何？</div>
@@ -343,28 +343,28 @@
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="suggestedActionBtnArea" style="display: flex;">
-						<div class="suggestedAction" data-id="{{value.id}}">
+						<div class="suggestedAction">
 							{{if value.act_event == "发微信"}}
-							<img src="../../images/home/wx.png" style="width: 30%;" />
+								<img onclick="gotoWeChat('{{value.wechat_nm}}')" src="../../images/home/wx.png" style="width: 30%;" />
 								<br />
-								<span data-actiontype="phone">立即联系</span>
+								<span>立即联系</span>
 							{{else}}
-								<img src="../../images/home/call.png" style="width: 30%;" />
+								<img onclick="gotoCall('{{value.phone_no}}')" src="../../images/home/call.png" style="width: 30%;" />
 								<br />
-								<span data-actiontype="phone">立即电话</span>
+								<span>立即电话</span>
 							{{/if}}
 						</div>
 						<div class="shi-line-gray-column"></div>
-						<div class="suggestedAction" data-id="{{value.id}}">
+						<div class="suggestedAction" onclick="gotoAdd2Plan('{{value.id}}')">
 							<img src="../../images/home/richeng.png" style="width: 30%;" />
 							<br />
-							<span data-actiontype="add2Plan">加入日程</span>
+							<span>加入日程</span>
 						</div>
 						<div class="shi-line-gray-column"></div>
-						<div class="suggestedAction" data-id="{{value.id}}">
+						<div class="suggestedAction" onclick="gotoIgnore('{{value.id}}')">
 							<img src="../../images/home/hl.png" style="width: 30%;" />
 							<br />
-							<span data-actiontype="ignore">忽略</span>
+							<span>忽略</span>
 						</div>
 						<div class="shi-line-gray-column"></div>
 					</div>
@@ -452,8 +452,6 @@
 			function getData() {
 				storage.init();
 				storageUser = kidstorageuser.getInstance();
-				log("***********************************")
-				log(storageUser)
 
 				//获取当前用户是否有客户信息
 				//requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
@@ -466,7 +464,6 @@
 								document.getElementById("HasFinishedActionArea").classList.remove("none");
 
 								//动态生成已完成行动卡片信息
-								log(result_finished);
 								render("#FinishedActionList", "FinishedActionTemplate", result_finished);
 								//动态加载滑动控件时需要手动调用一下滑动事件
 								var slider1 = mui(".HasFinishedAction-slider");
@@ -474,8 +471,12 @@
 								// appPage.imgInit();
 								//四个标签页二级
 								mui(".actionTitle").on("tap", ".mui-icon-close", function() {
-									if (this.dataset.for != '') {
-										document.getElementById(this.dataset.for).classList.add('none');
+									if (this.dataset.id != "") {
+										var i = slider1.slider().getSlideNumber();
+										document.getElementById(this.dataset.id).remove();
+										if(i > 0){
+											slider1.slider().prevItem();
+										}
 									}
 								});
 								mui(".actionArea").on("tap", "button", function() {
@@ -490,7 +491,6 @@
 
 						//动态生成今天日程统计数字
 						requestJsonFile("../../data/home/todayActionCount.json", {}, function(result_count) {
-							log(result_count);
 							document.getElementById("PlanedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].PS_CNT;
 							document.getElementById("SuggestedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].SS_CNT;
 							document.getElementById("FinishedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].FS_CNT;
@@ -498,14 +498,12 @@
 
 						//动态生成下个日程数据
 						requestJsonFile("../../data/home/nextAction.json", {}, function(result) {
-							log(result);
 							render("#NextActionDetail", "NextActionDetailTemplate", result);
 						});
 
 						//动态生成客户统计
 						//requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
 						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result) {
-							log(result);
 							if(result[SysConstants.DATASET_KEY].length > 0){
 								var record = result[SysConstants.DATASET_KEY][0];
 								document.getElementById("lower_cust_Span").innerText = record.LOW_CNT;
@@ -521,15 +519,14 @@
 						//动态生成行动推荐卡片信息
 						//requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
 						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId,work_date:"2019-05-20"}, function(result_suggested) {
-							log(result_suggested);
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
 							var slider2 = mui(".SuggestedAction-slider");
 							slider2.slider();
 							//四个标签页二级
-							mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
-								mui.alert("你点击了ID为" + this.dataset.id + "的行动推荐卡片!");
-							});
+							// mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
+							// 	mui.alert("你点击了ID为" + this.dataset.id + "的行动推荐卡片!");
+							// });
 						});
 
 						//生成客户分析图
@@ -538,7 +535,7 @@
 							series: [{
 								name: "",
 								type: "pie",
-								radius: ["30%", "95%"],
+								radius: ["30%", "88%"],
 								center: ["47%", "50%"],
 								itemStyle: {
 									normal: {
@@ -561,14 +558,14 @@
 								},
 								data: [{
 									value: 30,
-									name: "高潜力",
+									name: "高",
 									selected: true
 								}, {
 									value: 25,
-									name: "中潜力"
+									name: "中"
 								}, {
 									value: 45,
-									name: "低潜力"
+									name: "低"
 								}]
 							}]
 						};
@@ -609,6 +606,32 @@
 						lineChart.setOption(lineChartOption);
 					}
 				});
+			}
+			
+			function gotoWeChat(wechat_nm){
+				mui.alert("【打开微信联系人】功能改进中...");
+			}
+			
+			function gotoCall(phone_no){
+				if(mui.os.plus){
+					plus.device.dial(phone_no);
+				}else{
+					location.href = "tel:" + phone_no;
+				}
+			}
+			
+			function gotoAdd2Plan(id){
+				mui.alert("【加入日程】功能建设中...");
+			}
+			
+			function gotoIgnore(id){
+				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result) {
+					if(result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+						mui.toast("操作成功");
+						//删除当前卡片
+					}
+				});
+				
 			}
 		</script>
 	</body>

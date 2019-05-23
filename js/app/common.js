@@ -1089,7 +1089,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
 				
 				if(data[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
-					appUI.showTopTip(data[SysConstants.ERROR_MESSAGE_KEY]);
+					// appUI.showTopTip(data[SysConstants.ERROR_MESSAGE_KEY]);
 				}else {
 					mui.alert(data[SysConstants.ERROR_MESSAGE_KEY]);
 				}
@@ -1154,7 +1154,7 @@ function requestJsonFile(method, parm, callback, showwait, errcallback, shownetm
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
 				
 				if(data[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
-					appUI.showTopTip(data[SysConstants.ERROR_MESSAGE_KEY]);
+					// appUI.showTopTip(data[SysConstants.ERROR_MESSAGE_KEY]);
 				}else {
 					mui.alert(data[SysConstants.ERROR_MESSAGE_KEY]);
 				}
