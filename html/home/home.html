@@ -247,7 +247,7 @@
 			{{if DATASET==null||DATASET.length==0}}
 			<div class="nodata">暂无内容</div>
 			{{else}} {{each DATASET as value}}
-				<div id="{{value.id}}" class="box box-info mui-slider-item">
+				<div id="ACTION_{{value.id}}" class="box box-info mui-slider-item">
 					<div class="actionTitle pull-left">
 						<span>日程({{value.actionName}})是否已完成？</span>
 						<span class="mui-icon mui-icon-close pull-right" aria-hidden="true" data-id = "{{value.id}}"></span>
@@ -315,7 +315,7 @@
 			{{if DATASET==null||DATASET.length==0}}
 			<div class="nodata">暂无内容</div>
 			{{else}} {{each DATASET as value}}
-				<div id="{{value.cust_id}}" class="box box-info mui-slider-item">
+				<div id="IGNORE_{{value.id}}" class="box box-info mui-slider-item">
 					<div>
 						<b>行动推荐</b>
 					</div>
@@ -377,6 +377,7 @@
 		</script>
 
 		<script type="text/javascript">
+			var suggest_slider2;
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -473,12 +474,13 @@
 								mui(".actionTitle").on("tap", ".mui-icon-close", function() {
 									if (this.dataset.id != "") {
 										var i = slider1.slider().getSlideNumber();
-										document.getElementById(this.dataset.id).remove();
+										document.getElementById("ACTION_" + this.dataset.id).remove();
 										if(i > 0){
 											slider1.slider().prevItem();
 										}
 									}
 								});
+								
 								mui(".actionArea").on("tap", "button", function() {
 									mui.alert("你点击了ID为" + this.dataset.id + "的录音及语音识别功能");
 								});
@@ -521,8 +523,8 @@
 						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId,work_date:"2019-05-20"}, function(result_suggested) {
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
-							var slider2 = mui(".SuggestedAction-slider");
-							slider2.slider();
+							suggest_slider2 = mui(".SuggestedAction-slider");
+							suggest_slider2.slider();
 							//四个标签页二级
 							// mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
 							// 	mui.alert("你点击了ID为" + this.dataset.id + "的行动推荐卡片!");
@@ -625,13 +627,17 @@
 			}
 			
 			function gotoIgnore(id){
-				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result) {
+				requestJsonFile("../../data/home/NoneCustomer.json", {action_id:id}, function(result) {
 					if(result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
-						mui.toast("操作成功");
 						//删除当前卡片
+						var i = suggest_slider2.slider().getSlideNumber();
+						document.getElementById("IGNORE_" + id).remove();
+						if(i > 0){
+							suggest_slider2.slider().prevItem();
+						}
+						mui.toast("操作成功");
 					}
 				});
-				
 			}
 		</script>
 	</body>
