@@ -12,46 +12,75 @@
 			link();
 		</script>
 		<style type="text/css">
-			.kidNav .mui-active i {
-				display: inline-block;
-				width: 66%;
-				height: 2px;
-				background: #13D1BE;
-				position: absolute;
-				bottom: 5px;
-				left: 17%;
+			.mui-table-view-cell {
+				padding: 0px;
+			}
+			.mui-table-view-cell:first-child {
+				padding-top: 5px;
 			}
 			
-			.icon-searchIcon1 {
-				position: fixed;
-				top: 13px;
-				right: 15px;
-				z-index: 9;
-				font-size: 20px;
-			}
-			
-			#searchBtn {
-				border: none;
-				top: 5px;
+			.mui-table-view-cell:after {
+				height: auto;
 			}
 		</style>
 	</head>
 
 	<body>
-		<nav class="mui-bar mui-bar-tab kidNav" style="top: 0;">
-			<div style="width: 50%;margin: 0 auto;">
-				<a class="mui-tab-item mui-active" data-href="services/bbsIndex.html">
-					<span class="mui-tab-label">主页<i></i></span>
-				</a>
-				<a class="mui-tab-item" data-href="services/bbsChannel.html" id="bbsChannel">
-					<span class="mui-tab-label">频道<i></i></span>
-				</a>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" style="color:white;">服务</h1>
+		</header>
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+					<li id="prodRecoButton" class="mui-table-view-cell">
+						<div>
+							<img src="../../images/services/prodReco.png">
+						</div>
+					</li>
+					<li id="newsShareButton" class="mui-table-view-cell">
+						<div>
+							<img src="../../images/services/newsShare.png">
+						</div>
+					</li>
+					<li id="aiEvaluationButton" class="mui-table-view-cell">
+						<div>
+							<img src="../../images/services/aiEvaluation.png">
+						</div>
+					</li>
+				</ul>
 			</div>
-			<button class="iconfont icon-searchIcon1" id="searchBtn"></button>
-		</nav>
+		</div>
+		<script type="text/javascript">
+			script();
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+			
+				//获取操作按钮对象
+				var prodRecoButton = document.getElementById("prodRecoButton");
+				var newsShareButton = document.getElementById("newsShareButton");
+				var aiEvaluationButton = document.getElementById("aiEvaluationButton");
+			
+				//绑定[产品推荐]事件
+				prodRecoButton.addEventListener("tap", function() {
+					// openNew("addressbook.html");
+					mui.alert("【产品推荐】功能暂未开放,敬请期待!");
+				});
+			
+				//绑定[资讯分享]事件
+				newsShareButton.addEventListener("tap", function() {
+					// openNew("addwei.html");
+					mui.alert("【资讯分享】功能暂未开放,敬请期待!");
+				})
+			
+				//绑定[智能评测]事件
+				aiEvaluationButton.addEventListener("tap", function() {
+					// openNew("addwei.html");
+					mui.alert("【智能评测】功能暂未开放,敬请期待!");
+				})
+			});
+		</script>
 	</body>
-	<script type="text/javascript">
-		script(['../../js/services/bbs.js']);
-	</script>
 
 </html>
