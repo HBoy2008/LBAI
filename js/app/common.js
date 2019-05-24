@@ -1,5 +1,5 @@
 //api连接前缀
-var APP_DOMAIN = 'http://35.221.226.56:8000';
+var APP_DOMAIN = 'http://118.25.184.62:8000';
 
 //为true输出日志
 var debug = true;
