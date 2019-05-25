@@ -11,23 +11,24 @@
 			link(['../../css/reset.css']);
 		</script>
 		<style type="text/css">
-			.pick_photo{width: 50px;height: 50px;}
+			.pick_photo{width: 60px;height: 60px;}
 			.display-inline{display: inline-block;}
 			label,i {color: #5A5A5A;}
-			.card-dash{width:100%; background-color: #FFFFFF;margin-top: 10px; padding: 10px 0;}
+			.card-dash{width:100%; background-color: #FFFFFF;margin-top: 10px; padding: 10px 10px;}
 			.i_blue{color:#47BAFE}
-			.cont_table td{width:25%;text-align: center;}
+			.cont_table td{width:25%;text-align: center; border-right: 1px solid #ccc;}
+			.cont_table td:last-child {border: none;}
 			.cont_table td label {display: block;}
 			.left-border3{border-left: 3px solid #47BAFE;}
-			.float-m9{margin: 0 auto; width:90%;}
+			.float-m9{margin: 8px auto 0; width:100%;}
 			.clear2{margin: 2px 0;}
 			.clear5{margin: 5px 0;}
-			.clear10{margin: 5px 0;}
+			.clear10{margin: 10px 0; display: inline-block;width: 100%; border-top: 1px solid #47BAFE; padding: 0 10px;}
 			.progress {height: 100px;width: 120px;display: inline-block;width:30%;}
             .progress > svg {height: 100%;display: block;}
 			.progressbar__label{text-align: center;}
 			.div_tags{display: inline-block;vertical-align:top; width: 60%; margin-left:20px; margin-top:20px;}
-			.tags{display: inline-block;padding: 2px 10px; margin: 5px;background-color: #9a9a9a;color:#fff;}
+			.tags{display: inline-block;padding: 2px 10px; margin: 5px;background-color: #9a9a9a;color:#fff;border-radius: 4px;}
 			.tips{color:#5A5A5A; font-size: 0.5625rem;}
 			.sp_date{padding:20px;display: block; background-color: #47BAFE;}
 			.sp_month{display: block;color: #47BAFE;}
@@ -37,8 +38,71 @@
 			.bg_color_blue3{background-color: #05CDE5;}
 			.bg_color_green{background-color: #03D58D;}
 			.span_product{color:#9C9C9C ;padding :5px 10px;border: grey solid 1px;width: 80px;word-break:normal; display:inline-block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ;}
-			ul{padding-left: 0;width:90%;margin: 0 auto;}
-			li{ padding:5px !important;margin: 0 auto;}
+			ul{padding-left: 0;width:100%;margin: 0 auto;}
+			li{ padding:5px 0!important;margin: 0 auto;}
+			.fa-mobile {
+				font-size: 20px;
+			}
+			.star {
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				background:url(../../images/kx.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.card-dash {
+				padding: 10px 20px;
+			}
+			.mui-collapse{
+				display: flex;
+				align-items: center;
+			}
+			.mui-collapse .div_date {
+				flex: 2;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.mui-collapse .div_date .sp_date{
+				width: 37px;
+				height: 37px;
+				display: flex;
+				justify-content: center;
+				line-height: 0px;
+				border-radius: 4px;
+				color: white;
+			}
+				
+			.mui-collapse .div_plan{
+				flex: 5;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+			}
+			.mui-collapse .div_plan span{
+				color: #5a5a5a;
+				font-size: 12px;
+			}
+			.mui-collapse .div_plan span:first-child{
+				font-size: 16px;
+				color: #000000;
+			}
+			.div_ac_type {
+				background-color: #186fff !important;
+				border: 0;
+				border-radius: 6px;
+			}
+			.div_products {
+				display: flex;
+				justify-content: space-around;
+			}
+			.div_products span {
+				border-radius: 8px;
+			}
+			.xuan {
+				color: white;
+				background-color: #9c9c9c;
+			}
 		</style>
 	</head>
 	<body>
@@ -49,11 +113,9 @@
 		</header>
 		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
 			<div class="mui-scroll">
-			<div class="border-solid card-dash" id="baseInfo_div" style="height:164px;">
-				
-			</div>
+			<div class="border-solid card-dash" id="baseInfo_div"></div>
 			<div class="border-solid card-dash" id="customer-lb-info">
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>灵豹智能分析</label></div>
+				<div class="left-border3 float-m9" style="padding-left:5px;"><label>灵豹智能分析</label></div>
 				<div class="clear5"></div>
 				<div class="div_lbscore float-m9">
 					<div class="progress" id="progress"></div>
@@ -70,56 +132,59 @@
 			</div>
 			<div class="border-solid card-dash mui-hidden" id="action_sujest">
 				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>行动推荐</label><label id="action_count"></label></div>
-				<div class="clear5"></div>
 				<ul id="action_m" class="mui-table-view"></ul>
 				<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
 			
 			<div class="border-solid card-dash mui-hidden" id="schedule_history" >
 				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>互动记录</label><label id="history_count"></label></div>
-				<div class="clear5"></div>
 				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<ul id="sHistory_m" class="mui-table-view"></ul>
 				<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
 			<div class="border-solid card-dash" id="bx_con" >
 				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>保险情况</label><label id="action-count">（2份）</label></div>
-				<div class="clear5"></div>
 				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
-				<div class="clear5"></div>
-				<div class="div_action float-m9" style="height:86px;">
-					<div class="div_ac_type bg_color_blue3" style="display: inline-block;text-align: center;margin-left:15px;">
-						<span class="sp_log_type">意外险</span>
-					</div>
-					<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-						<span class="sp_log_content">阳光意外险</span>
-						<div class="clear2"></div>
-						<span class="sp_log_time">保额：50万</span>
-						<div class="clear2"></div>
-						<span class="sp_log_time">保险期限：30年</span>
-					</div>
-					<div class="div_location" onclick="" style="float: right;margin-right:15px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 86px;font-size: 18px;"></i></div>
+				<div class="div_action float-m9">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-collapse">
+							<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #0da3ff;">
+								<span class="sp_log_type">意外险</span>
+							</div>
+							<div class="div_plan" style="vertical-align: middle;margin-left:15px;">
+								<span class="sp_log_content">阳光意外险</span>
+								<span class="sp_log_time">保额：50万</span>
+								<span class="sp_log_time">保险期限：30年</span>
+							</div>
+							<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px;"></i></div>
+						</li>
+						<li class="mui-table-view-cell mui-collapse">
+							<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #0da3ff;">
+								<span class="sp_log_type">意外险</span>
+							</div>
+							<div class="div_plan" style="vertical-align: middle;margin-left:15px;">
+								<span class="sp_log_content">阳光意外险</span>
+								<span class="sp_log_time">保额：50万</span>
+								<span class="sp_log_time">保险期限：30年</span>
+							</div>
+							<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px;"></i></div>
+						</li>
+					</ul>
 				</div>
-				<div class="clear5"></div>
-				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
-				<div class="clear5"></div>
-				<div class="div_products float-m9" style="text-align: center;">
+				<div class="div_products float-m9" style="margin: 15px 0;">
 					<span class="span_product">保险需求测评结果</span>
-					<span class="span_product">保险需求测评结果</span>
+					<span class="span_product xuan">保险需求测评结果</span>
 					<span class="span_product">保险需求测评结果</span>
 				</div>
-				<div class="clear5"></div>
 				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
-				<div class="clear5"></div>
 				<div class="div_action_showmore float-m9" style="text-align: center;">智能推荐产品<i class="mui-icon fa fa-angle-double-right"></i></div>
-			</div>
 			</div>
 		</div>
 		<script type="text/html" id="baseInfo">
 			{{each DATASET as val}} {{if val!=''}}
-			<table class="float-m9" style="padding:10px 10px;">
+			<table class="float-m9" style="padding:10px 0;">
 				<tr>
-					<td style="padding:10px 10px;width:80px;">
+					<td style="width:80px;">
 						{{if val.wechat_img!=''}}
 						<img class="pick_photo" data-url="{{val.wechat_img}}" data-preview-group="1"/>
 						{{else}}
@@ -127,11 +192,11 @@
 						{{/if}}
 					</td>
 					<td>
-						<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">{{val.phone_nm}}</label><i class="mui-icon mui-icon-star common-font-color-blue"></i></div>
+						<div id="div_name"><label style="font-size: 0.875rem;font-weight: bold;padding: 0 5px;color:#000;">{{val.phone_nm}}</label><i class="star"></i></div>
 						<div id="div_concat">
 							<div id="div_wx" class="display-inline"><i class="mui-icon fa fa-weixin"></i>&nbsp;<label id="label_wx">{{val.wechat_nm}}</label></div>
 							<div id="div_phone" class="display-inline" style="margin-left:15px;"><i class="mui-icon fa fa-mobile"></i>&nbsp;<label id="label_wx">{{val.phone_no}}</label></div>
-							<div id="div_lastInteract"><label>上次互动时间：</label><label id="label_lastInteract">{{val.contact_date}}</label></div>
+							<div id="div_lastInteract"><label>上次互动：</label><label id="label_lastInteract">{{val.contact_date}}</label></div>
 							<div id="div_inputType"><label id="label_inputType">{{val.src}}</label><label id="label_inputDate">({{val.create_date}})</label></div>
 						</div>
 					</td>
@@ -140,9 +205,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="clear10"></div>
-			<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
-			<div class="clear10"></div>
+			<span class="clear10"></span>
 			<table class='cont_table float-m9' style="padding:10px 10px;">
 				<tr>
 					<td><i class="i_blue mui-icon mui-icon-phone-filled"></i><label>电话</label></td>
@@ -167,16 +230,14 @@
 		<script type="text/html" id="schedule_tp">
 			{{each DATASET as val}} {{if val!=''}}
 			<li class="mui-table-view-cell mui-collapse">
-				<div class="div_date" style="display: inline-block;text-align: center;margin-left:15px;">
+				<div class="div_date">
 					<span class="sp_date">{{val.sd_date}}</span>
-					<span class="sp_month">{{sd_month}}</span>
+					<span class="sp_month">{{sd_month}}九月</span>
 				</div>
-				<div class="div_plan" style="display: inline-block;vertical-align:top;margin-left:15px;">
-					<span class="sp_plan_content">{{val.sd_content}}</span>
-					<div class="clear2"></div>
+				<div class="div_plan">
+					<span class="sp_plan_content">{{val.sd_content}}</span>			
 					<span class="sp_plan_time">{{val.sd_time}}</span>
-					<div class="clear2"></div>
-					<span class="sp_plan_address">{{val.sd_address}}</span>
+					<span class="sp_plan_address">地点：{{val.sd_address}}</span>
 				</div>
 				<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;">
 					<i class="i_blue mui-icon mui-icon-location" style="line-height: 67px;"></i></div>
@@ -187,7 +248,7 @@
 		<script type="text/html" id="action_tp">
 			{{each DATASET as val}} {{if val!=''}}
 			<li class="mui-table-view-cell mui-collapse">
-				<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
+				<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #186fff">
 					<span class="sp_ac_type">{{val.act_event}}</span>
 				</div>
 				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
@@ -204,7 +265,7 @@
 		<script type="text/html" id="history_tp">
 			{{each DATASET as val}} {{if val!=''}}
 			<li class="mui-table-view-cell mui-collapse">
-				<div class="div_ac_type bg_color_blue1" style="display: inline-block;text-align: center;margin-left:15px;">
+				<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #0da3ff;">
 					<span class="sp_log_type">{{val.act_event}}</span>
 				</div>
 				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
@@ -238,14 +299,15 @@
 					appPage.closeLogin();
 				}
 			})
-			mui.plusReady(function() {
-			//mui.ready(function() {
-				storage.init();
-				var self = plus.webview.currentWebview();
-				var custId = self.info.custId;
+			// mui.plusReady(function() {
+			mui.ready(function() {
+				// storage.init();
+				// var self = plus.webview.currentWebview();
+				// var custId = self.info.custId;
 				//alert(custId);
 				initProgressBar();
-				
+				var custId = '2';
+
 				getBaseInfo(custId);
 				getLbScore(custId);
 				getScheduleList(custId);
@@ -254,8 +316,8 @@
 			});
 			
 			function getBaseInfo(custId){
-				//requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
-				request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				// request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					document.getElementById("title_name").innerText=r.DATASET[0].phone_nm;
@@ -265,8 +327,8 @@
 				})
 			}
 			function getLbScore(custId){
-				//requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
-				request("/sqldb/getScoreByCustId/", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				// request("/sqldb/getScoreByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 					//log(r);
 					var score = r.DATASET[0].score;
@@ -306,8 +368,8 @@
 			}
 				
 			function getActionList(custId){
-				//requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
-				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
+				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				// request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					template.helper('dateFormat', Utils.dateFormat);

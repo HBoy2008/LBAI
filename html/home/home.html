@@ -27,11 +27,7 @@
 			}
 			.planDiv span{
 				color: #47BAFE;
-				font-size: 30px;
-			}
-			
-			.SuggestedActionArea .box, #HasFinishedActionArea .box {
-				margin: auto;
+				font-size: 22px;
 			}
 			
 			.actionTitle, .actionResult, .xu-line-gray{
@@ -80,6 +76,41 @@
 				font-weight: bold;
 				font-size: 16px;
 				z-index: 99;
+			}
+			.mui-btn-primary {
+				height: 34px;
+				width: 200px;
+			}
+			.mui-btn-block {
+				padding: 0;
+				font-size: 14px;
+			}
+			.actionArea {
+				padding-top:70px ;
+			}
+			.actionButton span {
+				font-size: 22px !important;
+			}
+			.xu-line-gray {
+				border-top: 1px solid #f3f3f3;
+			}
+			.actionButton {
+				margin: 15px auto 12px;
+			}
+			.box {
+				box-shadow: 0px 1px 9px -2px #47BAFE;
+				padding: 3px 15px 3px 20px;
+			}
+			#NextActionDetail div p {
+				display: flex;
+				justify-content: flex-start;
+				font-size: 12px;
+			}
+			#NextActionDetail div p span:first-child {
+				flex: 1;
+			}
+			#NextActionDetail div p span:last-child {
+				flex: 3;
 			}
 		</style>
 	</head>
@@ -249,7 +280,7 @@
 			{{else}} {{each DATASET as value}}
 				<div id="ACTION_{{value.id}}" class="box box-info mui-slider-item">
 					<div class="actionTitle pull-left">
-						<span>日程({{value.actionName}})是否已完成？</span>
+						<span>日程({{value.actionName}})是否已完成</span>
 						<span class="mui-icon mui-icon-close pull-right" aria-hidden="true" data-id = "{{value.id}}"></span>
 					</div>
 					<div class="actionResult pull-left">
@@ -455,7 +486,7 @@
 				storageUser = kidstorageuser.getInstance();
 
 				//获取当前用户是否有客户信息
-				//requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				// requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
 				request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
