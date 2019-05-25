@@ -210,21 +210,16 @@
 		</script>
 		<script type="text/javascript">
 			mui.init();
-			
+			mui.ready(function() {
+				var header = document.querySelector('header.mui-bar');
+				var list = document.getElementById('list');
+				//calc hieght
+				list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+				//create
+				window.indexedList = new mui.IndexedList(list);
+			});
 			mui.plusReady(function () {
 	
-				requestJsonFile("../../data/userlist.json", {}, function(request) {
-					log(request);
-				mui.ready(function() {
-					var header = document.querySelector('header.mui-bar');
-					var list = document.getElementById('list');
-					//calc hieght
-					list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
-					//create
-					window.indexedList = new mui.IndexedList(list);
-				});
-				
-
 				//request("../../data/userlist.json", {}, function(request) {
 				requestJsonFile("../../data/userlist.json", {}, function(request) {
 					//log(request);
