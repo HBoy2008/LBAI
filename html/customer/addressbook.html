@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<!-- <link href="../css/mui.min.css" rel="stylesheet" /> -->
 		<script type="text/javascript">
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
@@ -22,43 +20,45 @@
 				-webkit-box-shadow: none;
 				box-shadow: none;
 			}
-			.mui-content .mui-search {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			.mui-content .mui-search {
-				background-color: #fff;
-				height: 50px;
-			}
-			.mui-content .mui-search .iputinfo{
-				width: 90%;
-				position: relative;;
-			}
-			.mui-search.mui-active:before {
-				left: -50px;
-			}
-			.mui-content .mui-search .iputinfo input{
+			.searchinfo {
 				width: 100%;
-				height: 25px;
-				border: 0;
-				background-color: #e9f0f4;
-				border-radius: 25px;
-				padding-left: 28px;
-				font-size: 14px;    
-			}
-			.mui-content .mui-search .iputinfo span {
-				position: absolute;
-				left: 8px;
-				top: 6px;
-				width: 13px;
-				height: 13px;
-				background:url(../../images/ss.png);
-				background-size:100% 100%;
+				height: 50px;
+				background-color: #fff;
+				display: flex;
+				align-items: center;	
+				justify-content: center;
 			}
 			.mui-content .mui-indexed-list-search{
+				width: 90%;
+				height: 23px;
+				border-radius: 22px;
 				border: 0;
+				display: flex;
+				align-items: center;
+				color: #a6bfcd; 
+				z-index: 0;
 			}
+			.mui-content .mui-indexed-list-search .mui-placeholder,
+			.mui-content .mui-indexed-list-search .mui-icon-search {
+				color: #a6bfcd; 
+			}
+			.mui-search .mui-placeholder {
+				height: 23px;
+				line-height: 22px;
+			}
+			.mui-input-row.mui-search .mui-icon-speech {
+				top:-1px;
+			}
+			.mui-input-row.mui-search .mui-icon-clear {
+				top: 2px;
+				right: -4px;
+			}
+			.mui-indexed-list-search input {
+				background-color: #e9f0f4;
+				color: #a6bfcd; 
+			}
+				
+				
 			.mui-content .mui-indexed-list-bar {
 				background-color: #fff;
 				margin-top: 15px;
@@ -70,7 +70,7 @@
 			.mui-content .mui-indexed-list-inner .mui-indexed-list-item{
 				margin-left: 14px;
 			}
-			.centre .linkman .mui-table-view .mui-indexed-list-group {
+			.mui-content .mui-indexed-list-inner .mui-table-view .mui-indexed-list-group {
 				width: 100%;
 				height: 15px;
 				border: 0;
@@ -80,78 +80,75 @@
 				color: #000000;
 				padding-left: 20px;
 			}
-			.centre .linkman .mui-table-view .mui-table-view-divider:before,
-			.centre .linkman .mui-table-view .mui-table-view-divider:after {
+			.mui-content .mui-indexed-list-inner .mui-table-view .mui-table-view-divider:before,
+			.mui-content .mui-indexed-list-inner .mui-table-view .mui-table-view-divider:after {
 				background: none;
 			}
-			.centre .linkman ul li{
+			.mui-content .mui-indexed-list-inner ul li{
 				margin: 0 15px;
 				padding: 0;
 				height: 50px;
 			}
-			.centre .linkman ul li:last-child{
+			.mui-content .mui-indexed-list-inner ul li:last-child{
 				border: none;
 			}
-			 .centre .linkman ul li .mui-checkbox input{
+			.mui-content .mui-indexed-list-inner ul li .mui-checkbox input{
 				position: absolute;
 				top:14px;
 				left: 2px;
 			}
-			.centre .linkman ul li .mui-input-row{
+			.mui-content .mui-indexed-list-inner ul li .mui-input-row{
 				 display: flex;
 				 color: #fff;
 
 			}
-			.centre .linkman ul li .mui-input-row .mui-switch{
+			.mui-content .mui-indexed-list-inner ul li .mui-input-row .mui-switch{
 				 margin-top: 12px;
 				 width: 85px;
 				 height: 25px;
 				 border: 0;
+				 background-color: lightsteelblue;
 			}
-			.centre .linkman ul li .mui-input-row .mui-switch {
-				background-color: lightsteelblue;
-			}
-			.centre .linkman ul li .mui-input-row .mui-switch-blue.mui-active{
+			.mui-content .mui-indexed-list-inner ul li .mui-switch-blue.mui-active{
 				background-color: #47BAFE;
 			}
-			.centre .linkman ul li .mui-input-row .mui-switch.mui-active:before {
+			.mui-content .mui-indexed-list-inner ul li .mui-input-row .mui-active:before {
 				content: '曾购买';
 				left: 2px;
 				top: 2px;
 				font-size: 12px;
 			}
-			.centre .linkman ul li .mui-input-row .mui-switch:before {
+			.mui-content .mui-indexed-list-inner ul li .mui-input-row .mui-switch:before {
 				top: 2px;
 				right: 5px;
 				font-size: 12px;
 				content: '未购买';
 				color: #fff;
 			}
-			.centre .linkman .mui-input-row .mui-switch .mui-switch-handle{
+			.mui-content .mui-indexed-list-inner .mui-input-row .mui-switch .mui-switch-handle{
 				width: 23px;
 				height: 23px;
 				border: 0;
 				left: 1px;
 				top: 1px;
 			}
-			 .centre .linkman label {
+			 .mui-content .mui-indexed-list-inner .mui-input-row label {
 				 padding-left: 30px;
 				 padding-top: 8px;
 				 display: flex;	
 			 }
-			.centre .linkman .mui-input-row label .mui-media-object{
+			.mui-content .mui-indexed-list-inner .mui-input-row label .mui-media-object{
 				margin:0 15px 0 10px;
 				border-radius: 17px;
 				width: 34px;
 				height: 34px;
 			}
-			.centre .linkman .mui-input-row label .mui-media-body{
+			.mui-content .mui-indexed-list-inner .mui-input-row label .mui-media-body{
 				font-size: 15px;
 				color: #000000;
 				height: 40px;
 			}
-			
-			.centre .linkman .mui-input-row label .mui-media-body p{
+			.mui-content .mui-indexed-list-inner .mui-input-row label .mui-media-body p{
 				margin-top: 5px;
 				font-size: 12px;
 				color: #ccc;
@@ -205,14 +202,14 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">通讯录导入</h1>
 		</header>
-		<div class="mui-content centre">
+		<div class="mui-content">
 			<div id='list' class="mui-indexed-list">
-				<div class="mui-indexed-list-search mui-search mui-active">
-					<div class="iputinfo">
-						<span></span>
-						<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+				<div class="searchinfo">
+					<div class="mui-indexed-list-search mui-input-row mui-search" >
+						<input type="search" class="mui-input-clear mui-indexed-list-search-input mui-input-speech" placeholder="搜索">
 					</div>
 				</div>
+				
 				<div class="mui-indexed-list-bar" style="height: 550px;">
 					<a>A</a>
 					<a>B</a>
@@ -242,7 +239,7 @@
 					<a>Z</a>
 				</div>
 				<div class="mui-indexed-list-alert"></div>
-				<div class="mui-indexed-list-inner linkman" >
+				<div class="mui-indexed-list-inner">
 					<div class="mui-indexed-list-empty-alert">没有数据</div>
 					<ul class="mui-table-view" id="weiinfo"></ul>
 				</div>
