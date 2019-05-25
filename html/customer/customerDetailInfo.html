@@ -303,10 +303,9 @@
 			mui.ready(function() {
 				// storage.init();
 				// var self = plus.webview.currentWebview();
-				// var custId = self.info.custId;
+				var custId = self.info.custId;
 				//alert(custId);
 				initProgressBar();
-				var custId = '2';
 
 				getBaseInfo(custId);
 				getLbScore(custId);
@@ -316,8 +315,8 @@
 			});
 			
 			function getBaseInfo(custId){
-				requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
-				// request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
+				// requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
+				request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					document.getElementById("title_name").innerText=r.DATASET[0].phone_nm;
@@ -327,8 +326,8 @@
 				})
 			}
 			function getLbScore(custId){
-				requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
-				// request("/sqldb/getScoreByCustId/", {custId:custId}, function(r) {
+				// requestJsonFile("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
+				request("/sqldb/getScoreByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/score_result.json", {custId:custId}, function(r) {
 					//log(r);
 					var score = r.DATASET[0].score;
@@ -368,8 +367,8 @@
 			}
 				
 			function getActionList(custId){
-				requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
-				// request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
+				// requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
+				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					template.helper('dateFormat', Utils.dateFormat);
