@@ -45,8 +45,8 @@
 			}
 			.star {
 				display: inline-block;
-				width: 18px;
-				height: 18px;
+				width: 16px;
+				height: 16px;
 				background:url(../../images/kx.png) no-repeat;
 				background-size: 100% 100%;
 			}
@@ -103,6 +103,10 @@
 				color: white;
 				background-color: #9c9c9c;
 			}
+			.div_name {
+				display: flex;
+				align-items: flex-start;
+			}
 		</style>
 	</head>
 	<body>
@@ -125,7 +129,7 @@
 				</div>
 			</div>
 			<div class="border-solid card-dash mui-hidden" id="schedule_plan">
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>日程计划</label><label id="schedule_count"></label></div>
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px; font-weight: 700;">日程计划</label><label id="schedule_count"></label></div>
 				<div class="clear5"></div>
 				<ul id="schedule_m" class="mui-table-view"></ul>
 				<div class="div_plan_showmore float-m9" style="text-align: center;">展开全部>></div>
@@ -137,13 +141,13 @@
 			</div>
 			
 			<div class="border-solid card-dash mui-hidden" id="schedule_history" >
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>互动记录</label><label id="history_count"></label></div>
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px;font-weight: 700;">互动记录</label><label id="history_count"></label></div>
 				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<ul id="sHistory_m" class="mui-table-view"></ul>
 				<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 			</div>
 			<div class="border-solid card-dash" id="bx_con" >
-				<div class="left-border3 float-m9" style="padding-left:5px ;"><label>保险情况</label><label id="action-count">（2份）</label></div>
+				<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px; font-weight: 700;">保险情况</label><label id="action-count">（2份）</label></div>
 				<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 				<div class="div_action float-m9">
 					<ul class="mui-table-view">
@@ -304,6 +308,7 @@
 				storage.init();
 				var self = plus.webview.currentWebview();
 				var custId = self.info.custId;
+
 				//alert(custId);
 				initProgressBar();
 
