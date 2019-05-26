@@ -15,6 +15,7 @@
 			.titleDiv {
 				height: 30px;
 				padding-top: 5px;
+				font-size: 17px;
 			}
 			
 			.planDiv{
@@ -48,7 +49,9 @@
 				padding: 0px;
 				width: 100%;
 			}
-			
+			.chart .zr-element {
+				width: 110% !important;
+			}
 			.custType {
 				width: 50%;
 				font-size: 16px;
@@ -111,6 +114,10 @@
 			}
 			#NextActionDetail div p span:last-child {
 				flex: 3;
+			}
+			b {
+				font-size: 17px;
+				/* padding-top: 10px; */
 			}
 		</style>
 	</head>
@@ -535,7 +542,7 @@
 						});
 
 						//动态生成客户统计
-						//requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
+						// requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
 						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result) {
 							if(result[SysConstants.DATASET_KEY].length > 0){
 								var record = result[SysConstants.DATASET_KEY][0];
@@ -550,7 +557,7 @@
 						});
 
 						//动态生成行动推荐卡片信息
-						//requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+						// requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
 						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId,work_date:"2019-05-20"}, function(result_suggested) {
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件

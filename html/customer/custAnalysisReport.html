@@ -38,20 +38,26 @@
 			
 			.healthContent {
 				padding: 5px;
-				text-align: left;
+				display: flex;
+				justify-content: flex-start;
+				align-items: flex-start;
 			}
 			
-			.healthContent div:first-child{
-				width:40px; float: left;
+			.healthContent span:first-child{
+				width: 20px;
+				height: 20px;
+				font-size: 24px;
+				flex: 1;
 			}
 			
-			.healthContent div:last-child{
-				width: 88%; float: right;
+			.healthContent span:last-child{
+				width: 88%;
+				flex: 9;
 			}
 			
-			.healthContent div:first-child span{
+		/* 	.healthContent div:first-child span{
 				font-size: 30px; 
-			}
+			} */
 			
 			.chart {
 				height: 250px;
@@ -97,20 +103,12 @@
 						<span class="fa fa-star-o"></span>
 					</div>
 					<div class="healthContent">
-						<div>
-							<span class="fa fa-smile-o common-font-color-blue"></span>
-						</div>
-						<div>
-							<span>客户资源分布比较多元，且平均资产较高，大额产品销售潜力较大</span>
-						</div>
+						<span class="fa fa-smile-o common-font-color-blue"></span>
+						<span>客户资源分布比较多元，且平均资产较高，大额产品销售潜力较大</span>
 					</div>
 					<div class="healthContent">
-						<div>
-							<span class="fa fa-exclamation-circle common-font-color-red"></span>
-						</div>
-						<div>
-							<span>客户资源的平均年龄较大，需加强年轻客户的经营</span>
-						</div>
+						<span class="fa fa-exclamation-circle common-font-color-red"></span>
+						<span>客户资源的平均年龄较大，需加强年轻客户的经营</span>
 					</div>
 				</div>
 			</div>
@@ -171,8 +169,10 @@
 		</script>
 		<script>
 			mui.init();
+			
 			mui.plusReady(function() {
-				
+			// mui.ready(function() {
+	
 				//生成业务趋势图
 				var barChartOption = {
 					legend: {
@@ -202,7 +202,7 @@
 							type:'bar',
 							stack: '总量',
 							itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
-							data:[120, 132, 101, 134, 90, 230]
+							data:[120, 132, 101, 134, 90, 230],
 						},
 						{
 							name:'75-100',
@@ -247,10 +247,10 @@
 						},
 						data: [{
 							value: 388,
-							name: "男"
+							name: "男",
 						}, {
 							value: 122,
-							name: "女"
+							name: "女",
 						}]
 					}]
 				};

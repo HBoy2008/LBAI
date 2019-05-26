@@ -16,14 +16,14 @@
 			label,i {color: #5A5A5A;}
 			.card-dash{width:100%; background-color: #FFFFFF;margin-top: 10px; padding: 10px 10px;}
 			.i_blue{color:#47BAFE}
-			.cont_table td{width:25%;text-align: center; border-right: 1px solid #ccc;}
+			.cont_table td{width:25%;text-align: center; border-right: 1px solid #c0d3df;}
 			.cont_table td:last-child {border: none;}
 			.cont_table td label {display: block;}
 			.left-border3{border-left: 3px solid #47BAFE;}
 			.float-m9{margin: 8px auto 0; width:100%;}
 			.clear2{margin: 2px 0;}
 			.clear5{margin: 5px 0;}
-			.clear10{margin: 10px 0; display: inline-block;width: 100%; border-top: 1px solid #47BAFE; padding: 0 10px;}
+			.clear10{margin: 10px 0; display: inline-block;width: 100%; border-top: 1px solid #c0d3df; padding: 0 10px;}
 			.progress {height: 100px;width: 120px;display: inline-block;width:30%;}
             .progress > svg {height: 100%;display: block;}
 			.progressbar__label{text-align: center;}
@@ -41,7 +41,7 @@
 			ul{padding-left: 0;width:100%;margin: 0 auto;}
 			li{ padding:5px 0!important;margin: 0 auto;}
 			.fa-mobile {
-				font-size: 20px;
+				font-size: 18px;
 			}
 			.star {
 				display: inline-block;
@@ -299,10 +299,10 @@
 					appPage.closeLogin();
 				}
 			})
-			// mui.plusReady(function() {
-			mui.ready(function() {
-				// storage.init();
-				// var self = plus.webview.currentWebview();
+			mui.plusReady(function() {
+			// mui.ready(function() {
+				storage.init();
+				var self = plus.webview.currentWebview();
 				var custId = self.info.custId;
 				//alert(custId);
 				initProgressBar();
