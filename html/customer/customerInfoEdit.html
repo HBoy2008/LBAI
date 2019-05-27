@@ -160,8 +160,11 @@
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">固定资产</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<input name="house_car" placeholder="" class="mui-input-clear mb0 bor-no p0 h30 lh30 fs14" type="text" />
+						<div class="gdzc_div mui-input-row mui-col-xs-9 dis-ib label_lineh" >
+							<div id='gdzc_house' class="check_gdzc uncheck circle" style="width:50px;border-radius: 25px;">有房</div>
+							<div id='gdzc_house_loan' class="check_gdzc uncheck circle" style="width:50px;border-radius: 25px;">房贷</div>
+							<div id='gdzc_car' class="check_gdzc uncheck circle" style="width:50px;border-radius: 25px;">有车</div>
+							<div id='gdzc_car_loan' class="check_gdzc uncheck circle" style="width:50px;border-radius: 25px;">车贷</div>
 						</div>
 					</li>
 				</ul>
@@ -243,14 +246,18 @@
 						appUI.showTopTip("生日不能为空");
 						return;
 					}
+					postData.address = document.getElementById("address").value
+					
 					if(!postData || !postData.address || postData.address == "") {
 						appUI.showTopTip("详细地址不能为空");
 						return;
 					}
+					
 					if(isEmptyObject(postData)) {
 						appUI.showTopTip("提交数据不能为空");
 						return;
 					}
+					
 					//alert(JSON.stringify(postData));
 					log(JSON.stringify(postData));
 					request("/sqldb/updateCustomerInfo/", postData, function(json) {
@@ -334,6 +341,18 @@
 					this.classList.add("checked");
 					postData.parent = this.id.split("_")[1];
 				});
+				//固定资产
+				mui(".gdzc_div").on("click",".check_gdzc",function(){
+					var tp = this.id.split("_")[1];
+					if (this.classList.contains("checked")){
+						this.classList.remove("checked");
+						postData[tp]='0';
+					} else{
+						this.classList.add("checked");
+						postData[tp]='1';
+					}
+					
+				});
 				//体检
 				mui(".health_check_div").on("click",".check_health_check",function(){
 					mui(".check_health_check").each(function(index,item){
@@ -388,6 +407,21 @@
 				if(model.parent != null){
 					document.getElementById("parent_"+model.parent).classList.add("checked");
 				}
+				
+				//固定资产
+				if(model.house != null){
+					document.getElementById("gdzc_house").classList.add("checked");
+				}
+				if(model.house_loan != null){
+					document.getElementById("gdzc_house_loan").classList.add("checked");
+				}
+				if(model.car != null){
+					document.getElementById("gdzc_car").classList.add("checked");
+				}
+				if(model.car_load != null){
+					document.getElementById("gdzc_car_load").classList.add("checked");
+				}
+				
 				//体检
 				if(model.health_check != null){
 					document.getElementById("health_check_"+model.health_check).classList.add("checked");
