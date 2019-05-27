@@ -90,7 +90,7 @@
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">所在城市</label>
 						<a id='region' class="mui-col-xs-9 mui-pull-left label_lineh" style="margin-left: -5px;margin-top: -6px;">
-							{{if model.zipcode != ""}}{{else}}
+							{{if model.zipcode != "" & model.zipcode != null}}{{else}}
 								<span class="cor-999">请选择</span> {{/if}}
 						</a>
 					</li>
@@ -232,7 +232,7 @@
 				document.getElementById("save").addEventListener("tap", function() {
 					//alert(JSON.stringify(postData));
 					if(!postData.zipcode) {
-						appUI.showTopTip("所在区域不能为空");
+						appUI.showTopTip("所在城市不能为空");
 						return;
 					}
 					if(!postData || !postData.sex || postData.sex == "") {
@@ -253,7 +253,7 @@
 					}
 					//alert(JSON.stringify(postData));
 					log(JSON.stringify(postData));
-					request("/sqldb/updateCustomerInfo", postData, function(json) {
+					request("/sqldb/updateCustomerInfo/", postData, function(json) {
 						if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 							
 							mui.back();
@@ -272,7 +272,7 @@
 			}
 			function getData(custId){
 				//requestJsonFile("../../data/customerdetail/baseinfo_edit.json", {custId:custId}, function(r) {
-				request("/sqldb/queryByCustomerID", {custId:custId}, function(r) {
+				request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length==0)
@@ -421,11 +421,13 @@
 				});
 				
 				regionPicker.setData(region);
-				var vals = defaultVal.split("-");
-				regionPicker.pickers[0].setSelectedValue(vals[0]);
-				regionPicker.pickers[1].setSelectedValue(vals[1]);
-				regionPicker.pickers[2].setSelectedValue(vals[2]);
-				setTimeout("initSelectData()", 50);
+				if(defaultVal!=null && defaultVal!=""){
+					var vals = defaultVal.split("-");
+					regionPicker.pickers[0].setSelectedValue(vals[0]);
+					regionPicker.pickers[1].setSelectedValue(vals[1]);
+					regionPicker.pickers[2].setSelectedValue(vals[2]);
+					setTimeout("initSelectData()", 50);
+				}
 				
 				regionobj.addEventListener("click", function() {
 					regionPicker.show(function(items) {
