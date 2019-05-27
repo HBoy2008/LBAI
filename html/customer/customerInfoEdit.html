@@ -8,7 +8,7 @@
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
 		<script type="text/javascript">
-			link(['../../css/reset.css']);
+			link(['../../css/reset.css','../../css/picker/mui.picker.min.css']);
 		</script>
 		<style type="text/css">
 			.pick_photo{width: 30px;height: 30px;float:right;vertical-align: middle;}
@@ -24,7 +24,7 @@
 			.male_div label {padding:0 10px;}
 			ul{padding-left: 0;margin: 0 auto;}
 			li{ width:90%;padding:5px !important;margin: 0 auto;}
-			.checked{background-color:#47BAFE}
+			.checked{background-color:#47BAFE !important;}
 			.uncheck{background-color:rgb(167,182,189)}
 			.circle{border-radius: 50%;color:#fff; width:25px;height:25px;line-height:25px;text-align:center; font-size: 12px;display: inline-block;}
 			.label_lineh{line-height: 35px; vertical-align: middle;}
@@ -34,7 +34,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left" id="btn_back"></a>
 			<h1 class="mui-title" id="title_name"></h1>
-			<a class="mui-pull-right mui-icon mui-icon-more-filled" id="btn_more"></a>
+			<button type="button" class="head-button" id="save">保存</button>
 		</header>
 		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
 			<div class="mui-scroll" id="baseInfo_div">
@@ -53,10 +53,7 @@
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">手机</label>
 						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							
 							<input id="phone_no" value="{{model.phone_no}}" placeholder="请输手机号" class="mui-input-clear mb0 bor-no p0 h30 lh30 fs14 phone" type="text" />
-							
-						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">姓名</label>
@@ -77,10 +74,10 @@
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">性别</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
+						<div class="mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
 							<div class="male_div" style="display: inline-block;">
-								<i class="mui-icon fa fa-male i_blue checked">男</i>
-								<i style="margin-left: 20px;" class="mui-icon fa fa-female uncheck">女</i>
+								<i id="sex_M" class="check_sex mui-icon fa fa-male"> 男</i>
+								<i id="sex_F" style="margin-left: 5px;" class="check_sex mui-icon fa fa-female"> 女</i>
 							</div>
 							<input id="sex" type="hidden" value="{{model.sex}}"/>
 						</div>
@@ -88,17 +85,13 @@
 					
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">出生年月</label>
-						<div id='birthday' data-options='{"type":"date"}' class="dis-b h30">{{model.birth_day}}</div>
-						<!-- <div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="male_div" style="display: inline-block;margin-left: 15px;">
-								<input name="wechat_no" class="mui-input-clear mb0 bor-no p0 h30 lh30 fs14" type="date" />
-							</div>
-						</div> -->
+						<div id='birth_date' data-options='{"type":"date"}' class="dis-b h30 label_lineh">{{model.birth_date}}</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">所在城市</label>
-						<a id='region' class="mui-col-xs-9 mui-pull-left" style="margin-left: -5px;margin-top: -6px;">{{model.zipcode}}
-							<span class="cor-999">请选择</span> <!-- {{/if}} -->
+						<a id='region' class="mui-col-xs-9 mui-pull-left label_lineh" style="margin-left: -5px;margin-top: -6px;">
+							{{if model.zipcode != ""}}{{else}}
+								<span class="cor-999">请选择</span> {{/if}}
 						</a>
 					</li>
 					<li class="mui-table-view-cell" style="height: 82px;">
@@ -107,26 +100,26 @@
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">婚姻状体</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" style="width:50px;border-radius: 25px;">已婚</div>
-							<div class="uncheck circle" style="margin-left: 20px;width:50px;border-radius: 25px;">未婚</div>
-							<input id="sex" type="hidden" />
+						<div class="marriage_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='marriage_0' class="check_marriage uncheck circle" style="width:50px;border-radius: 25px;">已婚</div>
+							<div id='marriage_1' class="check_marriage uncheck circle" style="width:50px;border-radius: 25px;">未婚</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">有子女</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" >是</div>
-							<div class="uncheck circle" style="margin-left: 20px;">无</div>
-							<input id="child" type="hidden" />
+						<div class="child_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='child_0' class="check_child uncheck circle">无</div>
+							<div id='child_1' class="check_child uncheck circle" style="width:60px;border-radius: 25px;">一个子女</div>
+							<div id='child_2' class="check_child uncheck circle" style="width:60px;border-radius: 25px;">两个子女</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">有父母</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" >是</div>
-							<div class="uncheck circle" style="margin-left: 20px;">无</div>
-							<input id="parent" type="hidden" />
+						<div class="parent_div mui-input-row mui-col-xs-9 dis-ib label_lineh">
+							<div id='parent_0' class="check_parent uncheck circle" style="width:60px;border-radius: 25px;">父母都在</div>
+							<div id='parent_1' class="check_parent uncheck circle" style="width:50px;border-radius: 25px;">父亲在</div>
+							<div id='parent_2' class="check_parent uncheck circle" style="width:50px;border-radius: 25px;">母亲在</div>
+							<div id='parent_3' class="check_parent uncheck circle" style="width:60px;border-radius: 25px;">父母不在</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
@@ -178,34 +171,34 @@
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">每年体检</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" >是</div>
-							<div class="uncheck circle" style="margin-left: 20px;">无</div>
-							<div class="checked circle" style="margin-left: 20px;width:50px;border-radius: 25px;">偶尔</div>
+						<div class="health_check_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='health_check_0' class="check_health_check uncheck circle" >是</div>
+							<div id='health_check_1' class="check_health_check uncheck circle" >无</div>
+							<div id='health_check_2' class="check_health_check uncheck circle" style="width:50px;border-radius: 25px;">偶尔</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">是否吸烟</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" >是</div>
-							<div class="uncheck circle" style="margin-left: 20px;">无</div>
-							<div class="uncheck circle" style="margin-left: 20px;width:50px;border-radius: 25px;">偶尔</div>
-							<input id="smoke" type="hidden" />
+						<div class="smoke_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='smoke_0' class="check_smoke uncheck circle" >是</div>
+							<div id='smoke_1' class="check_smoke uncheck circle" >无</div>
+							<div id='smoke_2' class="check_smoke uncheck circle" style="width:50px;border-radius: 25px;">偶尔</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">是否饮酒</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<div class="checked circle" >是</div>
-							<div class="uncheck circle" style="margin-left: 20px;">无</div>
-							<div class="uncheck circle" style="margin-left: 20px;width:50px;border-radius: 25px;">偶尔</div>
-							<input id="alcohol" type="hidden" />
+						<div class="alcohol_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='alcohol_0' class="check_alcohol uncheck circle" >是</div>
+							<div id='alcohol_1' class="check_alcohol uncheck circle" >无</div>
+							<div id='alcohol_2' class="check_alcohol uncheck circle" style="width:50px;border-radius: 25px;">偶尔</div>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<label class="mui-col-xs-3 mui-pull-left label_lineh">既往病史</label>
-						<div class="mui-input-row mui-col-xs-9 dis-ib" style="width: 75%;">
-							<input name="sick" value="{{model.sick}}" class="mui-input-clear mb0 bor-no p0 h30 lh30 fs14" type="text" />
+						<div class="sick_div mui-input-row mui-col-xs-9 dis-ib label_lineh" style="width: 75%;">
+							<div id='sick_0' class="check_sick uncheck circle" >无</div>
+							<div id='sick_1' class="check_sick uncheck circle" style="width:60px;border-radius: 25px;">无大病史</div>
+							<div id='sick_2' class="check_sick uncheck circle" style="width:60px;border-radius: 25px;">有大病史</div>
 						</div>
 					</li>
 				</ul>
@@ -214,27 +207,72 @@
 			<div id='regionbox' class="ui-alert"></div>
 		</div>
 		<script type="text/javascript">
-			script(['../../libs/picker/mui.picker.min.js', '../../libs/picker/mui.poppicker.js', '../../libs/region.js']);
+			script(['../../libs/picker/mui.dtpicker.js', '../../libs/region.js']);
 		</script>
 		<script type="text/javascript">
 			var backid = "index.html";
 			var backurl = "../" + backid;
-			mui.init();
-			//mui.plusReady(function() {
-			mui.ready(function() {
-				var regionPicker;
-				//storage.init();
-				//var self = plus.webview.currentWebview();
-				//var custId = self.info.custId;
-				var custId ="124";
-				getData(custId);
-				
-				initPicker();
-			});
+			var custId;
+			var postData = {};
 			
+			mui.init();
+			mui.plusReady(function() {
+			//mui.ready(function() {
+				var regionPicker;
+				
+				storage.init();
+				var self = plus.webview.currentWebview();
+				custId = self.info.custId;
+				backid = self.info.backid;
+				backurl = "../" + backid;
+				//custId = "E63CA7ADF0F547118841350E05DA1B01";
+				getData(custId);
+
+				//保存
+				document.getElementById("save").addEventListener("tap", function() {
+					//alert(JSON.stringify(postData));
+					if(!postData.zipcode) {
+						appUI.showTopTip("所在区域不能为空");
+						return;
+					}
+					if(!postData || !postData.sex || postData.sex == "") {
+						appUI.showTopTip("性别不能为空");
+						return;
+					}
+					if(!postData || !postData.birth_date || postData.birth_date == "") {
+						appUI.showTopTip("生日不能为空");
+						return;
+					}
+					if(!postData || !postData.address || postData.address == "") {
+						appUI.showTopTip("详细地址不能为空");
+						return;
+					}
+					if(isEmptyObject(postData)) {
+						appUI.showTopTip("提交数据不能为空");
+						return;
+					}
+					//alert(JSON.stringify(postData));
+					log(JSON.stringify(postData));
+					request("/sqldb/updateCustomerInfo", postData, function(json) {
+						if(json[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+							
+							mui.back();
+						} else {
+							mui.toast(json[SysConstants.ERROR_MESSAGE_KEY]);
+						}
+					}, true);
+				});
+				
+			});
+			function isEmptyObject(e) {
+				var t;
+				for(t in e)
+					return !1;
+				return !0
+			}
 			function getData(custId){
-				requestJsonFile("../../data/customerdetail/baseinfo_edit.json", {custId:custId}, function(r) {
-				//request("sqldb/queryByCustomerI", {custId:custId}, function(r) {
+				//requestJsonFile("../../data/customerdetail/baseinfo_edit.json", {custId:custId}, function(r) {
+				request("/sqldb/queryByCustomerID", {custId:custId}, function(r) {
 				//mui.get("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 					//log(r);
 					if (r.DATASET.length==0)
@@ -242,27 +280,161 @@
 					document.getElementById("title_name").innerText=r.DATASET[0].phone_nm;
 					var model = r.DATASET[0];
 					render("#baseInfo_div", "baseInfo", {model:model});
+					postData = model;
 					appPage.imgInit();
+					document.getElementById("birth_date").addEventListener("click", function(){
+						var dtPicker = new mui.DtPicker({ type: 'date' });
+						dtPicker.show(function (selectItems) {
+							var y = selectItems.y.text;  //获取选择的年
+							var m = selectItems.m.text;  //获取选择的月
+							var d = selectItems.d.text;  //获取选择的日
+							var date = y + "/" + m + "/" + d ;
+							postData.birth_date=date;
+							document.getElementById("birth_date").innerText = date; 
+						});
+					});
+					initPicker(model.zipcode);
+					initCheckBox(model);
+					bindCheckEvent();
+					
 				})
 			}
 			
-			function initPicker(){
+			function bindCheckEvent(){
+				//性别
+				mui(".male_div").on("click",".check_sex",function(){
+					mui(".check_sex").each(function(index,item){
+						this.classList.remove("i_blue");
+					});
+					this.classList.add("i_blue");
+					postData.sex = this.id.split("_")[1];
+				});
+				
+				 //婚姻状体
+				mui(".marriage_div").on("click",".check_marriage",function(){
+					mui(".check_marriage").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.marriage = this.id.split("_")[1];
+				});
+				//子女
+				mui(".child_div").on("click",".check_child",function(){
+					mui(".check_child").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.child = this.id.split("_")[1];
+				});
+				//父母
+				mui(".parent_div").on("click",".check_parent",function(){
+					mui(".check_parent").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.parent = this.id.split("_")[1];
+				});
+				//体检
+				mui(".health_check_div").on("click",".check_health_check",function(){
+					mui(".check_health_check").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.health_check = this.id.split("_")[2];
+				});
+				//抽烟
+				mui(".smoke_div").on("click",".check_smoke",function(){
+					mui(".check_smoke").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.smoke = this.id.split("_")[1];
+				});
+				//饮酒
+				mui(".alcohol_div").on("click",".check_alcohol",function(){
+					mui(".check_alcohol").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.alcohol = this.id.split("_")[1];
+				});
+				//病史
+				mui(".sick_div").on("click",".check_sick",function(){
+					mui(".check_sick").each(function(index,item){
+						this.classList.remove("checked");
+					});
+					this.classList.add("checked");
+					postData.sick = this.id.split("_")[1];
+				});
+			}
+			
+			function initCheckBox(model){
+				//性别
+				if(model.sex = 'M'){
+					document.getElementById("sex_M").classList.add("i_blue");
+				} else if(model.sex = 'F'){
+					document.getElementById("sex_F").classList.add("i_blue");
+				}
+				
+				//婚姻状体
+				if(model.marriage != null){
+					document.getElementById("marriage_"+model.marriage).classList.add("checked");
+				}
+				//子女
+				if(model.child != null){
+					document.getElementById("child_"+model.child).classList.add("checked");
+				}
+				//父母
+				if(model.parent != null){
+					document.getElementById("parent_"+model.parent).classList.add("checked");
+				}
+				//体检
+				if(model.health_check != null){
+					document.getElementById("health_check_"+model.health_check).classList.add("checked");
+				}
+				//抽烟
+				if(model.smoke != null){
+					document.getElementById("smoke_"+model.smoke).classList.add("checked");
+				}
+				//饮酒
+				if(model.alcohol != null){
+					document.getElementById("alcohol_"+model.alcohol).classList.add("checked");
+				}
+				//病史
+				if(model.sick != null){
+					document.getElementById("sick_"+model.sick).classList.add("checked");
+				}
+			}
+			function initSelectData(){
+				var items = regionPicker.getSelectedItems();
+				var op1 = (items[0] || {});
+				var op2 = (items[1] || {});
+				var op3 = (items[2] || {});
+				
+				document.getElementById("region").innerText = (items[0] || {}).text + " - " + (items[1] || {}).text + " - " + (items[2] || {}).text;
+				
+			}
+			function initPicker(defaultVal){
 				var regionobj = document.getElementById("region");
 				regionPicker = new mui.PopPicker({
 					layer: 3
 				});
 				
 				regionPicker.setData(region);
-				regionobj.addEventListener("tab", function() {
+				var vals = defaultVal.split("-");
+				regionPicker.pickers[0].setSelectedValue(vals[0]);
+				regionPicker.pickers[1].setSelectedValue(vals[1]);
+				regionPicker.pickers[2].setSelectedValue(vals[2]);
+				setTimeout("initSelectData()", 50);
+				
+				regionobj.addEventListener("click", function() {
 					regionPicker.show(function(items) {
 						var op1 = (items[0] || {});
 						var op2 = (items[1] || {});
 						var op3 = (items[2] || {});
-						postData = {
-							provinceid: op1.value,
-							cityid: op2.value,
-							districtid: op3.value
-						};
+						
+						postData.zipcode = op1.value+"-"+op2.value+"-"+op3.value
+						
 						regionobj.innerText = (items[0] || {}).text + " - " + (items[1] || {}).text + " - " + (items[2] || {}).text;
 						//返回 false 可以阻止选择框的关闭
 						//return false;
