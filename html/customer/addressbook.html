@@ -206,7 +206,7 @@
 			<div id='list' class="mui-indexed-list">
 				<div class="searchinfo">
 					<div class="mui-indexed-list-search mui-input-row mui-search" >
-						<input type="search" class="mui-input-clear mui-indexed-list-search-input mui-input-speech" placeholder="搜索">
+						<input id="inpt" type="search" class="mui-input-clear mui-indexed-list-search-input mui-input-speech" placeholder="搜索">
 					</div>
 				</div>
 				
@@ -248,9 +248,9 @@
 		<footer>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
-				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
-				  <button type="button" id="daobtn">导入</button>
-				  <span>已选择 100 人</span>
+					<input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
+					<button type="button" id="daobtn">导入</button>
+					<span>已选择 100 人</span>
 				</div>
 		</footer>
 		
@@ -286,6 +286,9 @@
 		<script type="text/javascript">
 			script("../../js/mui.indexedlist2.js")
 		</script>
+		<!-- <script type="text/javascript">
+			script()
+		</script> -->
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.ready(function() {
@@ -296,6 +299,8 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
+			
+			// mui.ready(function() {
 			mui.plusReady(function() {
 				requestJsonFile("../../data/phone.json", {}, function(request) {
 					log(request);
@@ -304,6 +309,8 @@
 					// 	return;
 					// }
 					render("#weiinfo", "weitamplate", request);
+					mui('.mui-switch').switch();
+
 					})
 			
 			
@@ -333,7 +340,26 @@
 				// 		}
 				// 	})
 				// }
+				
+				
+				//搜索框
+				var uls=document.getElementById("weiinfo"); 			
+				var lis = uls.getElementsByTagName("li")
+				var inpt = document.getElementById('inpt');
+				inpt.addEventListener('touchstart',function(){
+					var inval = inpt.value;
+					for(var i=0;i<lis.length;i++){
+						var paraStr = lis[i].innerText;
+						console.log(paraStr)
+						if(paraStr.indexOf(inval) < 0){
+							lis[i].style.display="none";
+						}else {
+							lis[i].style.display="block";
+						}
+					}
+				})		
 			})
+	
 		</script>
 	</body>
 

@@ -16,6 +16,9 @@
 				padding: 0;
 				margin: 0;
 			}
+			.mui-content {
+				background-color: #e9f0f4 ;
+			}
 			.searchinfo {
 				width: 100%;
 				height: 50px;
@@ -126,10 +129,14 @@
 			.mui-popover.mui-active {
 				height: 100px;
 				width: 130px;
+				background-color: white;
+				display: block;
+				top: 45px !important;
 			}
 			#topPopover .mui-scroll li{
 				height: 30px;
 				display: flex;
+				background-color: white;
 				justify-content: center;
 				align-items: center;
 			}
@@ -137,7 +144,6 @@
 				margin-right: 10px;
 			}
 		</style>
-		
 	</head>
 
 	<body>
@@ -148,7 +154,7 @@
 		<div class="mui-content">
 			<div class="searchinfo">
 				<div class="mui-indexed-list-search mui-input-row mui-search" >
-					<input type="search" class="mui-input-clear mui-indexed-list-search-input mui-input-speech" placeholder="搜索">
+					<input id="inpt" type="search" class="mui-input-clear mui-indexed-list-search-input mui-input-speech" placeholder="搜索">
 				</div>
 			</div>
 			<div class="linkman">
@@ -165,27 +171,27 @@
 			</div>
 		</div>
 			
-		<div id="topPopover" class="mui-popover " style="display: block; top: 55px;left: 110px;">
+		<div id="topPopover" class="mui-popover">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
 							<span class="mui-icon-extra mui-icon-extra-addpeople"></span>
-							<a href="#">新增客户</a>
+							<span>新增客户</span>
 						</li>
-						<li class="mui-table-view-cell">
+						<li class="mui-table-view-cell" id="batch">
 							<span class="mui-icon-extra mui-icon-extra-topic"></span>
-							<a href="#">批量导入</a>
+							<span>批量导入</span>
 						</li>
 						<li class="mui-table-view-cell">
 							<span class="mui-icon-extra mui-icon-extra-sweep"></span>
-							<a href="#">扫描名片</a>
+							<span>扫描名片</span>
 						</li>
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div>	
 
 		<script type="text/html" id="userlist">
 			{{each DATASET as value}}
@@ -206,8 +212,11 @@
 
 
 		<script type="text/javascript">
-			script();
+			script(["../../js/mui.indexedlist2.js"]);
 		</script>
+		<!-- <script type="text/javascript">
+			script();
+		</script> -->
 		<script type="text/javascript">
 			mui.init();
 			mui.ready(function() {
@@ -218,8 +227,8 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
+			// mui.ready(function() {
 			mui.plusReady(function () {
-	
 				//request("../../data/userlist.json", {}, function(request) {
 				requestJsonFile("../../data/userlist.json", {}, function(request) {
 					//log(request);
@@ -230,6 +239,38 @@
 					}
 				})
 			})
+			
+			
+			var uls=document.getElementById("users"); 			
+			var lis = uls.getElementsByTagName("li")
+			var inpt = document.getElementById('inpt');
+			inpt.addEventListener('touchstart',function(){
+				var inval = inpt.value;
+				for(var i=0;i<lis.length;i++){
+					var paraStr = lis[i].innerText
+					if(paraStr.indexOf(inval) < 0){
+						lis[i].style.display="none";
+					}else {
+						lis[i].style.display="flex";
+					}
+				}
+			})
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//菜单批量导入
+			var batch = document.getElementById('batch');
+			batch.addEventListener('tap',function(){
+				openNew("customerDiagnosis.html");
+			})
+			
 			
 			//实现点击星标进行切换
 			var xingimg = document.getElementsByClassName("xingimg");

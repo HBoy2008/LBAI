@@ -107,24 +107,9 @@
 				display: flex;
 				align-items: flex-start;
 			}
-			#topPopover {
-				position: fixed;
-			}
-			#topPopover .mui-scroll-wrapper{
-				margin-top: 5px;
-			}
-			.mui-popover.mui-active {
-				height: 70px;
-				width: 100px;
-			}
-			#topPopover .mui-scroll li{
-				height: 30px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			#topPopover .mui-scroll li span {
-				margin-right: 20px;
+			.sp_log_type,
+			.sp_ac_type {
+				color: white;
 			}
 		</style>
 	</head>
@@ -132,7 +117,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left" id="btn_back"></a>
 			<h1 class="mui-title" id="title_name"></h1>
-			<a class="mui-pull-right mui-icon mui-icon-more-filled" id="btn_more" href="#topPopover"></a>
+			<a class="mui-pull-right mui-icon mui-icon-more-filled" id="btn_more"></a>
 		</header>
 		<div class="mui-content mui-scroll-wrapper scroll" id="pullrefresh">
 			<div class="mui-scroll">
@@ -142,32 +127,31 @@
 					<div class="clear5"></div>
 					<div class="div_lbscore float-m9">
 						<div class="progress" id="progress"></div>
-						<div class="div_tags tagList" id="score_label">
-						</div>
+						<div class="div_tags tagList" id="score_label"></div>
 						<span class="tips">Tips：补充客户信息可获得更精准的分析</span>
 					</div>
 				</div>
 				<div class="border-solid card-dash mui-hidden" id="schedule_plan">
 					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px; font-weight: 700;">日程计划</label><label id="schedule_count"></label></div>
-					<div class="clear5"></div>
+					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 					<ul id="schedule_m" class="mui-table-view"></ul>
 					<div class="div_plan_showmore float-m9" style="text-align: center;">展开全部>></div>
 				</div>
 				<div class="border-solid card-dash mui-hidden" id="action_sujest">
-					<div class="left-border3 float-m9" style="padding-left:5px ;"><label>行动推荐</label><label id="action_count"></label></div>
+					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 17px;font-weight: 700;">行动推荐</label><label id="action_count"></label></div>
+					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 					<ul id="action_m" class="mui-table-view"></ul>
 					<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 				</div>
 				
 				<div class="border-solid card-dash mui-hidden" id="schedule_history" >
-					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px;font-weight: 700;">互动记录</label><label id="history_count"></label></div>
+					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 17px;font-weight: 700;">互动记录</label><label id="history_count"></label></div>
 					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
 					<ul id="sHistory_m" class="mui-table-view"></ul>
 					<div class="div_action_showmore float-m9" style="text-align: center;">展开全部>></div>
 				</div>
 				<div class="border-solid card-dash" id="bx_con" >
-					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 16px; font-weight: 700;">保险情况</label><label id="action-count">（2份）</label></div>
-					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
+					<div class="left-border3 float-m9" style="padding-left:5px ;"><label style="font-size: 17px; font-weight: 700;">保险情况</label><label id="action-count">（2份）</label></div>
 					<div class="div_action float-m9">
 						<ul class="mui-table-view">
 							<li class="mui-table-view-cell mui-collapse">
@@ -179,7 +163,7 @@
 									<span class="sp_log_time">保额：50万</span>
 									<span class="sp_log_time">保险期限：30年</span>
 								</div>
-								<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px;"></i></div>
+								<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px; font-size:20px;"></i></div>
 							</li>
 							<li class="mui-table-view-cell mui-collapse">
 								<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #0da3ff;">
@@ -190,7 +174,7 @@
 									<span class="sp_log_time">保额：50万</span>
 									<span class="sp_log_time">保险期限：30年</span>
 								</div>
-								<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px;"></i></div>
+								<div class="div_location" onclick="" style="float: right;margin-right:10px;vertical-align:middle;"><i class="i_blue mui-icon fa fa-file-text-o" style="line-height: 44px; font-size: 20px;"></i></div>
 							</li>
 						</ul>
 					</div>
@@ -200,25 +184,7 @@
 						<span class="span_product">保险需求测评结果</span>
 					</div>
 					<hr class="float-m9" style="border:1px solid #EAE7E7;"/>
-					<div class="div_action_showmore float-m9" style="text-align: center;">智能推荐产品<i class="mui-icon fa fa-angle-double-right"></i></div>
-				</div>
-			</div>
-		</div>
-		<div id="topPopover" class="mui-popover " style="display: block; top: 55px;left: 110px;">
-			<div class="mui-popover-arrow"></div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell" onclick="gotoEdit();">
-							<span class="mui-icon fa fa-edit"></span>
-							<a href="#">编辑</a>
-						</li>
-						<li class="mui-table-view-cell">
-							<span class="mui-icon fa fa-remove"></span>
-							<a href="#">删除</a>
-						</li>
-					</ul>
-				</div>
+				<div class="div_action_showmore float-m9" style="text-align: center;">智能推荐产品<i class="mui-icon fa fa-angle-double-right"></i></div>
 			</div>
 		</div>
 		<script type="text/html" id="baseInfo">
@@ -327,7 +293,6 @@
 			var backid = "index.html";
 			var backurl = "../" + backid;
 			var circle;
-			var custId;
 			
 			mui.init({
 				pullRefresh: {
@@ -345,7 +310,7 @@
 			// mui.ready(function() {
 				storage.init();
 				var self = plus.webview.currentWebview();
-				custId = self.info.custId;
+				var custId = self.info.custId;
 
 				//alert(custId);
 				initProgressBar();
@@ -356,13 +321,7 @@
 				getActionList(custId);
 				getScheduleHistoryList(custId);
 			});
-			function gotoEdit(){
-				openNew("../customer/customerInfoEdit.html", {
-					field: "customerId",
-					custId: custId,
-					backid: "customer/customerInfoEdit.html"
-				});
-			}
+			
 			function getBaseInfo(custId){
 				// requestJsonFile("../../data/customerdetail/baseinfo.json", {custId:custId}, function(r) {
 				request("/sqldb/queryByCustomerID/", {custId:custId}, function(r) {
@@ -477,6 +436,6 @@
 					}
 				});
 			}
-	</script>
+		</script>
 	</body>
 </html>

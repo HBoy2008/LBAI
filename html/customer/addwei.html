@@ -297,6 +297,8 @@
 				window.indexedList = new mui.IndexedList(list);
 			});
 			mui.plusReady(function() {
+				// mui.ready(function() {
+
 				requestJsonFile("../../data/weixin.json", {}, function(request) {
 					log(request);
 					// if(r.SysConstants.ERROR_CODE_KEY == -1) {
@@ -334,6 +336,26 @@
 				// 		}
 				// 	})
 				// }
+				
+				
+				
+				//搜索框
+				var uls=document.getElementById("weiinfo"); 			
+				var lis = uls.getElementsByTagName("li")
+				var inpt = document.getElementById('inpt');
+				inpt.addEventListener('touchstart',function(){
+					var inval = inpt.value;
+					for(var i=0;i<lis.length;i++){
+						var paraStr = lis[i].innerText;
+						console.log(paraStr)
+						if(paraStr.indexOf(inval) < 0){
+							lis[i].style.display="none";
+						}else {
+							lis[i].style.display="block";
+						}
+					}
+				})
+				
 			})
 		</script>
 	</body>
