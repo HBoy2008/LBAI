@@ -248,9 +248,9 @@
 		<footer>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
-					<input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
+					<input name="checkbox2" onclick="doif()" type="checkbox" id="boxid">
 					<button type="button" id="daobtn">导入</button>
-					<span>已选择 100 人</span>
+					<span id="xuanze">已选择 0 人</span>
 				</div>
 		</footer>
 		
@@ -273,7 +273,7 @@
 								<div class="mui-switch mui-switch-blue">
 									<div class="mui-switch-handle"></div>
 								</div> 
-								<input name="checkbox1" type="checkbox" >
+								<input name="checkbox1" type="checkbox" onclick="doif()">
 							</div>	
 						</li>
 				{{/each}}
@@ -359,6 +359,17 @@
 					}
 				})		
 			})
+			//实时更新复选框选中状态
+			function doif(){
+				var n = 0;
+				var chek = document.getElementsByName("checkbox1");
+				for(var i = 0;i<chek.length;i++){
+					if(chek[i].checked){
+						n++;
+					}
+				}
+				document.getElementById("xuanze").innerText = "已选择 "+ n +" 人";	
+			}
 	
 		</script>
 	</body>

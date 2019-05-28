@@ -113,7 +113,7 @@
 				background-color: #47BAFE;
 			}
 			.mui-content .mui-indexed-list-inner ul li .mui-input-row .mui-active:before {
-				content: '曾购买';
+				content: '曾购买' !important;
 				left: 2px;
 				top: 2px;
 				font-size: 12px;
@@ -248,10 +248,10 @@
 		<footer>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<span id="all">全选</span>
-				  <input name="checkbox2" value="Item 1" type="checkbox" id="boxid">
+				  <input name="checkbox2" onclick="doif()" type="checkbox" id="boxid" >
 				  <button type="button" id="daobtn">导入</button>
-				  <span>已选择 100 人</span>
-				</div>
+				  <span id="xuanze">已选择 0 人</span>
+				</div> 
 		</footer>
 		
 		
@@ -273,7 +273,7 @@
 								<div class="mui-switch mui-switch-blue">
 									<div class="mui-switch-handle"></div>
 								</div> 
-								<input name="checkbox1" type="checkbox" >
+								<input name="checkbox1" type="checkbox" onclick="doif()">
 							</div>	
 						</li>
 				{{/each}}
@@ -296,6 +296,7 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
+			
 			mui.plusReady(function() {
 				// mui.ready(function() {
 
@@ -307,16 +308,14 @@
 					// }
 					render("#weiinfo", "weitamplate", request);
 					mui('.mui-switch').switch();
-					})
-			
+				})	
 			
 				var box = document.getElementById("boxid");
 				var btn = document.getElementById("daobtn");
 				var chek = document.getElementsByName("checkbox1");
 				btn.addEventListener("tap", function() {
 					openNew("AssociatedUser.html")
-				})
-			
+				});
 				box.addEventListener("tap", function() {
 					if(box.checked == true){
 						for(var i=0;i<chek.length;i++){
@@ -327,36 +326,53 @@
 							chek[i].checked = true	
 						}
 					}		
-				})
-				//子复选框有一个没有选中 全选框就没有选中
-				// for(var i=0;i<chek.length;i++){
-				// 	chek[i].addEventListener("tap", function() {
-				// 		if(!this.checked){
-				// 			box.checked = false 
-				// 		}
-				// 	})
-				// }
+				});
+				
 				
 				
 				
 				//搜索框
-				var uls=document.getElementById("weiinfo"); 			
-				var lis = uls.getElementsByTagName("li")
-				var inpt = document.getElementById('inpt');
-				inpt.addEventListener('touchstart',function(){
-					var inval = inpt.value;
-					for(var i=0;i<lis.length;i++){
-						var paraStr = lis[i].innerText;
-						console.log(paraStr)
-						if(paraStr.indexOf(inval) < 0){
-							lis[i].style.display="none";
-						}else {
-							lis[i].style.display="block";
-						}
-					}
-				})
+				// var uls=document.getElementById("weiinfo"); 			
+				// var lis = uls.getElementsByTagName("li")
+				// var inpt = document.getElementById('inpt');
+				// inpt.addEventListener('touchstart',function(){
+				// 	var inval = inpt.value;
+				// 	for(var i=0;i<lis.length;i++){
+				// 		var paraStr = lis[i].innerText;
+				// 		console.log(paraStr)
+				// 		if(paraStr.indexOf(inval) < 0){
+				// 			lis[i].style.display="none";
+				// 		}else {
+				// 			lis[i].style.display="block";
+				// 		}
+				// 	}
+				// })
 				
 			})
+			//实时更新已选择的复选框
+			function doif(){
+				var n = 0;
+				var chek = document.getElementsByName("checkbox1");
+				for(var i = 0;i<chek.length;i++){
+					if(chek[i].checked){
+						n++;
+					}
+				}
+				document.getElementById("xuanze").innerText = "已选择 "+ n +" 人";	
+			}
+			
+			
+			//子复选框有一个没有选中 全选框就没有选中
+			// var chek = document.getElementsByName("checkbox1");
+			// for(var i=0;i<chek.length;i++){
+			// 	chek[i].addEventListener("tap", function() {
+			// 		if(!this.checked){
+			// 			box.checked = false 
+			// 		}
+			// 	})
+			// }
+			
+			
 		</script>
 	</body>
 
