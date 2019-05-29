@@ -206,16 +206,16 @@
 
 		<script type="text/html" id="userlist">
 			{{each DATASET as value}}
-				<li onclick="ctEvent.goToDetail('{{value.id}}')">
-					<span class="touxiang">
+				<li>
+					<span class="touxiang"  onclick="ctEvent.goToDetail('{{value.id}}')">
 						<img src="{{value.img}}">
 					</span>
-					<span>{{value.UserName}}</span>
-					<span id="fen">{{value.Average}}</span>
-					<span>{{value.Level}}</span>
-					<span>{{value.Data}}</span>
-					<span class="star" id="star">
-						<img src="../../images/kx.png" alt="" id="starimg">
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.UserName}}</span>
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Average}}</span>
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Level}}</span>
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Data}}</span>
+					<span id="star">
+						<img src="../../images/kx.png" alt="" class="star">
 					</span>
 				</li>
 			{{/each}}
@@ -238,8 +238,8 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
-			// mui.ready(function() {
-			mui.plusReady(function () {
+			mui.ready(function() {
+			// mui.plusReady(function () {
 				//request("../../data/userlist.json", {}, function(request) {
 				requestJsonFile("../../data/userlist.json", {}, function(request) {
 					//log(request);
@@ -270,37 +270,16 @@
 			
 			
 			//灵豹分正序倒序
-			var ling = document.getElementById('lingbao');
-			var zichan = document.getElementById('zichan');
-			var time = document.getElementById('time');
-			// console.log(lis)
-			for(var i=0;i<lis.length;i++){
-				var paraStr = lis[i].innerText
-			}
+			// var ling = document.getElementById('lingbao');
+			// var zichan = document.getElementById('zichan');
+			// var time = document.getElementById('time');
+			// // console.log(lis)
+			// for(var i=0;i<lis.length;i++){
+			// 	var paraStr = lis[i].innerText
+			// }
 			// var aaa = lis.innerText
 			// var fen = document.getElementById('fen');
-			console.log(paraStr)
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			// console.log(paraStr)
 			
 			
 			//菜单批量导入
@@ -311,10 +290,12 @@
 			
 			
 			//实现点击星标进行切换
-			var xingimg = document.getElementsByClassName("xingimg");
-			for(var i=0;i<xingimg.length;i++){
+			var xing= document.getElementsByClassName("star");
+			console.log(xing)
+			for(var i=0;i<xing.length;i++){
 				var a = true;
-				xingimg[i].addEventListener("tap", function() {
+				xing[i].addEventListener("tap", function() {
+					// console.log(xing[i])
 					if(a == true){
 						this.src = "../../images/sx.png";
 						return a=false;

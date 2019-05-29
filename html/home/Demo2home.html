@@ -177,16 +177,15 @@
 			.label {
 				width: 100%;
 				display: flex;
+				border-radius: 5px;
+				background-color: #9c9c9c; opacity:0.8;
 				justify-content: space-around;
 				margin-bottom: 10px;
 			}
-			.label span {
-				height: 30px;
-				background-color: #9c9c9c;
-				line-height: 30px;
-				padding: 0 10px;
-				border-radius: 4px;
+			.label p {
+				padding: 5px 0;
 				color: white;
+				margin: 0;
 			}
 			.hiddeinfo {
 				position: absolute;
@@ -370,9 +369,8 @@
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="Title">
-						<span>祝贺</span>
-						<p style="margin: 0;">王女士刚添了个宝宝，祝贺一下把王女士刚添了个宝宝，</p>
-						<div class="chakan" id="chakans">查看详情</div>
+						<span>社交</span>
+						<p style="margin: 0;">最近大家都在关注996，去朋友圈里转发一篇针对忙碌人士的保险理念文章吧</p>
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="imginfo">
@@ -387,23 +385,15 @@
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="label">
-						<span>高资产</span>
-						<span>有房</span>
-						<span>父母都在</span>
-						<span>刚看过权游</span>
+						<p>推荐转发：'上班996，生病ICU，感概之余或许只能默默准备好保险'</p>
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="suggestedActionBtnArea">
 						<div class="left">
 							<div class="suggestedAction">
-								<img onclick="gotoCall('{{value.phone_no}}')" src="../../images/home/call.png" style="width: 30%;" />
+								<img onclick="gotoCall('{{value.phone_no}}')" src="../../images/forward.jpg" style="width: 13%;" />
 								<br />
-								<span>立即电话</span>
-							</div>
-							<div class="suggestedAction" onclick="gotoAdd2Plan('{{value.id}}')">
-								<img onclick="gotoWeChat('{{value.wechat_nm}}')" src="../../images/home/wx.png" style="width: 30%;" />
-								<br />
-								<span>微信联系</span>
+								<span>立即转发</span>
 							</div>
 						</div>
 						<div class="rigth">
@@ -422,24 +412,6 @@
 				</div>
 			{{/each}} {{/if}}
 		</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		<!-- 已完成但是没有反馈行动列表模板 -->
@@ -533,11 +505,6 @@
 			
 			
 			
-			
-			
-			
-			
-			
 			// mui.plusReady(function() {
 			mui.ready(function() {
 
@@ -566,28 +533,7 @@
 
 				getData();
 				
-				var chakan = document.getElementById('chakans');
-				var hiddeinfo = document.getElementById('hiddeinfos');
-				console.log(hiddeinfo)
-				chakan.addEventListener("tap",function(){
-					var a = true;
-					if(a == true){
-						hiddeinfo.style.display = 'none';
-						return a = false
-					}else {
-						hiddeinfo.style.display = 'block';
-					}
-				});
 			});
-			
-
-
-
-
-
-
-
-
 
 			//下拉刷新具体业务实现
 			function pulldownRefresh() {
