@@ -211,10 +211,10 @@
 						<img src="{{value.img}}">
 					</span>
 					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.UserName}}</span>
-					<span onclick="ctEvent.goToDetail('{{value.id}}')" class="fen">{{value.Average}}</span>
-					<span onclick="ctEvent.goToDetail('{{value.id}}')" class="ji">{{value.Level}}</span>
-					<span onclick="ctEvent.goToDetail('{{value.id}}')" class="data">{{value.Data}}</span>
-					<span id="star">
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Average}}</span>
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Level}}</span>
+					<span onclick="ctEvent.goToDetail('{{value.id}}')">{{value.Data}}</span>
+					<span>
 						<img src="../../images/kx.png" alt="" class="star">
 					</span>
 				</li>
@@ -238,8 +238,8 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
-			mui.ready(function() {
-			// mui.plusReady(function () {
+			// mui.ready(function() {
+			mui.plusReady(function () {
 				//request("../../data/userlist.json", {}, function(request) {
 				requestJsonFile("../../data/userlist.json", {}, function(request) {
 					//log(request);
@@ -249,9 +249,11 @@
 						render("#users", "userlist", request);
 					}
 				})
+				
+				
 			})
 			
-			
+			//搜索框功能
 			var uls=document.getElementById("users"); 			
 			var lis = uls.getElementsByTagName("li")
 			var inpt = document.getElementById('inpt');
@@ -268,21 +270,30 @@
 				
 			})
 			
+			// 实现点击星标进行切换
+			// var xing= document.getElementsByClassName("star");
+			// // console.log(xing)
+			// for(var i = 0;i < xing.length;i++){
+			// 	console.log(xing[i])
+			// xing[i].addEventListener("tap", function() {
 			
-			// 灵豹分正序倒序
-			// var fen = document.getElementsByClassName("fen");
-			// var ji = document.getElementsByClassName("ji");
-			// var data = document.getElementsByClassName("data");
-			// console.log(fen)
-			// console.log(ji)
-			// console.log(data)
-			// console.log(lis)
+			
+			// }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// 灵豹分排序
 			var fen = document.getElementById("lingbao");
 			var zi = document.getElementById("zichan");
 			var data = document.getElementById("time");
-			console.log(fen)
-			console.log(zi)
-			console.log(data)
 			fen.addEventListener('tap',function(){
 				var a = 0;
 				if(a == 0){
@@ -309,13 +320,7 @@
 					a = 0;
 				}
 			})
-			
-			
-			
-			
-			
-			
-			
+			//资产排序
 			zi.addEventListener('tap',function(){
 				for(var i=0;i<lis.length;i++){
 					for(var j=0;j<lis.length-1-i;j++){
@@ -327,10 +332,7 @@
 					}
 				}
 			})
-			
-			
-			
-			
+			//互动时间排序
 			data.addEventListener('tap',function(){
 				for(var i=0;i<lis.length;i++){
 					for(var j=0;j<lis.length-1-i;j++){
@@ -344,15 +346,6 @@
 			})
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			//菜单批量导入
 			var batch = document.getElementById('batch');
 			batch.addEventListener('tap',function(){
@@ -360,22 +353,7 @@
 			})
 			
 			
-			//实现点击星标进行切换
-			// var xing= document.getElementsByClassName("star");
-			// console.log(xing)
-			// for(var i=0;i<xing.length;i++){
-			// 	var a = true;
-			// 	xing[i].addEventListener("tap", function() {
-			// 		// console.log(xing[i])
-			// 		if(a == true){
-			// 			this.src = "../../images/sx.png";
-			// 			return a=false;
-			// 		}else {
-			// 			this.src = "../../images/kx.png";
-			// 			return a=true;
-			// 		}
-			// 	})
-			// }
+			
 			
 			var ctEvent = {
 				goToDetail: function(id) {
