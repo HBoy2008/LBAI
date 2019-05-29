@@ -264,7 +264,7 @@
 		<script type="text/html" id="label_tp">
 			{{each DATASET as val}} {{if val!=''}}
 				{{each val.score_label as lab}}
-				{{if lab!=''}}
+				{{if lab!='' && lab.label!= null}}
 				<span class='tags'>{{lab.label}}</span>
 				{{/if}}
 				{{/each}}
