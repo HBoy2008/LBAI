@@ -238,8 +238,8 @@
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
-			// mui.ready(function() {
-			mui.plusReady(function () {
+			mui.ready(function() {
+			// mui.plusReady(function () {
 				//request("../../data/userlist.json", {}, function(request) {
 				requestJsonFile("../../data/userlist.json", {}, function(request) {
 					//log(request);
@@ -257,7 +257,7 @@
 			var uls=document.getElementById("users"); 			
 			var lis = uls.getElementsByTagName("li")
 			var inpt = document.getElementById('inpt');
-			inpt.addEventListener('touchstart',function(){
+			inpt.addEventListener('keyup',function(){
 				var inval = inpt.value;
 				for(var i=0;i<lis.length;i++){
 					var paraStr = lis[i].innerText

@@ -346,7 +346,7 @@
 				var uls=document.getElementById("weiinfo"); 			
 				var lis = uls.getElementsByTagName("li")
 				var inpt = document.getElementById('inpt');
-				inpt.addEventListener('touchstart',function(){
+				inpt.addEventListener('keyup',function(){
 					var inval = inpt.value;
 					for(var i=0;i<lis.length;i++){
 						var paraStr = lis[i].innerText;
