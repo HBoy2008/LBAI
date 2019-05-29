@@ -83,6 +83,7 @@
 				line-height: 35px;
 				color: #47BAFE;
 				display: flex;
+				justify-content: center;
 				position: fixed;
 				top: 104px;
 				background-color: #fff;
@@ -91,7 +92,17 @@
 			.mui-content .linkman .head span {
 				text-align: center;
 				flex: 1;
-				overflow: hidden
+				overflow: hidden;
+				position: relative;
+				text-align: center;
+			}
+			.mui-content .linkman .head span  p {
+				display: inline-block;
+				width: 7px;
+				height: 5px;
+				background:url(../../images/xxia.png) no-repeat;
+				background-size: 100% 100%;
+				margin: 0;
 			}
 			.mui-content .linkman ul {
 				padding-top: 45px;
@@ -162,9 +173,9 @@
 				<div class="head">
 					<span></span>
 					<span>姓名</span>
-					<span>灵豹分</span>
-					<span>资产</span>
-					<span>上次互动</span>
+					<span id="lingbao">灵豹分<p></p></span>
+					<span id="zichan">资产 <p></p></span>
+					<span id="time">上次互动<p></p></span>
 					<span>星标</span>
 				</div>
 				<ul id="users"></ul>
@@ -200,7 +211,7 @@
 						<img src="{{value.img}}">
 					</span>
 					<span>{{value.UserName}}</span>
-					<span>{{value.Average}}</span>
+					<span id="fen">{{value.Average}}</span>
 					<span>{{value.Level}}</span>
 					<span>{{value.Data}}</span>
 					<span class="star" id="star">
@@ -223,7 +234,7 @@
 				var header = document.querySelector('header.mui-bar');
 				var list = document.getElementById('list');
 				//calc hieght
-				list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+				// list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
 				//create
 				window.indexedList = new mui.IndexedList(list);
 			});
@@ -244,7 +255,7 @@
 			var uls=document.getElementById("users"); 			
 			var lis = uls.getElementsByTagName("li")
 			var inpt = document.getElementById('inpt');
-			inpt.addEventListener('touchstart',function(){
+			inpt.addEventListener('touchstart',function(e){
 				var inval = inpt.value;
 				for(var i=0;i<lis.length;i++){
 					var paraStr = lis[i].innerText
@@ -254,7 +265,34 @@
 						lis[i].style.display="flex";
 					}
 				}
+				
 			})
+			
+			
+			//灵豹分正序倒序
+			var ling = document.getElementById('lingbao');
+			var zichan = document.getElementById('zichan');
+			var time = document.getElementById('time');
+			// console.log(lis)
+			for(var i=0;i<lis.length;i++){
+				var paraStr = lis[i].innerText
+			}
+			// var aaa = lis.innerText
+			// var fen = document.getElementById('fen');
+			console.log(paraStr)
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
