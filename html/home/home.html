@@ -136,15 +136,14 @@
 			}
 			.label {
 				width: 100%;
-				display: flex;
-				justify-content: space-around;
-				margin-bottom: 10px;
 			}
 			.label span {
 				height: 30px;
 				background-color: #9c9c9c;
 				line-height: 30px;
+				display: inline-block;
 				padding: 0 10px;
+				margin: 5px;
 				border-radius: 4px;
 				color: white;
 			}
@@ -471,20 +470,42 @@
 					<div class="imginfo">
 						<img src="../../images/event/{{value.act_img}}.png" alt="">
 						<div class="hiddeinfo none" id="messageId_{{value.id}}">
-							<span>五天前 发布动态:</span></br>
-							<span>2019年5月12日17点24分，喜得千金，母女平安，老婆辛苦了</span></br>
-							<span>或者</span></br>
-							<span>三天前转发文章:</span></br>
-							<span>丁香医生：一岁宝宝不爱吃东西怎么办？</span>
+							 <span>{{value.act_source_content}}</span>
 						</div>
 					</div>
 					<div class="shi-line-gray"></div>
 					{{if value.act_event == "0"}}
 					<div class="label">
-						<span>高资产</span>
-						<span>有房</span>
-						<span>父母都在</span>
-						<span>刚看过权游</span>
+						{{if value.score_label1 != null}}
+						<span>{{value.score_label1}}</span>
+						{{/if}}
+						{{if value.score_label2 != null}}
+						<span>{{value.score_label2}}</span>
+						{{/if}}
+						{{if value.score_label3 != null}}
+						<span>{{value.score_label3}}</span>
+						{{/if}}
+						{{if value.score_label4 != null}}
+						<span>{{value.score_label4}}</span>
+						{{/if}}
+						{{if value.score_label5 != null}}
+						<span>{{value.score_label5}}</span>
+						{{/if}}
+						{{if value.score_label6 != null}}
+						<span>{{value.score_label6}}</span>
+						{{/if}}
+						{{if value.score_label7 != null}}
+						<span>{{value.score_label7}}</span>
+						{{/if}}
+						{{if value.score_label8 != null}}
+						<span>{{value.score_label8}}</span>
+						{{/if}}
+						{{if value.score_label9 != null}}
+						<span>{{value.score_label9}}</span>
+						{{/if}}
+						{{if value.score_label10 != null}}
+						<span>{{value.score_label10}}</span>
+						{{/if}}
 					</div>
 					{{else}}
 					<div class="labelShare">
@@ -500,7 +521,7 @@
 								<br />
 								<span>立即电话</span>
 							</div>
-							<div class="suggestedAction" onclick="gotoWeChat('{{value.wechat_nm}}')">
+							<div class="suggestedAction" onclick="gotoWeChat('{{value.wechat_no}}')">
 								<img src="../../images/home/wx.png" style="width: 30%;" />
 								<br />
 								<span>微信联系</span>
@@ -514,13 +535,23 @@
 							{{/if}}
 						</div>
 						<div class="rigth">
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', true)">
-								<img src="../../images/zan.png" style="width: 55%;" />
+							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', '{{value.act_feedback}}', true)">
+								<!-- <img src="../../images/zan.png" style="width: 55%;" /> -->
+								{{if value.act_feedback == "1"}}
+								<span class="mui-icon fa fa-thumbs-up common-font-color-blue" style="font-size: 25px;"></span>
+								{{else}}
+								<span class="mui-icon fa fa-thumbs-up" style="font-size: 25px;"></span>
+								{{/if}}
 								<br />
 								<span>有帮助</span>
 							</div>
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', false)">
-								<img src="../../images/cai.png" style="width: 55%;" />
+							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', '{{value.act_feedback}}', false)">
+								<!-- <img src="../../images/cai.png" style="width: 55%;" /> -->
+								{{if value.act_feedback == "0"}}
+								<span class="mui-icon fa fa-thumbs-up common-font-color-red" style="font-size: 25px;"></span>
+								{{else}}
+								<span class="mui-icon fa fa-thumbs-up" style="font-size: 25px;"></span>
+								{{/if}}
 								<br />
 								<span>没帮助</span>
 							</div>
@@ -552,15 +583,16 @@
 			mui.plusReady(function() {
 			// mui.ready(function() {
 
-				//绑定[行动地图]事件
-				document.getElementById("gotoMap").addEventListener("tap", function() {
-					mui.alert("【行动地图】功能尚未开放!");
-				});
-
 				//绑定[悬浮按钮]事件
 				document.getElementById("addActionManual").addEventListener("tap", function() {
 					mui.alert("【悬浮按钮】功能尚未开放!");
 					// openNew("");
+				});
+
+
+				//绑定[行动地图]事件
+				document.getElementById("gotoMap").addEventListener("tap", function() {
+					mui.alert("【行动地图】功能尚未开放!");
 				});
 
 				//绑定[查看所有日程]事件
@@ -568,6 +600,7 @@
 					mui.alert("【查看所有日程】功能尚未开放!");
 					// openNew("");
 				});
+				
 
 				//绑定[查看heuristic详细分析报告]事件
 				document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function() {
@@ -608,12 +641,12 @@
 				storageUser = kidstorageuser.getInstance();
 
 				// storageUser = {
-				// 	UId: "12313213"
+				// 	UId: "E63CA7ADF0F547118841350E05DA1BAA"
 				// };
 
 				//获取当前用户是否有客户信息
-				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
-					// request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
+				// requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+					request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
@@ -723,8 +756,8 @@
 						});
 
 						//动态生成行动推荐卡片信息  TODO
-						requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
-							// request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
+						// requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
+							request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
 							suggest_slider2 = mui(".SuggestedAction-slider");
@@ -783,21 +816,26 @@
 				}
 			}
 
-			function gotoFeedback(id, isHelped) {
-				requestJsonFile("../../data/home/NoneCustomer.json", {
-					action_id: id,
-					isHelped: isHelped
-				}, function(result) {
-					if (result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
-						//删除当前卡片
-						var i = suggest_slider2.slider().getSlideNumber();
-						document.getElementById("SUGGEST_" + id).remove();
-						if (i > 0) {
-							suggest_slider2.slider().prevItem();
-						}
-						mui.toast("操作成功(" + id + "------" + isHelped + ")");
+			function gotoFeedback(id, act_feedback, isHelped) {
+				if(act_feedback != "99"){
+					if(act_feedback == "1"){
+						mui.alert("您已经标记过当前推荐行动为[有帮助]了,请勿重复标记!");
+					}else{
+						mui.alert("您已经标记过当前推荐行动为[没帮助]了,请勿重复标记!");
 					}
-				});
+				}else{
+					requestJsonFile("../../data/home/NoneCustomer.json", {id: id, act_feedback: isHelped==true?"1":"0", salesId: storage.UId}, function(result) {
+						if (result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+							//删除当前卡片
+							var i = suggest_slider2.slider().getSlideNumber();
+							document.getElementById("SUGGEST_" + id).remove();
+							if (i > 0) {
+								suggest_slider2.slider().prevItem();
+							}
+							mui.toast("操作成功");
+						}
+					});
+				}
 			}
 		</script>
 	</body>
