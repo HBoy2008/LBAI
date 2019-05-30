@@ -105,68 +105,6 @@
 				padding: 3px 10px 3px 20px;
 				margin:0;
 			}
-			
-			
-			.Title {
-				display: flex;
-				width: 100%;
-				height: 50px;
-				align-items: center;
-				justify-content: space-around;
-				position: relative;
-			}
-			.Title span {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin: 0 10px;
-				width: 45px;
-				height: 45px;
-				background-color: #47BAFE;
-				border-radius: 6px;
-				color: white;
-			}
-			.Title p {
-				width: 80%;
-				height: 40px;
-				display: flex;
-				align-content: center;
-				color: #000000;
-				overflow: hidden;
-			}
-			.label {
-				width: 100%;
-				display: flex;
-				justify-content: space-around;
-				margin-bottom: 10px;
-			}
-			.label span {
-				height: 30px;
-				background-color: #9c9c9c;
-				line-height: 30px;
-				padding: 0 10px;
-				border-radius: 4px;
-				color: white;
-			}
-			
-			.labelShare {
-				width: 100%;
-				display: flex;
-				border-radius: 5px;
-				background-color: #9c9c9c; opacity:0.8;
-				justify-content: space-around;
-				margin-bottom: 10px;
-			}
-			
-			.labelShare p {
-				padding: 5px 0;
-				margin: 0;
-			}
-			
-			.labelShare p a {
-				color: white;
-			}
-			
 			#NextActionDetail div p {
 				display: flex;
 				justify-content: flex-start;
@@ -180,46 +118,6 @@
 			}
 			b {
 				font-size: 17px;
-			}
-			
-			
-			
-			.suggestedActionBtnArea {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin: 10px 0;
-			}
-			.suggestedActionBtnArea .left {
-				flex: 3;
-				display: flex;
-				flex-wrap: wrap;
-				border-right: 1px solid #ccc;
-			}
-			.suggestedActionBtnArea .rigth {
-				flex: 2;
-				display: flex;
-				justify-content: center;
-			}
-			.chakan {
-				position: absolute;
-				right: 10px;
-				bottom: 0;
-				color: #8f8f94;
-			}
-			.imginfo {
-				width: 100%;
-				margin-top: 10px;
-				position: relative;
-			}
-			.hiddeinfo {
-				position: absolute;
-				top:0;
-				width: 100%;
-				background:#000000; opacity: 0.8;
-				color: white;
-				border-radius: 5px;
-				padding: 10px 5px;
 			}
 		</style>
 	</head>
@@ -348,14 +246,14 @@
 					<div class="shi-line-gray"></div>
 					<div style="display: flex;">
 						<div style="width: 50%;">
-							<div class="pull-left custType">高潜力</div>
-							<div id="high_cust_Span" class="pull-left custCount">0</div>
+							<div class="pull-left custType">潜在客户</div>
+							<div id="lower_cust_Span" class="pull-left custCount">0</div>
 							<br />
-							<div class="pull-left custType">中潜力</div>
+							<div class="pull-left custType">待联系</div>
 							<div id="mid_cust_Span" class="pull-left custCount">0</div>
 							<br />
-							<div class="pull-left custType">低潜力</div>
-							<div id="lower_cust_Span" class="pull-left custCount">0</div>
+							<div class="pull-left custType">已联系</div>
+							<div id="high_cust_Span" class="pull-left custCount">0</div>
 						</div>
 						<div class="shi-line-gray-column"></div>
 						<div style="text-align: center; margin: auto;">
@@ -415,7 +313,7 @@
 				</div>
 			{{/each}} {{/if}}
 		</script>
-
+		
 		<!-- 下个日程详情模板 -->
 		<script type="text/html" id="NextActionDetailTemplate">
 			{{if DATASET==null||DATASET.length==0}}
@@ -455,76 +353,58 @@
 			{{if DATASET==null||DATASET.length==0}}
 			<div class="nodata">暂无内容</div>
 			{{else}} {{each DATASET as value}}
-				<div id="SUGGEST_{{value.id}}" class="box box-info mui-slider-item">
+				<div id="IGNORE_{{value.id}}" class="box box-info mui-slider-item">
 					<div>
 						<b>行动推荐</b>
 					</div>
 					<div class="shi-line-gray"></div>
-					<div class="Title">
-						<span>{{value.act_nm}}</span>
-						<p style="margin: 0;">{{value.act_description}}</p>
-						{{if value.act_event == "0"}}
-						<div class="chakan" onclick="showMessage('{{value.id}}')">查看详情</div>
-						{{/if}}
-					</div>
-					<div class="shi-line-gray"></div>
-					<div class="imginfo">
-						<img src="../../images/event/{{value.act_img}}.png" alt="">
-						<div class="hiddeinfo none" id="messageId_{{value.id}}">
-							<span>五天前 发布动态:</span></br>
-							<span>2019年5月12日17点24分，喜得千金，母女平安，老婆辛苦了</span></br>
-							<span>或者</span></br>
-							<span>三天前转发文章:</span></br>
-							<span>丁香医生：一岁宝宝不爱吃东西怎么办？</span>
-						</div>
-					</div>
-					<div class="shi-line-gray"></div>
-					{{if value.act_event == "0"}}
-					<div class="label">
-						<span>高资产</span>
-						<span>有房</span>
-						<span>父母都在</span>
-						<span>刚看过权游</span>
-					</div>
-					{{else}}
-					<div class="labelShare">
-						<p><a href="{{value.act_article_link}}">{{value.act_article_title}}</a></p>
-					</div>
-					{{/if}}
-					<div class="shi-line-gray"></div>
-					<div class="suggestedActionBtnArea">
-						<div class="left">
-							{{if value.act_event == "0"}}
-							<div class="suggestedAction" onclick="gotoCall('{{value.phone_no}}')">
-								<img src="../../images/home/call.png" style="width: 30%;" />
-								<br />
-								<span>立即电话</span>
-							</div>
-							<div class="suggestedAction" onclick="gotoWeChat('{{value.wechat_nm}}')">
-								<img src="../../images/home/wx.png" style="width: 30%;" />
-								<br />
-								<span>微信联系</span>
-							</div>
-							{{else if value.act_event == "1"}}
-							<div class="suggestedAction">
-								<img onclick="gotoShare('{{value.id}}')" src="../../images/forward.jpg" style="width: 13%;" />
-								<br />
-								<span>立即转发</span>
-							</div>
+					<div style="display: flex;">
+						<div>
+							{{if value.act_event == "发微信"}}
+							<span class="mui-icon fa fa-weixin common-font-color-blue" style="font-size: 25px;"></span>
+							{{else}}
+							<span class="mui-icon fa fa-phone-square common-font-color-blue" style="font-size: 25px;"></span>
 							{{/if}}
 						</div>
-						<div class="rigth">
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', true)">
-								<img src="../../images/zan.png" style="width: 55%;" />
-								<br />
-								<span>有帮助</span>
-							</div>
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', false)">
-								<img src="../../images/cai.png" style="width: 55%;" />
-								<br />
-								<span>没帮助</span>
-							</div>
+						<div style=" padding-left: 10px;">
+							<p style="color: #000000;">
+								<span>{{value.cust_nm}}{{value.act_nm}},联系一下</span>
+							</p>
+							<p>
+								<span>推荐日程：{{value.act_expire_date}}</span>
+							</p>
+							<p>
+								<!-- <span>上次互动：{{value.lastAction}}</span> -->
+								<span>上次互动：--</span>
+							</p>
 						</div>
+					</div>
+					<div class="shi-line-gray"></div>
+					<div class="suggestedActionBtnArea" style="display: flex;">
+						<div class="suggestedAction">
+							{{if value.act_event == "发微信"}}
+								<img onclick="gotoWeChat('{{value.wechat_nm}}')" src="../../images/home/wx.png" style="width: 30%;" />
+								<br />
+								<span>立即联系</span>
+							{{else}}
+								<img onclick="gotoCall('{{value.phone_no}}')" src="../../images/home/call.png" style="width: 30%;" />
+								<br />
+								<span>立即电话</span>
+							{{/if}}
+						</div>
+						<div class="shi-line-gray-column"></div>
+						<div class="suggestedAction" onclick="gotoAdd2Plan('{{value.id}}')">
+							<img src="../../images/home/richeng.png" style="width: 30%;" />
+							<br />
+							<span>加入日程</span>
+						</div>
+						<div class="shi-line-gray-column"></div>
+						<div class="suggestedAction" onclick="gotoIgnore('{{value.id}}')">
+							<img src="../../images/home/hl.png" style="width: 30%;" />
+							<br />
+							<span>忽略</span>
+						</div>
+						<div class="shi-line-gray-column"></div>
 					</div>
 				</div>
 			{{/each}} {{/if}}
@@ -571,6 +451,7 @@
 
 				//绑定[查看heuristic详细分析报告]事件
 				document.getElementById("reviewCustomerReportBtn").addEventListener("tap", function() {
+					// mui.alert("【查看heuristic详细分析报告】功能尚未开放!");
 					openNew("../customer/custAnalysisReport.html");
 				});
 
@@ -588,6 +469,10 @@
 					//下拉刷新结束
 					getData();
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					//重置上拉加载
+					// mui('#pullrefresh').pullRefresh().refresh(true);
+					//重置页码
+					page = 1;
 				}, 1000);
 			}
 
@@ -607,19 +492,15 @@
 				storage.init();
 				storageUser = kidstorageuser.getInstance();
 
-				// storageUser = {
-				// 	UId: "12313213"
-				// };
-
 				//获取当前用户是否有客户信息
-				requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
-					// request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
+				// requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
+				request("/sqldb/CountCustomerBySalesId/", {id:storageUser.UId}, function(result_none) {
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
 						requestJsonFile("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
 							if (result_finished[SysConstants.DATASET_KEY].length > 0) {
-								// document.getElementById("HasFinishedActionArea").classList.remove("none");
+								document.getElementById("HasFinishedActionArea").classList.remove("none");
 
 								//动态生成已完成行动卡片信息
 								render("#FinishedActionList", "FinishedActionTemplate", result_finished);
@@ -632,12 +513,12 @@
 									if (this.dataset.id != "") {
 										var i = slider1.slider().getSlideNumber();
 										document.getElementById("ACTION_" + this.dataset.id).remove();
-										if (i > 0) {
+										if(i > 0){
 											slider1.slider().prevItem();
 										}
 									}
 								});
-
+								
 								mui(".actionArea").on("tap", "button", function() {
 									mui.alert("你点击了ID为" + this.dataset.id + "的录音及语音识别功能");
 								});
@@ -662,80 +543,81 @@
 
 						//动态生成客户统计
 						// requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
-						request("/sqldb/getAnalysisCountValue/", {id: storageUser.UId}, function(result) {
-							var record;
-							if (result[SysConstants.DATASET_KEY].length > 0) {
-								record = result[SysConstants.DATASET_KEY][0];
-							} else {
-								record = {
-									LOW_CNT: "N/A",
-									MID_CNT: "N/A",
-									HIGH_CNT: "N/A"
-								};
+						request("/sqldb/getAnalysisCountValue/", {id:storageUser.UId}, function(result) {
+							if(result[SysConstants.DATASET_KEY].length > 0){
+								var record = result[SysConstants.DATASET_KEY][0];
+								document.getElementById("lower_cust_Span").innerText = record.LOW_CNT;
+								document.getElementById("mid_cust_Span").innerText = record.MID_CNT;
+								document.getElementById("high_cust_Span").innerText = record.HIGH_CNT;
+							}else{
+								document.getElementById("lower_cust_Span").innerText = "N/A";
+								document.getElementById("mid_cust_Span").innerText = "N/A";
+								document.getElementById("high_cust_Span").innerText = "N/A";
 							}
-							document.getElementById("lower_cust_Span").innerText = record.LOW_CNT;
-							document.getElementById("mid_cust_Span").innerText = record.MID_CNT;
-							document.getElementById("high_cust_Span").innerText = record.HIGH_CNT;
-
-							//生成客户分析图
-							var pieChartOption = {
-								calculable: false,
-								series: [{
-									name: "",
-									type: "pie",
-									radius: ["30%", "88%"],
-									center: ["47%", "50%"],
-									itemStyle: {
-										normal: {
-											label: {
-												position: "inner",
-												formatter: function(params) {
-													return params.name + ":" + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
-												}
-											},
-											labelLine: {
-												show: false
-											}
-										},
-										emphasis: {
-											label: {
-												show: true,
-												formatter: "{b}\n{d}%"
-											}
-										}
-									},
-									data: [{
-										value: record.HIGH_CNT,
-										name: "高",
-										selected: true
-									}, {
-										value: record.MID_CNT,
-										name: "中"
-									}, {
-										value: record.LOW_CNT,
-										name: "低"
-									}]
-								}]
-							};
-							var pieChartDiv = document.getElementById("pieChart");
-							var pieChart = echarts.init(pieChartDiv);
-							pieChart.setOption(pieChartOption);
 						});
 
-						//动态生成行动推荐卡片信息  TODO
-						requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
-							// request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
+						//动态生成行动推荐卡片信息
+						// requestJsonFile("../../data/home/SuggestedActionTemplate.json", {}, function(result_suggested) {
+						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId,work_date:"2019-05-20"}, function(result_suggested) {
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
 							suggest_slider2 = mui(".SuggestedAction-slider");
 							suggest_slider2.slider();
+							//四个标签页二级
+							// mui(".suggestedActionBtnArea").on("tap", ".suggestedAction", function() {
+							// 	mui.alert("你点击了ID为" + this.dataset.id + "的行动推荐卡片!");
+							// });
 						});
 
-						//生成业务趋势图 TODO
+						//生成客户分析图
+						var pieChartOption = {
+							calculable: false,
+							series: [{
+								name: "",
+								type: "pie",
+								radius: ["30%", "88%"],
+								center: ["47%", "50%"],
+								itemStyle: {
+									normal: {
+										label: {
+											position: "inner",
+											formatter: function(params) {
+												return params.name + ":" + params.value + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
+											}
+										},
+										labelLine: {
+											show: false
+										}
+									},
+									emphasis: {
+										label: {
+											show: true,
+											formatter: "{b}\n{d}%"
+										}
+									}
+								},
+								data: [{
+									value: 30,
+									name: "高",
+									selected: true
+								}, {
+									value: 25,
+									name: "中"
+								}, {
+									value: 45,
+									name: "低"
+								}]
+							}]
+						};
+						var pieChartDiv = document.getElementById("pieChart");
+						var pieChart = echarts.init(pieChartDiv);
+						pieChart.setOption(pieChartOption);
+
+						//生成业务趋势图
 						var lineChartOption = {
 							calculable: false,
 							legend: {
-								data: ["行动推荐"]
+								data: ["行动推荐", "计划日程", "成交量"]
 							},
 							xAxis: [{
 								type: "category",
@@ -748,6 +630,14 @@
 								name: "行动推荐",
 								type: "line",
 								data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
+							}, {
+								name: "计划日程",
+								type: "line",
+								data: [10, 24, 40, 150, 140, 450, 700, 300, 100, 170, 500, 1000]
+							}, {
+								name: "成交量",
+								type: "line",
+								data: [5, 16, 20, 12, 32, 40, 45, 33, 50, 55, 50, 56]
 							}]
 						};
 
@@ -757,45 +647,33 @@
 					}
 				});
 			}
-
-			function gotoWeChat(wechat_nm) {
-				mui.alert("【微信联系】功能改进中...");
+			
+			function gotoWeChat(wechat_nm){
+				mui.alert("【打开微信联系人】功能改进中...");
 			}
-
-			function gotoCall(phone_no) {
-				if (mui.os.plus) {
+			
+			function gotoCall(phone_no){
+				if(mui.os.plus){
 					plus.device.dial(phone_no);
-				} else {
+				}else{
 					location.href = "tel:" + phone_no;
 				}
 			}
-
-			function gotoShare(id) {
-				mui.alert("【立即分享】功能改进中...");
+			
+			function gotoAdd2Plan(id){
+				mui.alert("【加入日程】功能建设中...");
 			}
-
-			function showMessage(id) {
-				var checkButton = document.getElementById("messageId_"+id);
-				if(checkButton.classList.contains("none")){
-					checkButton.classList.remove("none");
-				}else{
-					checkButton.classList.add("none");
-				}
-			}
-
-			function gotoFeedback(id, isHelped) {
-				requestJsonFile("../../data/home/NoneCustomer.json", {
-					action_id: id,
-					isHelped: isHelped
-				}, function(result) {
-					if (result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
+			
+			function gotoIgnore(id){
+				requestJsonFile("../../data/home/NoneCustomer.json", {action_id:id}, function(result) {
+					if(result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 						//删除当前卡片
 						var i = suggest_slider2.slider().getSlideNumber();
-						document.getElementById("SUGGEST_" + id).remove();
-						if (i > 0) {
+						document.getElementById("IGNORE_" + id).remove();
+						if(i > 0){
 							suggest_slider2.slider().prevItem();
 						}
-						mui.toast("操作成功(" + id + "------" + isHelped + ")");
+						mui.toast("操作成功");
 					}
 				});
 			}

@@ -1,0 +1,62 @@
+{
+	"ERROR_CODE" : "SUCCESS",
+	"ERROR_MESSAGE" : "查询数据列表成功!",
+	"DATASET" : [
+		{
+			"id" : "1",
+			"act_nm" : "祝贺",
+			"act_event" : "0",
+			"act_img" : "event_img_1",
+			"sales_id" : "E63CA7ADF0F547118841350E05DA1BAA",
+			"cust_id" : "E63CA7ADF0F547118841350E05DA1B01",
+			"act_type" : "1",
+			"act_description" : "赵荣雁女士新添了一个可爱的女宝宝，快带上礼物去祝贺一下吧",
+			"act_article_title" : "",
+			"act_article_link" : "",
+			"act_source_type" : "0",
+			"act_source_id" : "0"
+		},
+		{
+			"id" : "2",
+			"act_nm" : "闲聊",
+			"act_event" : "0",
+			"act_img" : "event_img_2",
+			"sales_id" : "E63CA7ADF0F547118841350E05DA1BAA",
+			"cust_id" : "E63CA7ADF0F547118841350E05DA1B01",
+			"act_type" : "2",
+			"act_description" : "李达勇先生刚换了一份工作，快与他聊聊最近的状态，保持紧密联系吧",
+			"act_article_title" : "",
+			"act_article_link" : "",
+			"act_source_type" : "0",
+			"act_source_id" : "0"
+		},
+		{
+			"id" : "3",
+			"act_nm" : "约访",
+			"act_event" : "0",
+			"act_img" : "event_img_3",
+			"sales_id" : "E63CA7ADF0F547118841350E05DA1BAA",
+			"cust_id" : "E63CA7ADF0F547118841350E05DA1B01",
+			"act_type" : "3",
+			"act_description" : "周利方先生最近创业了，快去帮助他建立医疗保障，创业无后顾之忧",
+			"act_article_title" : "",
+			"act_article_link" : "",
+			"act_source_type" : "0",
+			"act_source_id" : "0"
+		},
+		{
+			"id" : "4",
+			"act_nm" : "社交",
+			"act_event" : "1",
+			"act_img" : "event_img_4",
+			"sales_id" : "E63CA7ADF0F547118841350E05DA1BAA",
+			"cust_id" : "E63CA7ADF0F547118841350E05DA1B01",
+			"act_type" : "4",
+			"act_description" : "最近大家都在关注996，去朋友圈里转发一篇针对忙碌人士的保险理念文章吧",
+			"act_article_title" : "最近大家都在关注996，去朋友圈里转发一篇针对忙碌人士的保险理念文章吧",
+			"act_article_link" : "https://mp.weixin.qq.com/s/8AhT1F0Kaq1tafxxAiuEqg",
+			"act_source_type" : "0",
+			"act_source_id" : "0"
+		}
+	]
+}

@@ -577,7 +577,7 @@
 					} else {
 						requestJsonFile("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
 							if (result_finished[SysConstants.DATASET_KEY].length > 0) {
-								document.getElementById("HasFinishedActionArea").classList.remove("none");
+								// document.getElementById("HasFinishedActionArea").classList.remove("none");
 
 								//动态生成已完成行动卡片信息
 								render("#FinishedActionList", "FinishedActionTemplate", result_finished);
