@@ -535,7 +535,8 @@
 							{{/if}}
 						</div>
 						<div class="rigth">
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', '{{value.act_feedback}}', true)">
+							{{if value.act_feedback != "0"}}
+							<div class="suggestedAction" id="HELPED_{{value.id}}" onclick="gotoFeedback(this, '{{value.id}}', '{{value.act_feedback}}', true)">
 								<!-- <img src="../../images/zan.png" style="width: 55%;" /> -->
 								{{if value.act_feedback == "1"}}
 								<span class="mui-icon fa fa-thumbs-up common-font-color-blue" style="font-size: 25px;"></span>
@@ -545,16 +546,19 @@
 								<br />
 								<span>有帮助</span>
 							</div>
-							<div class="suggestedAction" onclick="gotoFeedback('{{value.id}}', '{{value.act_feedback}}', false)">
+							{{/if}}
+							{{if value.act_feedback != "1"}}
+							<div class="suggestedAction" id="UNHELPED_{{value.id}}" onclick="gotoFeedback(this, '{{value.id}}', '{{value.act_feedback}}', false)">
 								<!-- <img src="../../images/cai.png" style="width: 55%;" /> -->
 								{{if value.act_feedback == "0"}}
-								<span class="mui-icon fa fa-thumbs-up common-font-color-red" style="font-size: 25px;"></span>
+								<span class="mui-icon fa fa-thumbs-down common-font-color-red" style="font-size: 25px;"></span>
 								{{else}}
-								<span class="mui-icon fa fa-thumbs-up" style="font-size: 25px;"></span>
+								<span class="mui-icon fa fa-thumbs-down" style="font-size: 25px;"></span>
 								{{/if}}
 								<br />
 								<span>没帮助</span>
 							</div>
+							{{/if}}
 						</div>
 					</div>
 				</div>
@@ -580,8 +584,8 @@
 				}
 			});
 
-			mui.plusReady(function() {
-			// mui.ready(function() {
+			// mui.plusReady(function() {
+			mui.ready(function() {
 
 				//绑定[悬浮按钮]事件
 				document.getElementById("addActionManual").addEventListener("tap", function() {
@@ -637,12 +641,12 @@
 			}
 
 			function getData() {
-				storage.init();
-				storageUser = kidstorageuser.getInstance();
+				// storage.init();
+				// storageUser = kidstorageuser.getInstance();
 
-				// storageUser = {
-				// 	UId: "E63CA7ADF0F547118841350E05DA1BAA"
-				// };
+				storageUser = {
+					UId: "E63CA7ADF0F547118841350E05DA1BAA"
+				};
 
 				//获取当前用户是否有客户信息
 				// requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
@@ -816,7 +820,8 @@
 				}
 			}
 
-			function gotoFeedback(id, act_feedback, isHelped) {
+			function gotoFeedback(thisDom, id, act_feedback, isHelped) {
+				console.log(thisDom.classList);
 				if(act_feedback != "99"){
 					if(act_feedback == "1"){
 						mui.alert("您已经标记过当前推荐行动为[有帮助]了,请勿重复标记!");
@@ -824,15 +829,24 @@
 						mui.alert("您已经标记过当前推荐行动为[没帮助]了,请勿重复标记!");
 					}
 				}else{
-					requestJsonFile("../../data/home/NoneCustomer.json", {id: id, act_feedback: isHelped==true?"1":"0", salesId: storage.UId}, function(result) {
+					request("/sqldb/insertLpActFeedback/", {id: id, act_feedback: isHelped==true?"1":"0", salesId: storageUser.UId}, function(result) {
+					// requestJsonFile("../../data/home/NoneCustomer.json", {id: id, act_feedback: isHelped==true?"1":"0", salesId: storage.UId}, function(result) {
 						if (result[SysConstants.ERROR_CODE_KEY] == SysConstants.ERROR_CODE_OBJECT.ERROR_CODE_SUCCESS) {
 							//删除当前卡片
-							var i = suggest_slider2.slider().getSlideNumber();
-							document.getElementById("SUGGEST_" + id).remove();
-							if (i > 0) {
-								suggest_slider2.slider().prevItem();
+							// var i = suggest_slider2.slider().getSlideNumber();
+							// document.getElementById("SUGGEST_" + id).remove();
+							// if (i > 0) {
+							// 	suggest_slider2.slider().prevItem();
+							// }
+							if(isHelped){
+								thisDom.classList.add("common-font-color-blue");
+								document.getElementById("UNHELPED_" + id).classList.add("none");
+							}else{
+								thisDom.classList.add("common-font-color-red");
+								document.getElementById("HELPED_" + id).classList.add("none");
 							}
 							mui.toast("操作成功");
+							thisDom.onclick = null;
 						}
 					});
 				}
