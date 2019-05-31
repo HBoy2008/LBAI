@@ -181,8 +181,6 @@
 				font-size: 17px;
 			}
 			
-			
-			
 			.suggestedActionBtnArea {
 				display: flex;
 				justify-content: center;
@@ -205,6 +203,7 @@
 				right: 10px;
 				bottom: 0;
 				color: #8f8f94;
+				font-size: 12px;
 			}
 			.imginfo {
 				width: 100%;
@@ -465,12 +464,18 @@
 						<span>{{value.act_nm}}</span>
 						<p style="margin: 0;">{{value.act_description}}</p>
 						{{if value.act_event == "0"}}
-						<div class="chakan" onclick="showMessage('{{value.id}}')">查看详情</div>
+						<div class="chakan" onclick="showMessage('{{value.id}}')">
+							<i class="mui-icon fa fa-info-circle";"></i>查看详情
+							</div>
 						{{/if}}
 					</div>
 					<div class="shi-line-gray"></div>
 					<div class="imginfo">
+						{{if value.act_img == null || value.act_img.trim() == ""}}
+						<img src="../../images/event/event_img_2.png" alt="">
+						{{else}}
 						<img src="../../images/event/{{value.act_img}}.png" alt="">
+						{{/if}}
 						<div class="hiddeinfo none" id="messageId_{{value.id}}">
 							 <span>{{value.act_source_content}}</span>
 						</div>
