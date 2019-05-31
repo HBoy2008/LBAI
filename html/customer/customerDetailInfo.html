@@ -29,7 +29,7 @@
 			.progressbar__label{text-align: center;}
 			.div_tags{display: inline-block;vertical-align:top; width: 60%; margin-left:20px; margin-top:20px;}
 			.tags{display: inline-block;padding: 2px 10px; margin: 5px;background-color: #9a9a9a;color:#fff;border-radius: 4px;}
-			.tips{color:#5A5A5A; font-size: 0.5625rem;}
+			.tips{color:#5A5A5A; font-size: 0.5625rem;display: flex;}
 			.sp_date{padding:20px;display: block; background-color: #47BAFE;}
 			.sp_month{display: block;color: #47BAFE;}
 			.div_ac_type{padding:2px 10px;border: grey solid 1px;vertical-align: middle;}
@@ -110,6 +110,7 @@
 			.sp_log_type,
 			.sp_ac_type {
 				color: white;
+				line-height: 35px;
 			}
 			#topPopover {
 				position: fixed;
@@ -264,7 +265,7 @@
 		<script type="text/html" id="label_tp">
 			{{each DATASET as val}} {{if val!=''}}
 				{{each val.score_label as lab}}
-				{{if lab!='' && lab.label!= null}}
+				{{if lab!='' && lab.label!= null && lab.label.trim()!= ""}}
 				<span class='tags'>{{lab.label}}</span>
 				{{/if}}
 				{{/each}}
@@ -293,10 +294,10 @@
 			{{each DATASET as val}} {{if val!=''}}
 			<li class="mui-table-view-cell mui-collapse">
 				<div class="div_ac_type bg_color_blue1" style="margin-left:15px; background-color: #186fff">
-					<span class="sp_ac_type">{{val.act_event}}</span>
+					<span class="sp_ac_type">{{val.act_nm}}</span>
 				</div>
 				<div class="div_plan" style="vertical-align: middle; display: inline-block;margin-left:15px;">
-					<span class="sp_action_content">{{val.cnName}} {{val.act_nm}}</span>
+					<span class="sp_action_content">{{val.act_description}}</span>
 					<div class="clear2"></div>
 					<span class="sp_action_time">推荐日程：{{val.act_expire_date | dateFormat: 'yyyy-MM-dd'}}</span>
 				</div>
@@ -347,6 +348,7 @@
 			mui.plusReady(function() {
 			// mui.ready(function() {
 				storage.init();
+				storageUser = kidstorageuser.getInstance();
 				var self = plus.webview.currentWebview();
 				custId = self.info.custId;
 
@@ -420,7 +422,7 @@
 				
 			function getActionList(custId){
 				// requestJsonFile("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
-				request("/sqldb/getActSuggestByCustId/", {custId:custId}, function(r) {
+				request("/sqldb/getCurDateSuggestAction/", {custId:custId,id:storageUser.UId, work_date:"2019-05-20"}, function(r) {
 				//mui.get("../../data/customerdetail/action_info.json", {custId:custId}, function(r) {
 					//log(r);
 					template.helper('dateFormat', Utils.dateFormat);
