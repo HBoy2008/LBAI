@@ -143,7 +143,7 @@
 				line-height: 30px;
 				display: inline-block;
 				padding: 0 10px;
-				margin: 5px;
+				margin: 1px 5px;
 				border-radius: 4px;
 				color: white;
 			}
@@ -290,42 +290,44 @@
 
 			<!-- 首页 - 智能日历展示 -->
 			<div id="AICalendarArea" class="none">
-				<div class="box box-info">
-					<div class="titleDiv">
-						<div class="pull-left" style="width: 75%;">
+				<div id="todayActionArea">
+					<div class="box box-info">
+						<div class="titleDiv">
+							<div class="pull-left" style="width: 75%;">
+								<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
+								<b>今天日程</b>
+							</div>
+							<div class="pull-right" style="width: 20%; text-align: right;">
+								<span id="gotoMap" class="mui-icon mui-icon-map common-font-color-blue"></span>
+							</div>
+						</div>
+						<div class="shi-line-gray"></div>
+						<div class="planDiv">
+							<div style="width: 33.33%;">
+								<p>已计划</p>
+								<span id="PlanedSechdualSpan">0</span>
+							</div>
+							<div style="width: 33.33%;">
+								<p>行动推荐</p>
+								<span id="SuggestedSechdualSpan">0</span>
+							</div>
+							<div style="width: 33.33%;">
+								<p>已完成</p>
+								<span id="FinishedSechdualSpan">0</span>
+							</div>
+						</div>
+						<div class="shi-line-gray"></div>
+						<div>
 							<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
-							<b>今天日程</b>
+							<b>下个日程</b>
 						</div>
-						<div class="pull-right" style="width: 20%; text-align: right;">
-							<span id="gotoMap" class="mui-icon mui-icon-map common-font-color-blue"></span>
+						<div id="NextActionDetail" style="display: flex;">
+							<!-- 下个日程详情 -->
 						</div>
-					</div>
-					<div class="shi-line-gray"></div>
-					<div class="planDiv">
-						<div style="width: 33.33%;">
-							<p>已计划</p>
-							<span id="PlanedSechdualSpan">0</span>
+						<div class="shi-line-gray"></div>
+						<div id="reviewAllPlanBtn" style="text-align: center;">
+							<p>查看全部日程&gt;&gt;</p>
 						</div>
-						<div style="width: 33.33%;">
-							<p>行动推荐</p>
-							<span id="SuggestedSechdualSpan">0</span>
-						</div>
-						<div style="width: 33.33%;">
-							<p>已完成</p>
-							<span id="FinishedSechdualSpan">0</span>
-						</div>
-					</div>
-					<div class="shi-line-gray"></div>
-					<div>
-						<span class="mui-icon fa fa-calendar-minus-o common-font-color-blue"></span>
-						<b>下个日程</b>
-					</div>
-					<div id="NextActionDetail" style="display: flex;">
-						<!-- 下个日程详情 -->
-					</div>
-					<div class="shi-line-gray"></div>
-					<div id="reviewAllPlanBtn" style="text-align: center;">
-						<p>查看全部日程&gt;&gt;</p>
 					</div>
 				</div>
 
@@ -476,34 +478,34 @@
 					<div class="shi-line-gray"></div>
 					{{if value.act_event == "0"}}
 					<div class="label">
-						{{if value.score_label1 != null}}
+						{{if value.score_label1 != null && value.score_label1.trim() != ""}}
 						<span>{{value.score_label1}}</span>
 						{{/if}}
-						{{if value.score_label2 != null}}
+						{{if value.score_label2 != null && value.score_label2.trim() != ""}}
 						<span>{{value.score_label2}}</span>
 						{{/if}}
-						{{if value.score_label3 != null}}
+						{{if value.score_label3 != null && value.score_label3.trim() != ""}}
 						<span>{{value.score_label3}}</span>
 						{{/if}}
-						{{if value.score_label4 != null}}
+						{{if value.score_label4 != null && value.score_label4.trim() != ""}}
 						<span>{{value.score_label4}}</span>
 						{{/if}}
-						{{if value.score_label5 != null}}
+						{{if value.score_label5 != null && value.score_label5.trim() != ""}}
 						<span>{{value.score_label5}}</span>
 						{{/if}}
-						{{if value.score_label6 != null}}
+						{{if value.score_label6 != null && value.score_label6.trim() != ""}}
 						<span>{{value.score_label6}}</span>
 						{{/if}}
-						{{if value.score_label7 != null}}
+						{{if value.score_label7 != null && value.score_label7.trim() != ""}}
 						<span>{{value.score_label7}}</span>
 						{{/if}}
-						{{if value.score_label8 != null}}
+						{{if value.score_label8 != null && value.score_label8.trim() != ""}}
 						<span>{{value.score_label8}}</span>
 						{{/if}}
-						{{if value.score_label9 != null}}
+						{{if value.score_label9 != null && value.score_label9.trim() != ""}}
 						<span>{{value.score_label9}}</span>
 						{{/if}}
-						{{if value.score_label10 != null}}
+						{{if value.score_label10 != null && value.score_label10.trim() != ""}}
 						<span>{{value.score_label10}}</span>
 						{{/if}}
 					</div>
@@ -584,8 +586,8 @@
 				}
 			});
 
-			// mui.plusReady(function() {
-			mui.ready(function() {
+			mui.plusReady(function() {
+			// mui.ready(function() {
 
 				//绑定[悬浮按钮]事件
 				document.getElementById("addActionManual").addEventListener("tap", function() {
@@ -641,12 +643,12 @@
 			}
 
 			function getData() {
-				// storage.init();
-				// storageUser = kidstorageuser.getInstance();
+				storage.init();
+				storageUser = kidstorageuser.getInstance();
 
-				storageUser = {
-					UId: "E63CA7ADF0F547118841350E05DA1BAA"
-				};
+				// storageUser = {
+				// 	UId: "E63CA7ADF0F547118841350E05DA1BAA"
+				// };
 
 				//获取当前用户是否有客户信息
 				// requestJsonFile("../../data/home/NoneCustomer.json", {}, function(result_none) {
@@ -654,9 +656,10 @@
 					if (result_none[SysConstants.DATASET_KEY].CUST_CNT == 0) {
 						document.getElementById("NoneCustomerArea").classList.remove("none");
 					} else {
-						requestJsonFile("../../data/home/FinishedActionTemplate.json", {}, function(result_finished) {
+						// TODO 使用真正的接口
+						requestJsonFile("../../data/home/FinishedActionTemplate.json", {id:storageUser.UId}, function(result_finished) {
 							if (result_finished[SysConstants.DATASET_KEY].length > 0) {
-								// document.getElementById("HasFinishedActionArea").classList.remove("none");
+								document.getElementById("HasFinishedActionArea").classList.remove("none");
 
 								//动态生成已完成行动卡片信息
 								render("#FinishedActionList", "FinishedActionTemplate", result_finished);
@@ -681,10 +684,13 @@
 							}
 						});
 
-						//处理悬浮按钮
+						//显示悬浮按钮和首页内容
 						document.getElementById("addActionManual").classList.remove("none");
 						document.getElementById("AICalendarArea").classList.remove("none");
-
+						
+						
+						// TODO 第一阶段不显示日程相关信息
+						document.getElementById("todayActionArea").classList.add("none");
 						//动态生成今天日程统计数字
 						requestJsonFile("../../data/home/todayActionCount.json", {}, function(result_count) {
 							document.getElementById("PlanedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].PS_CNT;
@@ -696,6 +702,16 @@
 						requestJsonFile("../../data/home/nextAction.json", {}, function(result) {
 							render("#NextActionDetail", "NextActionDetailTemplate", result);
 						});
+
+						//动态生成行动推荐卡片信息  TODO
+						// requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
+						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
+							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
+							//动态加载滑动控件时需要手动调用一下滑动事件
+							suggest_slider2 = mui(".SuggestedAction-slider");
+							suggest_slider2.slider();
+						});
+						
 
 						//动态生成客户统计
 						// requestJsonFile("../../data/home/customerCount.json", {}, function(result) {
@@ -727,7 +743,7 @@
 											label: {
 												position: "inner",
 												formatter: function(params) {
-													return params.name + ":" + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
+													return params.name + "\n\r(" + (params.percent - 0).toFixed(0) + '%)'
 												}
 											},
 											labelLine: {
@@ -757,15 +773,6 @@
 							var pieChartDiv = document.getElementById("pieChart");
 							var pieChart = echarts.init(pieChartDiv);
 							pieChart.setOption(pieChartOption);
-						});
-
-						//动态生成行动推荐卡片信息  TODO
-						// requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
-							request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
-							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
-							//动态加载滑动控件时需要手动调用一下滑动事件
-							suggest_slider2 = mui(".SuggestedAction-slider");
-							suggest_slider2.slider();
 						});
 
 						//生成业务趋势图 TODO
@@ -821,7 +828,6 @@
 			}
 
 			function gotoFeedback(thisDom, id, act_feedback, isHelped) {
-				console.log(thisDom.classList);
 				if(act_feedback != "99"){
 					if(act_feedback == "1"){
 						mui.alert("您已经标记过当前推荐行动为[有帮助]了,请勿重复标记!");
