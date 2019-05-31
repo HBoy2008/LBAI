@@ -711,7 +711,7 @@
 
 						//动态生成行动推荐卡片信息  TODO
 						// requestJsonFile("../../data/home/SuggestedActionTemplate2.json", {}, function(result_suggested) {
-						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId, work_date:"2019-05-20"}, function(result_suggested) {
+						request("/sqldb/getCurDateSuggestAction/", {id:storageUser.UId}, function(result_suggested) {
 							render("#SuggestedActionList", "SuggestedActionTemplate", result_suggested);
 							//动态加载滑动控件时需要手动调用一下滑动事件
 							suggest_slider2 = mui(".SuggestedAction-slider");
@@ -782,28 +782,30 @@
 						});
 
 						//生成业务趋势图 TODO
-						var lineChartOption = {
-							calculable: false,
-							legend: {
-								data: ["行动推荐"]
-							},
-							xAxis: [{
-								type: "category",
-								data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-							}],
-							yAxis: [{
-								type: "value"
-							}],
-							series: [{
-								name: "行动推荐",
-								type: "line",
-								data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
-							}]
-						};
+						// request("/sqldb/getActSuggestCount/", {id: storageUser.UId}, function(result) {
+							var lineChartOption = {
+								calculable: false,
+								legend: {
+									data: ["行动推荐"]
+								},
+								xAxis: [{
+									type: "category",
+									data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+								}],
+								yAxis: [{
+									type: "value"
+								}],
+								series: [{
+									name: "行动推荐",
+									type: "line",
+									data: [20, 49, 70, 232, 256, 767, 800, 600, 326, 200, 64, 33]
+								}]
+							};
 
-						var lineChartDiv = document.getElementById("lineChart");
-						var lineChart = echarts.init(lineChartDiv);
-						lineChart.setOption(lineChartOption);
+							var lineChartDiv = document.getElementById("lineChart");
+							var lineChart = echarts.init(lineChartDiv);
+							lineChart.setOption(lineChartOption);
+						// });
 					}
 				});
 			}
