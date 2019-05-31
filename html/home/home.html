@@ -679,7 +679,8 @@
 								});
 
 								mui(".actionArea").on("tap", "button", function() {
-									mui.alert("你点击了ID为" + this.dataset.id + "的录音及语音识别功能");
+									mui.alert("【语音笔记】功能建设中...(事件ID:" + this.dataset.id + ")");
+									// mui.alert("你点击了ID为" + this.dataset.id + "的录音及语音识别功能");
 								});
 							}
 						});
@@ -690,7 +691,7 @@
 						
 						
 						// TODO 第一阶段不显示日程相关信息
-						document.getElementById("todayActionArea").classList.add("none");
+						// document.getElementById("todayActionArea").classList.add("none");
 						//动态生成今天日程统计数字
 						requestJsonFile("../../data/home/todayActionCount.json", {}, function(result_count) {
 							document.getElementById("PlanedSechdualSpan").innerText = result_count[SysConstants.DATASET_KEY].PS_CNT;

@@ -1,8 +1,8 @@
 {
 	"ERROR_CODE" : "SUCCESS",
 	"ERROR_MESSAGE" : "查询数据列表成功!",
-	"DATASET" : [],
-	"DATASET_BAK" : [
+	"DATASET_BAK" : [],
+	"DATASET" : [
 		{
 			"id" : "1",
 			"sellerId" : "李小龙",
