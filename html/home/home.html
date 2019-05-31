@@ -515,8 +515,8 @@
 						{{/if}}
 					</div>
 					{{else}}
-					<div class="labelShare">
-						<p><a href="{{value.act_article_link}}">{{value.act_article_title}}</a></p>
+					<div class="labelShare" onclick="gotoLink('{{value.act_article_title}}', '{{value.act_article_link}}')">
+						<p><a>{{value.act_article_title}}</a></p>
 					</div>
 					{{/if}}
 					<div class="shi-line-gray"></div>
@@ -597,7 +597,6 @@
 				//绑定[悬浮按钮]事件
 				document.getElementById("addActionManual").addEventListener("tap", function() {
 					mui.alert("【悬浮按钮】功能尚未开放!");
-					// openNew("");
 				});
 
 
@@ -833,6 +832,10 @@
 				}else{
 					checkButton.classList.add("none");
 				}
+			}
+			
+			function gotoLink(title, link) {
+				openNew("openLink.html", {title:title, link:link});
 			}
 
 			function gotoFeedback(thisDom, id, act_feedback, isHelped) {
